@@ -2,27 +2,37 @@ package main
 
 import "fmt"
 
-var blocks = [...][2]Cord{
-	{{1, 0}, {0, 1}},
-	{{1, 0}, {1, 1}},
+type Block [2]Cord
+
+var blocks = [...]Block{
+	{{0, 1}, {1, 0}},
 	{{0, 1}, {1, 1}},
-	{{0, 1}, {-1, 1}},
+	{{1, 0}, {1, 1}},
+	{{1, 0}, {1, -1}},
 }
 
 type Cord struct {
-	x int
 	y int
+	x int
 }
 
 func (c Cord) Add(c2 Cord) Cord {
-	return Cord{c.x + c2.x, c.y + c2.y}
-}
-
-func (c Cord) IsInRange(h int, w int) bool {
-	return 0 <= c.y && c.y < h && 0 <= c.x && c.x < w
+	return Cord{c.y + c2.y, c.x + c2.x}
 }
 
 type Board [][]bool
+
+func (b Board) Width() int {
+	return len(b[0])
+}
+
+func (b Board) Height() int {
+	return len(b)
+}
+
+func (b Board) IsInRange(c Cord) bool {
+	return 0 <= c.y && c.y < b.Height() && 0 <= c.x && c.x < b.Width()
+}
 
 func (b Board) Set(c Cord, t bool) {
 	b[c.y][c.x] = t
@@ -52,7 +62,7 @@ func (b Board) CanBlock(c Cord, block [2]Cord) bool {
 	}
 	for _, bc := range block {
 		bc = bc.Add(c)
-		if !bc.IsInRange(len(b), len(b[0])) {
+		if !b.IsInRange(bc) {
 			return false
 		}
 		if b.Get(bc) {
@@ -73,16 +83,16 @@ func (b Board) IsFull() bool {
 	return true
 }
 
-func Count(board Board, h int, w int) int {
+func Count(board Board) int {
 	if board.IsFull() {
 		return 1
 	}
 
 	var c Cord
 L:
-	for y := 0; y < h; y++ {
-		for x := 0; x < w; x++ {
-			c = Cord{x, y}
+	for y := 0; y < board.Height(); y++ {
+		for x := 0; x < board.Width(); x++ {
+			c = Cord{y, x}
 			if !board.Get(c) {
 				break L
 			}
@@ -93,7 +103,7 @@ L:
 	for _, block := range blocks {
 		if board.CanBlock(c, block) {
 			board.Block(c, block)
-			ret += Count(board, h, w)
+			ret += Count(board)
 			board.Unblock(c, block)
 		}
 	}
@@ -101,9 +111,13 @@ L:
 	return ret
 }
 
-func Input() (out Board, h int, w int) {
-	fmt.Scanf("%d %d", &h, &w)
+func Input() (out Board) {
+	var (
+		h int
+		w int
+	)
 
+	fmt.Scanf("%d %d", &h, &w)
 	out = make([][]bool, h)
 
 	for i := 0; i < h; i++ {
@@ -124,6 +138,6 @@ func Input() (out Board, h int, w int) {
 }
 
 func main() {
-	board, h, w := Input()
-	fmt.Println(Count(board, h, w))
+	board := Input()
+	fmt.Println(Count(board))
 }
