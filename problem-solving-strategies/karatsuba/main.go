@@ -1,8 +1,8 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
-	"strconv"
 )
 
 func min(a int, b int) int {
@@ -17,10 +17,10 @@ type Number []int
 func (n Number) Normalize() Number {
 	n = append(n, 0)
 	for i := 0; i < len(n)-1; i++ {
-		if n[i] >= 0 {
+		if n[i] > 9 {
 			n[i+1] += int(n[i] / 10)
 			n[i] %= 10
-		} else {
+		} else if n[i] < 0 {
 			borrow := int((n[i]-9)/10) * -1
 			n[i+1] -= borrow
 			n[i] += borrow * 10
@@ -28,50 +28,71 @@ func (n Number) Normalize() Number {
 	}
 
 	rem := 0
-	for i := len(n) - 1; i >= 0; i-- {
+	for i := len(n) - 1; i >= 1; i-- {
 		if n[i] != 0 {
 			break
 		}
 		rem++
 	}
+
 	return n[:len(n)-rem]
 }
 
 func (n Number) Multiply(n2 Number) Number {
-	out := make(Number, len(n)+len(n2)-1)
+	out := make(Number, len(n)+len(n2)-1, len(n)+len(n2))
 	for i := 0; i < len(n); i++ {
 		for j := 0; j < len(n2); j++ {
 			out[i+j] += n[i] * n2[j]
 		}
 	}
-	out = out.Normalize()
+
+	return out.Normalize()
+}
+
+func (n Number) Clone() Number {
+	out := make(Number, len(n), cap(n))
+	copy(out, n)
 	return out
 }
 
-func (n Number) Add(n2 Number, pos int) Number {
+func (n Number) Add(n2 Number) Number {
 	if len(n2) > len(n) {
 		n, n2 = n2, n
+	}
+
+	n = n.Clone()
+
+	for i := 0; i < len(n2); i++ {
+		n[i] += n2[i]
+	}
+
+	return n
+}
+
+func (n Number) AddPos(n2 Number, pos int) {
+	if len(n2) > len(n) {
+		panic("weired")
 	}
 
 	for i := 0; i < len(n2); i++ {
 		n[i+pos] += n2[i]
 	}
-	n = n.Normalize()
-	return n
 }
 
-func (n Number) Sub(n2 Number, pos int) Number {
+func (n Number) Sub(n2 Number) Number {
 	more := len(n2) - len(n)
 	if more > 0 {
-		mores := make(Number, more)
-		n = append(n, mores...)
+		moren := make(Number, len(n)+more, cap(n)+more)
+		copy(moren, n)
+		n = moren
+	} else {
+		n = n.Clone()
 	}
 
 	for i := 0; i < len(n2); i++ {
-		n[i+pos] -= n2[i]
+		n[i] -= n2[i]
 	}
 
-	n = n.Normalize()
 	return n
 }
 
@@ -84,11 +105,11 @@ func (n Number) KMultiply(n2 Number) Number {
 		return nil
 	}
 
-	out := make(Number, len(n)+len(n2)-1)
-	if len(out) <= 50 {
+	if len(n)+len(n2) <= 50 {
 		return n.Multiply(n2)
 	}
 
+	out := make(Number, len(n)+len(n2)-1, len(n)+len(n2)+1)
 	half := int(len(n) / 2)
 	half2 := min(half, len(n2))
 
@@ -99,45 +120,56 @@ func (n Number) KMultiply(n2 Number) Number {
 
 	z1 := a1.KMultiply(b1)
 	z3 := a2.KMultiply(b2)
-	z2 := a1.Add(a2, 0).KMultiply(b1.Add(b2, 0)).Sub(z1, 0).Sub(z3, 0)
+	z2 := a1.Add(a2).Normalize().
+		KMultiply(
+			b1.Add(b2).Normalize(),
+		).
+		Sub(z1).
+		Sub(z3)
 
-	out.Add(z1, 0)
-	out.Add(z2, half)
-	out.Add(z3, half*2)
+	out = append(out, 0)
+	out.AddPos(z1, 0)
+	out.AddPos(z2, half)
+	out.AddPos(z3, half*2)
 
+	out = out.Normalize()
 	return out
 }
 
 func (n Number) String() string {
-	out := ""
+	var buf bytes.Buffer
 	for i := len(n) - 1; i >= 0; i-- {
-		out += strconv.Itoa(n[i])
+		buf.WriteByte('0' + byte(n[i]))
 	}
-
-	if out == "" {
-		return "0"
+	if buf.Len() == 0 {
+		buf.WriteByte('0')
 	}
-	return out
+	return buf.String()
 }
 
-func NewNumber(d int) Number {
-	out := Number{}
-	for d != 0 {
-		out = append(out, d%10)
-		d /= 10
+func NewNumber(str string) Number {
+	out := make(Number, 0, len(str))
+	rs := []rune(str)
+	for i := len(rs) - 1; i >= 0; i-- {
+		out = append(out, int(rs[i]-'0'))
 	}
 	return out
-}
-
-func Input() Number {
-	var d int
-	fmt.Scanf("%d", &d)
-
-	return NewNumber(d)
 }
 
 func main() {
+	a, b := NewNumber("50"), NewNumber("20")
+	fmt.Println(a.KMultiply(b))
+}
+
+/*
+
+	for i := 0; i < 10000; i++ {
+		for j := 0; j < 500; j++ {
+			a, b := NewNumber("500013231231232333333122313111111111112321111111111111111111111111111111123232312331111111111111111111111111111111111111111111111111111111111111111111100000000000000000000000000000000000000000000000000"+strconv.Itoa(i)), NewNumber("412313123123410401000212301030132132111111111111111111123232323123111111031"+strconv.Itoa(j))
+			a.KMultiply(b)
+		}
+	}
 	a, b := Input(), Input()
 	c := a.KMultiply(b)
 	fmt.Println(c)
-}
+*/
