@@ -157,19 +157,10 @@ func NewNumber(str string) Number {
 }
 
 func main() {
-	a, b := NewNumber("50"), NewNumber("20")
-	fmt.Println(a.KMultiply(b))
+	var (
+		a string
+		b string
+	)
+	fmt.Scanf("%s %s", a, b)
+	fmt.Println(NewNumber(a).KMultiply(NewNumber(b)))
 }
-
-/*
-
-	for i := 0; i < 10000; i++ {
-		for j := 0; j < 500; j++ {
-			a, b := NewNumber("500013231231232333333122313111111111112321111111111111111111111111111111123232312331111111111111111111111111111111111111111111111111111111111111111111100000000000000000000000000000000000000000000000000"+strconv.Itoa(i)), NewNumber("412313123123410401000212301030132132111111111111111111123232323123111111031"+strconv.Itoa(j))
-			a.KMultiply(b)
-		}
-	}
-	a, b := Input(), Input()
-	c := a.KMultiply(b)
-	fmt.Println(c)
-*/
