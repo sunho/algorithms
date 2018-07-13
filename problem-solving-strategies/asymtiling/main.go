@@ -38,19 +38,19 @@ func Count(memory [][][]int, x int, y int, same int) int {
 
 	res := 0
 	if y-x >= 4 {
-		res += Count(memory, x+2, y-2, same)
+		res = (res + Count(memory, x+2, y-2, same)) % N
 	}
 	if y-x >= 3 {
-		res += Count(memory, x+1, y-2, 0)
-		res += Count(memory, x+2, y-1, 0)
+		res = (res + Count(memory, x+1, y-2, 0)) % N
+		res = (res + Count(memory, x+2, y-1, 0)) % N
 	}
 	if y-x >= 2 {
-		res += Count(memory, x+1, y-1, same)
+		res = (res + Count(memory, x+1, y-1, same)) % N
 	}
 
 	memory[x][y][same] = res
 
-	return res % N
+	return res
 }
 
 func main() {
