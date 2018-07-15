@@ -32,15 +32,22 @@ func (b Boards) GetWidestOverlap(i, j int) int {
 			j++
 		}
 
-		if i != -1 {
+		width = max(width, (j-i-1)*n)
+
+		iin := i != -1
+		jin := j != len(b)
+		if iin && jin {
+			n = min(n, max(b[i], b[j]))
+			continue
+		}
+		if iin {
 			n = min(n, b[i])
 		}
-		if j != len(b) {
+		if jin {
 			n = min(n, b[j])
 		}
-
-		width = max(width, (j-i-1)*n)
 	}
+
 	return width
 }
 
@@ -69,6 +76,10 @@ func Input() Boards {
 }
 
 func main() {
-	boards := Input()
-	fmt.Println(GetWidest(boards))
+	var s int
+	fmt.Scanf("%d", &s)
+	for i := 0; i < s; i++ {
+		boards := Input()
+		fmt.Println(GetWidest(boards))
+	}
 }

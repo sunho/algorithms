@@ -41,7 +41,11 @@ func Count(n int) int {
 }
 
 func main() {
-	var d int
-	fmt.Scanf("%d", &d)
-	fmt.Println(Count(d))
+	var s int
+	fmt.Scanf("%d", &s)
+	for i := 0; i < s; i++ {
+		var d int
+		fmt.Scanf("%d", &d)
+		fmt.Println(Count(d))
+	}
 }

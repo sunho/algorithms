@@ -79,11 +79,15 @@ func Input() (out Clocks) {
 }
 
 func main() {
-	clocks := Input()
-	ret := Min(clocks, 0)
-	if ret == Inf {
-		fmt.Println(-1)
-		return
+	var s int
+	fmt.Scanf("%d", &s)
+	for i := 0; i < s; i++ {
+		clocks := Input()
+		ret := Min(clocks, 0)
+		if ret == Inf {
+			fmt.Println(-1)
+			continue
+		}
+		fmt.Println(ret)
 	}
-	fmt.Println(ret)
 }

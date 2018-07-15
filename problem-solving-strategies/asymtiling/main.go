@@ -54,7 +54,12 @@ func Count(memory [][][]int, x int, y int, same int) int {
 }
 
 func main() {
-	n := 0
-	fmt.Scanf("%d", &n)
-	fmt.Println(MemoryCount(n))
+	s := 0
+	fmt.Scanf("%d", &s)
+	for s != 0 {
+		s--
+		n := 0
+		fmt.Scanf("%d", &n)
+		fmt.Println(MemoryCount(n))
+	}
 }

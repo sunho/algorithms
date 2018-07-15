@@ -1,8 +1,12 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"io"
 	"math"
+	"os"
+	"strconv"
 )
 
 const Inf = math.MaxInt32
@@ -71,15 +75,32 @@ func Memorize(n []int) int {
 	return dp[len(dp)-1]
 }
 
-func main() {
-	var str string
-	fmt.Scanf("%s", &str)
-	n := make([]int, len(str)+1)
-
-	buf := []byte(str)
-	for i := range buf {
-		n[i+1] = int(str[i] - '0')
+func ReadInt(bio *bufio.Reader) int {
+	line, err := bio.ReadString('\n')
+	if err != nil && err != io.EOF {
+		panic(err)
 	}
+	line = line[:len(line)-1]
+	num, err := strconv.Atoi(line)
+	if err != nil {
+		panic(err)
+	}
+	return num
+}
 
-	fmt.Println(Memorize(n))
+func main() {
+	bio := bufio.NewReader(os.Stdin)
+	s := ReadInt(bio)
+	for z := 0; z < s; z++ {
+		buf, err := bio.ReadBytes('\n')
+		if err != nil {
+			panic(err)
+		}
+		buf = buf[:len(buf)-1]
+		n := make([]int, len(buf)+1)
+		for i := range buf {
+			n[i+1] = int(buf[i] - '0')
+		}
+		fmt.Println(Memorize(n))
+	}
 }

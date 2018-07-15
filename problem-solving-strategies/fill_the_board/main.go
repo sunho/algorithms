@@ -138,6 +138,10 @@ func Input() (out Board) {
 }
 
 func main() {
-	board := Input()
-	fmt.Println(Count(board))
+	var s int
+	fmt.Scanf("%d", &s)
+	for i := 0; i < s; i++ {
+		board := Input()
+		fmt.Println(Count(board))
+	}
 }

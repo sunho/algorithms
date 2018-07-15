@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+	"strings"
+)
 
 //[pi][si] -> res
 var memory [][]int
@@ -31,7 +35,7 @@ func Check(pi int, pat []rune, si int, str []rune) bool {
 	if si == len(str) && pi == len(pat) {
 		return true
 	}
-	if si == len(str) && pi == len(pat)-1 && pat[0] == '*' {
+	if si == len(str) && pi == len(pat)-1 && pat[pi] == '*' {
 		return true
 	}
 	if pi == len(pat) || si == len(str) {
@@ -63,14 +67,30 @@ func Check(pi int, pat []rune, si int, str []rune) bool {
 	return res
 }
 
+func InputString() []rune {
+	var str string
+	fmt.Scanf("%s", &str)
+	return []rune(str)
+}
+
 func main() {
-	var (
-		pat_ string
-		str_ string
-	)
-	fmt.Scanf("%s %s", &pat_, &str_)
-	pat := []rune(pat_)
-	str := []rune(str_)
-	InitMemory(len(pat), len(str))
-	fmt.Println(Check(0, []rune(pat), 0, []rune(str)))
+	var s int
+	fmt.Scanf("%d", &s)
+	for i := 0; i < s; i++ {
+		var d int
+
+		pat := InputString()
+		fmt.Scanf("%d", &d)
+		strs := make([]string, 0, d)
+		for j := 0; j < d; j++ {
+			str := InputString()
+			InitMemory(len(pat), len(str))
+			if Check(0, pat, 0, str) {
+				strs = append(strs, string(str))
+			}
+		}
+
+		sort.Strings(strs)
+		fmt.Println(strings.Join(strs, "\n"))
+	}
 }

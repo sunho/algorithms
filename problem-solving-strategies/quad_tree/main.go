@@ -17,13 +17,17 @@ func Reverse(arr *[]rune) string {
 		a, b, c, d := Reverse(arr), Reverse(arr), Reverse(arr), Reverse(arr)
 		return "x" + c + d + a + b
 	default:
-		panic("invailid character")
+		return "i"
 	}
 }
 
 func main() {
-	str := ""
-	fmt.Scanf("%s", &str)
-	arr := []rune(str)
-	fmt.Println(Reverse(&arr))
+	var s int
+	fmt.Scanf("%d", &s)
+	for i := 0; i < s; i++ {
+		str := ""
+		fmt.Scanf("%s", &str)
+		arr := []rune(str)
+		fmt.Println(Reverse(&arr))
+	}
 }
