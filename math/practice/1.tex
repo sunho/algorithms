@@ -1,0 +1,177 @@
+\documentclass[12pt]{article}
+\usepackage{../sunho}
+\smallpage
+\begin{document}
+\kr{
+    Let x be price change in thousands.
+    And f(x) be the total benefit.
+
+    $ f(x) = (x + 30)(-2x + 60) - 10(-2x + 60) $
+
+    $ = -2x^2 + 1800 + 20x - 600 $
+
+    $ = -2x^2 + 20x + 1200 $
+    
+    $ = -2(x^2 - 10x - 600) $
+
+    $ = -2((x-5)^2 -600 -25) $
+
+    $ = -2(x-5)^2 + 1250 $
+
+    The function will have the maximum 1250 when x = 5.
+
+    Therefore 35000.
+
+    \hr
+
+    Let P(X|Y) be the probability of a win when it is X spaces away and Y turn.
+
+    \[
+     P(X=x|Y=y) = 
+     \begin{cases*}
+        \sum_{i=1}^{6} \frac{1}{6} P(X=x-i|Y=y+1) & if x > 6 \\
+        \sum_{i=1}^{x-1} \frac{1}{6} P(X=x-i|Y=y+1) \\ 
+        + \frac{6-x}{6} P(X=x|Y=y+1) + \frac{1}{6} & otherwise
+     \end{cases*}
+    \]
+    \[
+     P(X=x|Y=2) = 
+     \begin{cases*}
+        \frac{1}{6} & if 1 <= x <= 6 \\
+        0 & otherwise
+     \end{cases*}
+    \]
+
+    $ P(10|0) = \frac{1}{6}(P(9|1)+P(8|1)+P(7|1)+P(6|1)+P(5|1)+P(4|1)) $
+
+    $ P(9|1) = \frac{1}{6}\frac{4}{6} $
+
+    $ P(8|1) = \frac{1}{6}\frac{5}{6} $
+
+    $ P(7|1) = \frac{1}{6} $
+
+    $ P(6|1) = \frac{1}{6}\frac{5}{6} + \frac{1}{6} $
+
+    $ P(5|1) = \frac{1}{6}\frac{4}{6} + \frac{1}{6} P(5|2) + \frac{1}{6} $
+
+    $ P(4|1) = \frac{1}{6}\frac{3}{6} + \frac{2}{6} P(4|2) + \frac{1}{6} $
+
+    $ P(10|0) = \frac{1}{6}(\frac{4}{36} + \frac{5}{36} + \frac{6}{36} + \frac{11}{36} + \frac{11}{36} + \frac{11}{36}) $
+
+    $ P(10|0) = \frac{48}{216} = \frac{2}{9} $
+
+\hr
+
+    Let F be the event that fair coin flipped heads.
+
+    Let U be the event that unfair coin flipped heads.
+
+    $ P(U) = \f{3}{4} $
+
+    $ P(F) = \f{1}{2} $
+
+    $ P(\text{Right}) = P(U \cap F^C) + \f{1}{2} (P(U \cap F)+P(U^C \cap F^C)) $
+
+    $ = \f{3}{8} + \f{1}{2}(\f{3}{8} + \f{1}{8}) $
+
+    $ = \f{5}{8} $
+    
+\hr
+
+     Let X be the number of blue marbles.
+
+     $ P(X=1) = \f{\binom{12}{1}\binom{4}{4}}{\binom{16}{5}} $
+
+     $ P(X=2) = \f{\binom{12}{2}\binom{4}{3}}{\binom{16}{5}} $
+     
+     $ P(X=3) = \f{\binom{12}{3}\binom{4}{2}}{\binom{16}{5}} $
+
+     $ P(X=4) = \f{\binom{12}{4}\binom{4}{1}}{\binom{16}{5}} $
+
+     $ P(X=5) = \f{\binom{12}{5}}{\binom{16}{5}} $
+
+     $ E[X] = P(X=1) + 2P(X=2) + 3P(X=3) + 4P(X=4) + 5P(X=5) $
+
+\hr
+
+     Let A be the event that at least one child is a boy born on Tuesday.
+     
+     Let B be the event that both children are boys.
+
+     $ P(A) = 1 - P(A^C) $
+
+     $ A^C = $ both children are not boys or were not born on Tuesday.
+     
+     $ P(A^C) = \f{13}{14}\f{13}{14} $
+
+     $ P(A^C) = \f{169}{196} $
+
+     $ P(A) = \f{27}{196} $
+
+     $ P(A \cap B) = \f{13}{196} $
+
+     $ P(B|A) = \f{13}{196}\f{196}{27} $
+
+\hr
+
+    $ -(a + b) = -3 $
+
+    $ ab = 1 $
+
+    $ a^2+b^2 = (a+b)^2 - 2ab = 9 - 2 = 7 $
+
+    \begin{table}[htb]
+    \begin{tabular}{llll}
+        & $a^2$    & 5a    & 2     \\
+    $b^2$ & $a^2b^2$ & $5ab^2$ & $2b^2$  \\
+    5b  & $5a^2b$  & 25ab  & 10b   \\
+    2   & $2a^2$   & 10a   & 4
+    \end{tabular}
+    \end{table}
+
+    $ (ab)^2 + 5ab(a+b) +2(a^2+b^2) + 25ab + 10(a+b) + 4 $
+
+    $ = 1 + 15 + 14 + 25 + 30 + 4 = 89 $
+
+\hr
+
+    $ P(\text{Tie}) = \f{6}{48} $
+
+    $ P(\text{Win}) = \f{1}{6}(\f{2}{8} + \f{3}{8} + \f{4}{8} + \f{5}{8} + \f{6}{8} + \f{7}{8}) $
+
+    $ P(\text{Win}) = \f{1}{6}(\f{27}{8}) $
+
+    $ P(\text{Win}) = \f{27}{48} $
+
+    Let W be the event that wins the game.
+
+    $ P(W) = P(\text{Win}) + P(\text{Tie})P(W) $
+
+    $ P(W) = \f{27}{48} + \f{6}{48}P(W) $
+    
+    $ \f{42}{48}P(W) = \f{27}{48} $
+
+    $ P(W) = \f{9}{14} $
+
+\hr
+
+    Let X be the length of longest sequence.
+
+    X=1 -> HTHT, THTH
+    X=2 -> HHTT, TTHH, HTTH, THHT, HTHH, THTT, HHTH, TTHT
+    X=3 -> HHHT, THHH, TTTH, HTTT
+    X=4 -> HHHH, TTTT
+
+    $ P(X=1) = \f{2}{16} $
+
+    $ P(X=2) = \f{8}{16} $
+
+    $ P(X=3) = \f{4}{16} $
+
+    $ P(X=4) = \f{2}{16} $
+
+    $ E[X] = \f{2}{16} + \f{16}{16} + \f{12}{16} + \f{8}{16} $
+
+    $ = \f{19}{8} $
+}
+\end{document}

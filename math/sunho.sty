@@ -1,0 +1,28 @@
+\ProvidesPackage{sunho}
+\usepackage[T1]{fontenc}
+\usepackage{CJKutf8}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+\newcommand\kr[1]{
+\begin{CJK}{UTF8}{mj}
+    #1
+\end{CJK}
+}
+
+\newcommand\smallpage{
+\usepackage[
+  margin=0.5cm,
+  top=2cm,
+  paperwidth=15cm
+]{geometry}
+}
+
+\newcommand\hr{
+    \noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
+}
+
+\newcommand\f{
+    \frac
+}
