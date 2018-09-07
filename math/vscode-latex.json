@@ -1,0 +1,15 @@
+{
+	"Article": {
+		"prefix": "@a",
+		"body": [
+			"\\documentclass[12pt]{article}",
+			"\\usepackage{../sunho}",
+			"\\smallpage",
+			"\\begin{document}",
+			"\\kr{",
+			"\t$0",
+			"}",
+			"\\end{document}"
+		]
+	}
+}
