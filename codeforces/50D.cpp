@@ -9,7 +9,7 @@ int N;
 int K;
 double dists[100] = {0};
 
-double obj_prob(int i, double r) {
+double obj_prob(int i, double r) {  
     if (dists[i] <= r) {
         return 1.0;
     }
