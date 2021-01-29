@@ -24,8 +24,8 @@ int main() {
     for (int i = 0; i < m; ++i) {
         int v, u, w;
         cin >> v >> u >> w;
-        graph[u].push_back(make_pair(v, w));
-        graph[v].push_back(make_pair(u, w));
+        graph[u].push_back({v, w});
+        graph[v].push_back({u, w});
     }
     priority_queue<QueueItem, vector<QueueItem>, greater<QueueItem>> q;
     for (int i = 1; i <= n; ++i)
@@ -33,7 +33,7 @@ int main() {
             for (int k = 0; k < 2; ++k)
                 dis[i][j][k] = INF;
     dis[1][0][0] = 0;
-    q.push(make_pair(0, make_tuple(1, 0, 0)));
+    q.push({0, {1, 0, 0}});
     while (!q.empty()) {
         const auto item = q.top().second;
         const auto d = q.top().first;
@@ -48,7 +48,7 @@ int main() {
                     if (j == 1) newdis += cost;
                     if (newdis < dis[v][del|i][add|j]) {
                         dis[v][del|i][add|j] = newdis;
-                        q.push(make_pair(newdis, make_tuple(v, del|i, add|j)));
+                        q.push({newdis, {v, del|i, add|j}});
                     }
                 }
             }
