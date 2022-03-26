@@ -1,4 +1,20 @@
 {
+  "AC30446387": {
+    "contest_id": "abc245",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc245/C.cpp",
+    "platform": "AtCoder",
+    "problem_index": "C",
+    "problem_name": "Choose Elements",
+    "problem_url": "https://atcoder.jp/contests/abc245/tasks/abc245_c",
+    "submission_id": "AC30446387",
+    "submission_url": "https://atcoder.jp/contests/abc245/submissions/30446387",
+    "tags": [
+      "AtCoder",
+      "*300"
+    ],
+    "timestamp": "Mar/26/2022 21:18"
+  },
   "AC30464027": {
     "contest_id": "abc245",
     "language": "C++ (GCC 9.2.1)",
