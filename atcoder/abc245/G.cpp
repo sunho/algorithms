@@ -25,14 +25,17 @@ int main() {
 
     vector<vector<pii>> g(n);
     const ll inf = 1e18+10;
-    priority_queue<tuple<ll,int,int>, vector<tuple<ll,int,int>>, greater<>> q;
-    vector<vector<pair<ll,int>>> dist(n, vector<pair<ll,int>>(2, {-1,-1}));
+    priority_queue<tuple<ll,int, int>, vector<tuple<ll,int,int>>, greater<>> q;
+    vector<vector<pair<ll,int>>> d(n, vector<pair<ll,int>>(2, {inf, -1}));
+    vi seen(n);
+    vector<ll> dd(n, inf);
 
     rep(i,0,l) {
         int x;
         cin >> x;
         --x;
-        q.push({0, x, A[x]});
+        q.push({0, x, 0});
+        d[x][0] = {0, A[x]};
     }
     rep(i,0,m) {
         int x,y,z;
@@ -43,25 +46,35 @@ int main() {
     }
 
     while (!q.empty()) {
-        auto [d, u, c] = q.top();
+        auto [di, v, j] = q.top();
         q.pop();
-        if (dist[u][0].x == -1) {
-            dist[u][0] = {d, c};
-        } else if (dist[u][1].x == -1 && dist[u][0].y != c) {
-            dist[u][1] = {d, c};
-        } else {
-            continue;
+        if (d[v][j].x < di) continue;
+        for (auto edge : g[v]) {
+            auto [u, w] = edge;
+            pair<ll,int> nn = {d[v][j].x + w, d[v][j].y};
+            if (nn < d[u][0]) {
+                if (nn.y != d[u][0].y) {
+                    d[u][1] = d[u][0];
+                    q.push({d[u][0].x, u, 1});
+                }
+                d[u][0]=nn;
+                q.push({d[u][0].x, u, 0});
+            } else if (nn.y != d[u][0].y && ckmin(d[u][1], nn)) {
+                q.push({d[u][1].x, u, 1});
+            }
         }
-        trav(v, g[u]) q.push({d + v.y, v.x, c});
     }
 
+    trav(x, d) trav(y, x) if (y.x==inf) y.x = -1;
+
     rep(i,0,n) {
-        if (dist[i][0].y != A[i]) {
-            cout << dist[i][0].x << " ";
+        if (d[i][0].y != A[i]) {
+            cout << d[i][0].x << " ";
         } else {
-            cout << dist[i][1].x << " ";
+            cout << d[i][1].x << " ";
         }
-    }
+    }    
+
 
     return 0;
 }
