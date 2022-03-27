@@ -1,0 +1,25 @@
+auto dfs = [&](pii u, auto&& self) -> void {
+	if (seen[u.x][u.y]) return;
+	seen[u.x][u.y] = true;
+	vector<pii> dirs = { {u.x-1, u.y}, {u.x+1,u.y}, {u.x, u.y-1}, {u.x, u.y+1} };
+	int al = getdegree(u);
+	if (M[u.x][u.y] == '.') {
+		M[u.x][u.y] = '+';
+	}
+	trav(dir, dirs) if (isvalid(dir)) {
+		if(getdegree(dir) <= 1) {
+			self(dir,self);
+		}
+	}
+};
+
+auto dfs = [&](int u, int p, auto&& self) -> void {
+	if (visited[u]) {
+		return;
+	}
+	visited[u] = 1;
+	for (auto& x:g[u]) {
+		if (x == p) continue;
+		self(x, u, self);
+	}
+};
