@@ -1,4 +1,20 @@
 {
+  "AC30512456": {
+    "contest_id": "abc245",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc245/G.cpp",
+    "platform": "AtCoder",
+    "problem_index": "G",
+    "problem_name": "Foreign Friends",
+    "problem_url": "https://atcoder.jp/contests/abc245/tasks/abc245_g",
+    "submission_id": "AC30512456",
+    "submission_url": "https://atcoder.jp/contests/abc245/submissions/30512456",
+    "tags": [
+      "AtCoder",
+      "*600"
+    ],
+    "timestamp": "Mar/27/2022 21:50"
+  },
   "AC30518287": {
     "contest_id": "abc245",
     "language": "C++ (GCC 9.2.1)",
