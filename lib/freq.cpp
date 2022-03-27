@@ -1,7 +1,7 @@
 // when number of distinct elements is large
 // this is actually faster than hash map or binary map
 
-int maxfreq(vector<ll>& a) {
+int maxfreq(vector<i64>& a) {
     int res = 0;
     int cur = 0;
     sort(all(a));

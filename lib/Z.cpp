@@ -1,28 +1,26 @@
- 
-constexpr int P = 1000000007;
-using i64 = long long;
-// assume -P <= x < 2P
-int norm(int x) {
-    if (x < 0) {
-        x += P;
-    }
-    if (x >= P) {
-        x -= P;
-    }
-    return x;
-}
-template<class T>
-T power(T a, i64 b) {
-    T res = 1;
-    for (; b; b /= 2, a *= a) {
-        if (b % 2) {
-            res *= a;
-        }
-    }
-    return res;
-}
+template<int P = 998244353>
 struct Z {
     int x;
+    // assumes -P <= x <= 2P
+    static int norm(int x) {
+        if (x < 0) {
+            x += P;
+        }
+        if (x >= P) {
+            x -= P;
+        }
+        return x;
+    }
+    template<class T>
+    T power(T a, i64 b) {
+        T res = 1;
+        for (; b; b /= 2, a *= a) {
+            if (b % 2) {
+                res *= a;
+            }
+        }
+        return res;
+    }
     Z(int x = 0) : x(norm(x)) {}
     Z(i64 x) : x(norm(x % P)) {}
     int val() const {
