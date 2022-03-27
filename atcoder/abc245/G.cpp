@@ -45,13 +45,22 @@ int main() {
         g[y].push_back({x,z});
     }
 
+    //     a
+    // S   b
+    //     c
+    //
     while (!q.empty()) {
         auto [di, v, j] = q.top();
         q.pop();
         if (d[v][j].x < di) continue;
+
         for (auto edge : g[v]) {
             auto [u, w] = edge;
+            //ll last = d[u];
             pair<ll,int> nn = {d[v][j].x + w, d[v][j].y};
+            if (nn.y == d[u][0].y && nn.x >= d[u][0].x) {
+                continue;
+            }
             if (nn < d[u][0]) {
                 if (nn.y != d[u][0].y) {
                     d[u][1] = d[u][0];
@@ -59,8 +68,10 @@ int main() {
                 }
                 d[u][0]=nn;
                 q.push({d[u][0].x, u, 0});
-            } else if (nn.y != d[u][0].y && ckmin(d[u][1], nn)) {
-                q.push({d[u][1].x, u, 1});
+            } else {
+                if (ckmin(d[u][1], nn)) {
+                    q.push({d[u][1].x, u, 1});
+                }
             }
         }
     }
