@@ -1,4 +1,20 @@
 {
+  "AC30669242": {
+    "contest_id": "abc246",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc246/E.cpp",
+    "platform": "AtCoder",
+    "problem_index": "E",
+    "problem_name": "Bishop 2",
+    "problem_url": "https://atcoder.jp/contests/abc246/tasks/abc246_e",
+    "submission_id": "AC30669242",
+    "submission_url": "https://atcoder.jp/contests/abc246/submissions/30669242",
+    "tags": [
+      "AtCoder",
+      "*500"
+    ],
+    "timestamp": "Apr/02/2022 22:36"
+  },
   "AC30686270": {
     "contest_id": "abc246",
     "language": "C++ (GCC 9.2.1)",
