@@ -9,6 +9,17 @@ template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
 template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
 
 void solve() {
+    string S;
+    cin >> S;
+    int X;
+    cin >> X;
+    int cnt = 0;
+    
+    if (X < 3) {
+        cout << "YES" << '\n';
+    } else {
+        cout << "NO" << '\n';
+    }
 }
 
 int main() {

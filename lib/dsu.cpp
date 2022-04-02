@@ -6,7 +6,7 @@ struct DSU {
     DSU(int N) { 
         e.assign(N, 1);
         p.assign(N, 0);
-        rep(i, 0, N) p[i] = i;
+        for(int i = 0; i < N; i++) p[i] = i;
         scc = N;
     }
 

@@ -9,6 +9,17 @@ template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
 template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
 
 void solve() {
+    int n;
+    cin >> n;
+    vector<int> A(n);
+    for (int i = 0; i < n; i++) {
+        cin >> A[i];
+    }
+    int ans = 0;
+    for (int i = 0; i < n; i++) {
+        ans += A[i];
+    }
+    cout << ans << '\n';
 }
 
 int main() {

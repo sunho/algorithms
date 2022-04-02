@@ -59,6 +59,13 @@
         "mutex": "cpp",
         "stop_token": "cpp",
         "thread": "cpp",
-        "cinttypes": "cpp"
+        "cinttypes": "cpp",
+        "valarray": "cpp",
+        "span": "cpp",
+        "barrier": "cpp",
+        "latch": "cpp",
+        "semaphore": "cpp",
+        "regex": "cpp",
+        "any": "cpp"
     }
 }

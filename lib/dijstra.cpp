@@ -1,17 +1,18 @@
+template<class T> using pqg = priority_queue<T, vector<T>, greater<T>>;
+
 pqg<pair<ll,int>> q;
 q.push({0,0});
-const i64 inf = 1e18 + 10;
-vector<i64> d(n, inf);
+vector<ll> d(n, -1);
 
 while(!q.empty()) {
     auto [di, v] = q.top();
     q.pop();
-    if (d[v] == inf) {
+    if (d[v] == -1) {
         d[v] = di;
-    } else {
+    } else if() {
         continue;
     }
-    trav(x, g[v]) {
+    for(auto x: g[v]) {
         auto [u, w] = x;
         q.push({di + w, u});
     }

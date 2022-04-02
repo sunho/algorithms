@@ -9,6 +9,15 @@ template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
 template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
 
 void solve() {
+    int n,k;
+    cin >> n >> k;
+    for (int i = 0; i < k; i ++) {
+        cout << (n-i) << " ";
+    }
+    for (int i = 0; i < n-k; i++) {
+        cout << i + 1 << " ";
+    }
+    cout << '\n';
 }
 
 int main() {

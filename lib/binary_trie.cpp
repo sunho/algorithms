@@ -83,7 +83,6 @@ public:
 };
  
 //lazy_binary_trie
- 
 template<typename U = unsigned, int B = 32>
 class lazy_binary_trie {
     struct node {
