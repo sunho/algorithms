@@ -1,4 +1,20 @@
 {
+  "AC30686270": {
+    "contest_id": "abc246",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc246/F.cpp",
+    "platform": "AtCoder",
+    "problem_index": "F",
+    "problem_name": "typewriter",
+    "problem_url": "https://atcoder.jp/contests/abc246/tasks/abc246_f",
+    "submission_id": "AC30686270",
+    "submission_url": "https://atcoder.jp/contests/abc246/submissions/30686270",
+    "tags": [
+      "AtCoder",
+      "*500"
+    ],
+    "timestamp": "Apr/03/2022 11:07"
+  },
   "AC30686462": {
     "contest_id": "abc246",
     "language": "C++ (GCC 9.2.1)",

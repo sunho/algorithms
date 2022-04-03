@@ -32,24 +32,40 @@ using Z = zint<998244353>;
 void solve() {
     int n, l;
     cin >> n >> l;
-    vector<bitset<26>> S(n);
+    string alphabet = "abcdefghijklmnopqrstuvwxyz";
+    set<char> A;
+    for (char ch : alphabet) A.insert(ch);
+    vector<set<char>> S(n);
     for(int i=0;i<n;i++) {
         string s;
         cin >> s;
-        for(char ch : s) S[i].set(ch-'a');
+        for(char ch : s) S[i].insert(ch);
     }
+    auto intersect = [&](vector<int>& R) -> int{
+        set<char> C = A;
+        for(int i=0;i<R.size();i++){
+            for (auto it = C.begin(); it != C.end();) {
+                if (!S[R[i]].count(*it)) {
+                    it = C.erase(it);
+                } else {
+                    it++;
+                }
+            }
+        }
+        return C.size();
+    };
     Z ans = 0;
     for(int mask=1; mask < (1<<n); mask++) {
-        bitset<26> C;
-        C.set();
+        vector<int> R;
         int cnt = 0;
         for(int i=0;i<n;i++) {
             if(mask & (1<<i)) {
-                C &= S[i];
+                R.push_back(i);
                 cnt++;
             }
         }
-        Z c = (int)C.count();
+        int x = intersect(R);
+        Z c = intersect(R);
         if (cnt&1) {
             ans += power(c, l);
         } else {
