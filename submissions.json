@@ -1,4 +1,20 @@
 {
+  "AC30711286": {
+    "contest_id": "abc244",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc244/E.cpp",
+    "platform": "AtCoder",
+    "problem_index": "E",
+    "problem_name": "King Bombee",
+    "problem_url": "https://atcoder.jp/contests/abc244/tasks/abc244_e",
+    "submission_id": "AC30711286",
+    "submission_url": "https://atcoder.jp/contests/abc244/submissions/30711286",
+    "tags": [
+      "AtCoder",
+      "*500"
+    ],
+    "timestamp": "Apr/04/2022 07:22"
+  },
   "AC30711638": {
     "contest_id": "abc244",
     "language": "C++ (GCC 9.2.1)",
