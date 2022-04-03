@@ -24,6 +24,7 @@ void solve() {
     }
     int N = 1 << n;
     vector<vector<int>> dist(N, vector<int>(n, inf));
+    set<int> done;
     //dist[0][0] = 0;
     queue<tuple<int, int, int>> q;
     for (int i=0;i<n;i++) {
@@ -40,6 +41,7 @@ void solve() {
         for (int v : g[u]) {
             int rr = r;
             rr ^= (1<<v);
+            if (done.count(rr)) continue;
             q.push({d+1, rr, v});
         }
     }
