@@ -1,4 +1,20 @@
 {
+  "AC30711105": {
+    "contest_id": "abc244",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc244/D.cpp",
+    "platform": "AtCoder",
+    "problem_index": "D",
+    "problem_name": "Swap Hats",
+    "problem_url": "https://atcoder.jp/contests/abc244/tasks/abc244_d",
+    "submission_id": "AC30711105",
+    "submission_url": "https://atcoder.jp/contests/abc244/submissions/30711105",
+    "tags": [
+      "AtCoder",
+      "*400"
+    ],
+    "timestamp": "Apr/04/2022 06:41"
+  },
   "AC30711286": {
     "contest_id": "abc244",
     "language": "C++ (GCC 9.2.1)",
