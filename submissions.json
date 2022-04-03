@@ -1,4 +1,20 @@
 {
+  "AC30711671": {
+    "contest_id": "abc244",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc244/F.cpp",
+    "platform": "AtCoder",
+    "problem_index": "F",
+    "problem_name": "Shortest Good Path",
+    "problem_url": "https://atcoder.jp/contests/abc244/tasks/abc244_f",
+    "submission_id": "AC30711671",
+    "submission_url": "https://atcoder.jp/contests/abc244/submissions/30711671",
+    "tags": [
+      "AtCoder",
+      "*500"
+    ],
+    "timestamp": "Apr/04/2022 08:27"
+  },
   "AC30735329": {
     "contest_id": "abc244",
     "language": "C++ (GCC 9.2.1)",
