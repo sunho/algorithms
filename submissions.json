@@ -1,4 +1,20 @@
 {
+  "AC30711032": {
+    "contest_id": "abc244",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc244/C.cpp",
+    "platform": "AtCoder",
+    "problem_index": "C",
+    "problem_name": "Yamanote Line Game",
+    "problem_url": "https://atcoder.jp/contests/abc244/tasks/abc244_c",
+    "submission_id": "AC30711032",
+    "submission_url": "https://atcoder.jp/contests/abc244/submissions/30711032",
+    "tags": [
+      "AtCoder",
+      "*300"
+    ],
+    "timestamp": "Apr/04/2022 06:30"
+  },
   "AC30711105": {
     "contest_id": "abc244",
     "language": "C++ (GCC 9.2.1)",
