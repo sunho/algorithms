@@ -1,4 +1,20 @@
 {
+  "AC30738316": {
+    "contest_id": "abc243",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc243/F.cpp",
+    "platform": "AtCoder",
+    "problem_index": "F",
+    "problem_name": "Lottery",
+    "problem_url": "https://atcoder.jp/contests/abc243/tasks/abc243_f",
+    "submission_id": "AC30738316",
+    "submission_url": "https://atcoder.jp/contests/abc243/submissions/30738316",
+    "tags": [
+      "AtCoder",
+      "*500"
+    ],
+    "timestamp": "Apr/05/2022 19:53"
+  },
   "AC30750974": {
     "contest_id": "abc243",
     "language": "C++ (GCC 9.2.1)",
