@@ -1,4 +1,20 @@
 {
+  "AC30750986": {
+    "contest_id": "abc243",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc243/G.cpp",
+    "platform": "AtCoder",
+    "problem_index": "G",
+    "problem_name": "Sqrt",
+    "problem_url": "https://atcoder.jp/contests/abc243/tasks/abc243_g",
+    "submission_id": "AC30750986",
+    "submission_url": "https://atcoder.jp/contests/abc243/submissions/30750986",
+    "tags": [
+      "AtCoder",
+      "*600"
+    ],
+    "timestamp": "Apr/06/2022 15:00"
+  },
   "AC30751395": {
     "contest_id": "abc243",
     "language": "C++ (GCC 9.2.1)",
