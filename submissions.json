@@ -1,4 +1,20 @@
 {
+  "AC30755886": {
+    "contest_id": "abc242",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc242/G.cpp",
+    "platform": "AtCoder",
+    "problem_index": "G",
+    "problem_name": "Range Pairing Query",
+    "problem_url": "https://atcoder.jp/contests/abc242/tasks/abc242_g",
+    "submission_id": "AC30755886",
+    "submission_url": "https://atcoder.jp/contests/abc242/submissions/30755886",
+    "tags": [
+      "AtCoder",
+      "*600"
+    ],
+    "timestamp": "Apr/06/2022 19:20"
+  },
   "AC30766528": {
     "contest_id": "abc242",
     "language": "C++ (GCC 9.2.1)",
