@@ -1,4 +1,20 @@
 {
+  "AC30753341": {
+    "contest_id": "abc242",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc242/D.cpp",
+    "platform": "AtCoder",
+    "problem_index": "D",
+    "problem_name": "ABC Transform",
+    "problem_url": "https://atcoder.jp/contests/abc242/tasks/abc242_d",
+    "submission_id": "AC30753341",
+    "submission_url": "https://atcoder.jp/contests/abc242/submissions/30753341",
+    "tags": [
+      "AtCoder",
+      "*400"
+    ],
+    "timestamp": "Apr/06/2022 17:02"
+  },
   "AC30754607": {
     "contest_id": "abc242",
     "language": "C++ (GCC 9.2.1)",
