@@ -1,16 +1,3 @@
-// ====
-// input exmple
-vector<vi> g(n);
-vi deg(n);
-for(int i = 0; i < m; i++) {
-    int a,b;
-    cin >> a >> b;
-    a--,b--;
-    g[b].push_back(a);
-    deg[a]++;
-}
-// ====
-
 // khan's algorithm
 // ====
 queue<int> q;
@@ -34,4 +21,17 @@ while (!q.empty()) {
     }
 }
 if (cnt != n) cout << "cycle" << endl;
+
+// ====
+// input exmple
+vector<vi> g(n);
+vi deg(n);
+for(int i = 0; i < m; i++) {
+    int a,b;
+    cin >> a >> b;
+    a--,b--;
+    g[b].push_back(a);
+    deg[a]++;
+}
+// ====
 
