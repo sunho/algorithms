@@ -8,12 +8,34 @@ template<class T> using pqg = priority_queue<T, vector<T>, greater<T>>;
 template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
 template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
 
-
-struct trie_vertex {
-  array<int, 26> next;
-  bool leaf = false;
-  trie_vertex () {
-    fill(begin(next), end(next), -1);
+template<int K = 26>
+struct Trie {
+  struct Vertex {
+    array<int, K> next;
+    bool leaf = false;
+    char pch;
+    Vertex(char ch='$') : pch(ch) {
+      fill(begin(next), end(next), -1);
+    }
+  };
+  int cnt = 0;
+  vector<Vertex> t;
+  Trie() : t(1) { }
+  void add_string(const string& s) {
+    bool ok = true;
+    int v = 0;
+    for (char ch : s) {
+      int c = ch - 'a';
+      if (t[v].next[c] == -1) {
+        t[v].next[c] = t.size();
+        t.emplace_back(ch);
+      }
+      v = t[v].next[c];
+    }
+    if (ok && !t[v].leaf) {
+      t[v].leaf = true;
+      cnt++;
+    }
   }
 };
 
@@ -24,7 +46,7 @@ void solve() {
   cin >> B;
   int k;
   cin >> k;
-  vector<trie_vertex> trie(1);
+  Trie trie;
   int ans = 0;
   for(int i=0;i<S.size();i++) {
     int nk = k+1;
@@ -37,12 +59,12 @@ void solve() {
           break;
         }
       }
-      if (trie[v].next[c] == -1) {
-        trie[v].next[c] = trie.size();
-        trie.push_back({});
+      if (trie.t[v].next[c] == -1) {
+        trie.t[v].next[c] = trie.t.size();
+        trie.t.emplace_back(S[j]);
         ans++;
       }
-      v = trie[v].next[c];
+      v = trie.t[v].next[c];
     }
   }
   cout << ans << "\n";
