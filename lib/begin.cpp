@@ -12,10 +12,10 @@ void solve() {
 }
 
 int main() {
-    cin.sync_with_stdio(0); cin.tie(0);
-    cin.exceptions(cin.failbit);
+  cin.sync_with_stdio(0); cin.tie(0);
+  cin.exceptions(cin.failbit);
 
-    solve();
+  solve();
 
-    return 0;
+  return 0;
 }
