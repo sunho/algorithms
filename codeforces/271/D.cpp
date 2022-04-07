@@ -12,6 +12,7 @@ int rand_int(int n) {
   static mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
   return uniform_int_distribution<int>(0, n)(rng);
 }
+
 using ull = unsigned long long;
 const int MM = 1000000007;
 const int MM2 = 1000000009;
@@ -27,6 +28,7 @@ struct PolyHash {
     ull val() const { return (ull)*this; }
   };
   using hint = g_zint_2<MM, g_zint_2<MM2, unsigned>>;
+  
   static int base;
 	vector<hint> ha, pw;
 	PolyHash(string& str) : ha(str.size()+1), pw(ha) {
@@ -54,6 +56,7 @@ struct PolyHash {
 int PolyHash::base(rand_int(MM));
 
 void solve() {
+
   string S;
   cin >> S;
   string B;
@@ -61,7 +64,7 @@ void solve() {
   int k;
   cin >> k;
   PolyHash hash(S);
-  vector<ll> V;
+  set<ll> V;
   int ans = 0;
   for(int i=0;i<S.size();i++) {
     int nk = k+1;
@@ -70,12 +73,13 @@ void solve() {
       if (nk == 0) {
         break;
       }
-      V.push_back(hash(i, j+1).val());
+      if (!V.count(hash(i,j+1).val())) {
+        ans++;
+      }
+      V.insert(hash(i,j+1).val());
     }
   }
-  sort(all(V));
-  V.resize(unique(all(V)) - all(V)-V.begin());
-  cout << V.size() << "\n";
+  cout << ans << "\n";
 }
 
 int main() {
