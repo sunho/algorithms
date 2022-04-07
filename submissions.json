@@ -1,4 +1,20 @@
 {
+  "AC30767764": {
+    "contest_id": "abc241",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc241/D.cpp",
+    "platform": "AtCoder",
+    "problem_index": "D",
+    "problem_name": "Sequence Query",
+    "problem_url": "https://atcoder.jp/contests/abc241/tasks/abc241_d",
+    "submission_id": "AC30767764",
+    "submission_url": "https://atcoder.jp/contests/abc241/submissions/30767764",
+    "tags": [
+      "AtCoder",
+      "*400"
+    ],
+    "timestamp": "Apr/07/2022 14:03"
+  },
   "AC30768083": {
     "contest_id": "abc241",
     "language": "C++ (GCC 9.2.1)",
