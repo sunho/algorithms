@@ -1,4 +1,20 @@
 {
+  "AC30767446": {
+    "contest_id": "abc241",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc241/B.cpp",
+    "platform": "AtCoder",
+    "problem_index": "B",
+    "problem_name": "Pasta",
+    "problem_url": "https://atcoder.jp/contests/abc241/tasks/abc241_b",
+    "submission_id": "AC30767446",
+    "submission_url": "https://atcoder.jp/contests/abc241/submissions/30767446",
+    "tags": [
+      "AtCoder",
+      "*200"
+    ],
+    "timestamp": "Apr/07/2022 13:36"
+  },
   "AC30767539": {
     "contest_id": "abc241",
     "language": "C++ (GCC 9.2.1)",
