@@ -8,36 +8,50 @@ template<class T> using pqg = priority_queue<T, vector<T>, greater<T>>;
 template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
 template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
 
-template<int K = 26>
-struct Trie {
-  struct Vertex {
-    array<int, K> next;
-    bool leaf = false;
-    char pch;
-    Vertex(char ch='$') : pch(ch) {
-      fill(begin(next), end(next), -1);
-    }
+int rand_int(int n) {
+  static mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+  return uniform_int_distribution<int>(0, n)(rng);
+}
+using ull = unsigned long long;
+const int MM = 1000000007;
+const int MM2 = 1000000009;
+struct PolyHash {
+  template<int M, class B>
+  struct g_zint_2 {
+    int x; B b; g_zint_2(int x=0) : x(x), b(x) {}
+    g_zint_2(int x, B b) : x(x), b(b) {}
+    g_zint_2 operator+(g_zint_2 o){int y = x+o.x; return{y - (y>=M)*M, b+o.b};}
+    g_zint_2 operator-(g_zint_2 o){int y = x-o.x; return{y + (y< 0)*M, b-o.b};}
+    g_zint_2 operator*(g_zint_2 o) { return {(int)(1LL*x*o.x % M), b*o.b}; }
+    explicit operator ull() const { return x ^ (ull) b << 21; }
+    ull val() const { return (ull)*this; }
   };
-  int cnt = 0;
-  vector<Vertex> t;
-  Trie() : t(1) { }
-  void add_string(const string& s) {
-    bool ok = true;
-    int v = 0;
-    for (char ch : s) {
-      int c = ch - 'a';
-      if (t[v].next[c] == -1) {
-        t[v].next[c] = t.size();
-        t.emplace_back(ch);
-      }
-      v = t[v].next[c];
+  using hint = g_zint_2<MM, g_zint_2<MM2, unsigned>>;
+  static int base;
+	vector<hint> ha, pw;
+	PolyHash(string& str) : ha(str.size()+1), pw(ha) {
+		pw[0] = 1;
+		for(int i=0;i<str.size();i++)
+			ha[i+1] = ha[i] * base + str[i],
+			pw[i+1] = pw[i] * base;
+	}
+	hint operator()(int a, int b) { // hash [a, b)
+		return ha[b] - ha[a] * pw[b - a];
+	}
+  static vector<hint> getHashes(string& str, int length) {
+    if (str.size() < length) return {};
+    hint h = 0, pw = 1;
+    for(int i=0;i<length;i++)
+      h = h * PolyHash::base + str[i], pw = pw * PolyHash::base;
+    vector<hint> ret = {h};
+    for(int i=length;i<str.size();i++) {
+      ret.push_back(h = h * PolyHash::base + str[i] - pw * str[i-length]);
     }
-    if (ok && !t[v].leaf) {
-      t[v].leaf = true;
-      cnt++;
-    }
+    return ret;
   }
+  static hint hashString(string& s){hint h{}; for(char c:s) h=h*PolyHash::base+c;return h;}
 };
+int PolyHash::base(rand_int(MM));
 
 void solve() {
   string S;
@@ -46,28 +60,22 @@ void solve() {
   cin >> B;
   int k;
   cin >> k;
-  Trie trie;
+  PolyHash hash(S);
+  set<ll> V;
   int ans = 0;
   for(int i=0;i<S.size();i++) {
     int nk = k+1;
-    int v=0;
     for(int j=i;j<S.size();j++) {
-      int c = S[j]-'a';
-      if (B[c] == '0') {
-        nk--;
-        if (nk == 0) {
-          break;
-        }
+      if (B[S[j]-'a'] == '0') nk--;
+      if (nk == 0) {
+        break;
       }
-      if (trie.t[v].next[c] == -1) {
-        trie.t[v].next[c] = trie.t.size();
-        trie.t.emplace_back(S[j]);
-        ans++;
-      }
-      v = trie.t[v].next[c];
+      V.insert(hash(i, j+1).val());
     }
   }
-  cout << ans << "\n";
+  // sort(all(V));
+  // V.resize(unique(all(V)) - all(V)-V.begin());
+  cout << V.size() << "\n";
 }
 
 int main() {
