@@ -1,4 +1,20 @@
 {
+  "AC30766528": {
+    "contest_id": "abc242",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc242/F.cpp",
+    "platform": "AtCoder",
+    "problem_index": "F",
+    "problem_name": "Black and White Rooks",
+    "problem_url": "https://atcoder.jp/contests/abc242/tasks/abc242_f",
+    "submission_id": "AC30766528",
+    "submission_url": "https://atcoder.jp/contests/abc242/submissions/30766528",
+    "tags": [
+      "AtCoder",
+      "*500"
+    ],
+    "timestamp": "Apr/07/2022 12:21"
+  },
   "AC30767401": {
     "contest_id": "abc241",
     "language": "C++ (GCC 9.2.1)",
