@@ -1,8 +1,8 @@
-struct Mo {
+struct mo_query {
   int n;
-  vector< pair< int, int > > lr;
+  vector<pair<int, int>> lr;
 
-  explicit Mo(int n) : n(n) {}
+  explicit mo_query(int n) : n(n) {}
 
   void add(int l, int r) { /* [l, r) */
     lr.emplace_back(l, r);

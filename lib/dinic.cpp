@@ -1,14 +1,14 @@
-struct Dinic {
+struct dinic {
   const int INF = 1e9;
   int n;
-  struct Edge {
+  struct dinic_edge {
     int to, cap;
-    Edge(int to, int cap) : to(to), cap(cap) {}
+    dinic_edge(int to, int cap) : to(to), cap(cap) {}
   };
-  vector<Edge> e;
+  vector<dinic_edge> e;
   vector<vector<int>> g;
   vector<int> cur, h;
-  Dinic(int n) : n(n), g(n) {}
+  dinic(int n) : n(n), g(n) {}
   bool bfs(int s, int t) {
     h.assign(n, -1);
     queue<int> q;

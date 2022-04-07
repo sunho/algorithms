@@ -5,7 +5,7 @@ int rand_int(int n) {
 using ull = unsigned long long;
 const int MM = 1000000007;
 const int MM2 = 1000000009;
-struct PolyHash {
+struct poly_hash {
   template<int M, class B>
   struct g_zint_2 {
     int x; B b; g_zint_2(int x=0) : x(x), b(x) {}
@@ -19,7 +19,7 @@ struct PolyHash {
   using hint = g_zint_2<MM, g_zint_2<MM2, unsigned>>;
   static int base;
   vector<hint> ha, pw;
-  PolyHash(string& str) : ha(str.size()+1), pw(ha) {
+  poly_hash(string& str) : ha(str.size()+1), pw(ha) {
     pw[0] = 1;
     for(int i=0;i<str.size();i++)
       ha[i+1] = ha[i] * base + str[i],
@@ -28,7 +28,7 @@ struct PolyHash {
     hint operator()(int a, int b) { // hash [a, b)
     return ha[b] - ha[a] * pw[b - a];
   }
-  static vector<hint> getHashes(string& str, int length) {
+  static vector<hint> get_hashes(string& str, int length) {
     if (str.size() < length) return {};
     hint h = 0, pw = 1;
     for(int i=0;i<length;i++)
@@ -39,6 +39,6 @@ struct PolyHash {
     }
     return ret;
   }
-  static hint hashString(string& s){hint h{}; for(char c:s) h=h*PolyHash::base+c;return h;}
+  static hint hash_string(string& s){hint h{}; for(char c:s) h=h*PolyHash::base+c;return h;}
 };
-int PolyHash::base(rand_int(MM));
+int poly_hash::base(rand_int(MM));

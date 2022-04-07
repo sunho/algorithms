@@ -9,7 +9,7 @@ struct trie_vertex {
 vector<trie_vertex> trie(1);
 
 // full
-struct Trie {
+struct string_trie {
   vector<trie_vertex> t(1);
 
   struct trie_vertex {
@@ -27,26 +27,26 @@ struct Trie {
   };
 
   void add_string(const string& s) {
-      int v = 0;
-      for (char ch : s) {
-        int c = ch - 'a';
-        if (t[v].next[c] == -1) {
-          t[v].next[c] = t.size();
-          t.emplace_back(v, ch);
-        }
-        v = t[v].next[c];
+    int v = 0;
+    for (char ch : s) {
+      int c = ch - 'a';
+      if (t[v].next[c] == -1) {
+        t[v].next[c] = t.size();
+        t.emplace_back(v, ch);
       }
-      t[v].leaf = true;
+      v = t[v].next[c];
+    }
+    t[v].leaf = true;
   }
 
   int get_link(int v) {
-      if (t[v].link == -1) {
-        if (v == 0 || t[v].p == 0)
-          t[v].link = 0;
-        else
-          t[v].link = go(get_link(t[v].p), t[v].pch);
-      }
-      return t[v].link;
+    if (t[v].link == -1) {
+      if (v == 0 || t[v].p == 0)
+        t[v].link = 0;
+      else
+        t[v].link = go(get_link(t[v].p), t[v].pch);
+    }
+    return t[v].link;
   }
 
   int go(int v, char ch) {
