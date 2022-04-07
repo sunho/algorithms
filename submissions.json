@@ -1,4 +1,20 @@
 {
+  "AC30769660": {
+    "contest_id": "abc241",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc241/G.cpp",
+    "platform": "AtCoder",
+    "problem_index": "G",
+    "problem_name": "Round Robin",
+    "problem_url": "https://atcoder.jp/contests/abc241/tasks/abc241_g",
+    "submission_id": "AC30769660",
+    "submission_url": "https://atcoder.jp/contests/abc241/submissions/30769660",
+    "tags": [
+      "AtCoder",
+      "*600"
+    ],
+    "timestamp": "Apr/07/2022 16:09"
+  },
   "AC30770852": {
     "contest_id": "abc241",
     "language": "C++ (GCC 9.2.1)",
