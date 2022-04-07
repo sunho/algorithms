@@ -61,7 +61,7 @@ void solve() {
   int k;
   cin >> k;
   PolyHash hash(S);
-  set<ll> V;
+  vector<ll> V;
   int ans = 0;
   for(int i=0;i<S.size();i++) {
     int nk = k+1;
@@ -70,11 +70,11 @@ void solve() {
       if (nk == 0) {
         break;
       }
-      V.insert(hash(i, j+1).val());
+      V.push_back(hash(i, j+1).val());
     }
   }
-  // sort(all(V));
-  // V.resize(unique(all(V)) - all(V)-V.begin());
+  sort(all(V));
+  V.resize(unique(all(V)) - all(V)-V.begin());
   cout << V.size() << "\n";
 }
 
