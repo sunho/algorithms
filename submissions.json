@@ -2143,6 +2143,25 @@
     ],
     "timestamp": "May/10/2022 15:50"
   },
+  "CF153057258": {
+    "contest_id": 1665,
+    "language": "GNU C++17 (64)",
+    "path": "codeforces/1665/C.cpp",
+    "platform": "Codeforces",
+    "problem_index": "C",
+    "problem_name": "Tree Infection",
+    "problem_url": "https://codeforces.com/contest/1665/problem/C",
+    "submission_id": "CF153057258",
+    "submission_url": "https://codeforces.com/contest/1665/submission/153057258",
+    "tags": [
+      "binary search",
+      "greedy",
+      "sortings",
+      "trees",
+      "*1600"
+    ],
+    "timestamp": "Apr/09/2022 00:49"
+  },
   "CF153077991": {
     "contest_id": 1665,
     "language": "GNU C++17 (64)",

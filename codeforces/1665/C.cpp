@@ -20,11 +20,15 @@ void solve() {
     outdeg[u]++;
     g[u].push_back(i+1);
   }
-  vector<int> idx(n);
-  iota(all(idx), 0);
-  sort(all(idx), [&](int a, int b){
-    return outdeg[a] < outdeg[b];
-  });
+  vector<pair<int, int>> deg;
+  for(int i=0;i<n;i++) {
+    deg.push_back({outdeg[i], i});
+  }
+  sort(all(deg));
+  vector<int> idx;
+  for(int i=0;i<n;i++){
+    idx.push_back(deg[i].y);
+  }
   int t=0;
   vector<int> tt(n);
   for(int i=n-1;i>=0;i--){
