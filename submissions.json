@@ -2143,6 +2143,23 @@
     ],
     "timestamp": "May/10/2022 15:50"
   },
+  "CF153237959": {
+    "contest_id": 1661,
+    "language": "GNU C++17 (64)",
+    "path": "codeforces/1661/D.cpp",
+    "platform": "Codeforces",
+    "problem_index": "D",
+    "problem_name": "Progressions Covering",
+    "problem_url": "https://codeforces.com/contest/1661/problem/D",
+    "submission_id": "CF153237959",
+    "submission_url": "https://codeforces.com/contest/1661/submission/153237959",
+    "tags": [
+      "data structures",
+      "greedy",
+      "*1900"
+    ],
+    "timestamp": "Apr/10/2022 05:13"
+  },
   "CF153242133": {
     "contest_id": 1661,
     "language": "GNU C++17 (64)",

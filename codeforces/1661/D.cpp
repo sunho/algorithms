@@ -13,26 +13,21 @@ struct lazy_seg_tree {
   lazy_seg_tree() = delete;
   lazy_seg_tree(int n) : n(n), d(n), t(2*n), h(sizeof(int) * 8 - __builtin_clz(n)) {
   }
-  void print_range(int p) {
-    int lg = (int)log2(p);
-    int k = 1 << (h - lg-1);
-    int i = p - (1<<lg);
-    cout << "[" << i*k << "," << (i+1)*k+1<< ")\n";
+  T combine(T a, T b) {
+    return a+b;
   }
-  // invairant is combine(i,j) = combine(t[left],t[right],d[i])
-  // update parents of given node
-  // we need to fix the parents t[i] after updating node
-  // (keep the invariant of t[i])
+  void apply(int p, T value, int len) {
+    t[p] += value * len;
+    if (p < n) d[p] += value;
+  }
   void build(int p) {
     int k = 1;
     while (p > 1) {
-      p/=2;
+      p /= 2;
       k*=2;
-      t[p] = combine(t[p*2], t[p*2+1], d[p], k);
+      t[p] = combine(t[p*2], t[p*2+1]) + d[p] * k;
     }
   }
-  // propagate changes from all the parents to given node
-  // this is needed before querying
   void push(int p) {
     int k = 1 << (h-1);
     for (int s = h; s > 0; --s, k /= 2) {
@@ -49,23 +44,11 @@ struct lazy_seg_tree {
     int l0 = l, r0 = r;
     int k = 1;
     for (; l < r; l /= 2, r /= 2, k *= 2) {
-      // if it's odd it's a node that is on the boundary 
-      // we can include it and let parent deal with it
-      // lazy calc
       if (l&1) apply(l++, value, k);
       if (r&1) apply(--r, value, k);
     }
     build(l0);
     build(r0 - 1);
-  }
-  T combine(T left, T right, T lazy, int len) {
-    return left+right+lazy*len;
-  }
-  // lazy update one node
-  // fix invariant within only this node
-  void apply(int p, T value, int len) {
-    t[p] += value * len;
-    if (p < n) d[p] += value; // not leaf node
   }
   // [l,r)
   T query(int l, int r) {
@@ -74,8 +57,8 @@ struct lazy_seg_tree {
     push(l);
     push(r - 1);
     for (; l < r; l /= 2, r /= 2) {
-      if (l&1) res = combine(res, t[l++], 0, 0);
-      if (r&1) res = combine(t[--r], res, 0, 0);
+      if (l&1) res = combine(res, t[l++]);
+      if (r&1) res = combine(t[--r], res);
     }
     return res;
   }
