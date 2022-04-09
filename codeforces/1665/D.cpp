@@ -7,7 +7,7 @@ using ll = long long;
 template<class T> using pqg = priority_queue<T, vector<T>, greater<T>>;
 template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
 template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
-ll normalize(ll x, ll mod) { x %= mod; if (x < 0) x += mod; return x; }
+inline long long normalize(long long x, long long mod) { x %= mod; if (x < 0) x += mod; return x; }
 tuple<ll,ll,ll> exgcd(ll a, ll b) {
     ll x = 1, y = 0;
     ll x1 = 0, y1 = 1, a1 = a, b1 = b;
@@ -44,14 +44,11 @@ void solve() {
   for(int i = 1; i < a.size(); i++)
   {
     auto [d, x1, y1] = exgcd(l, m[i]);
-    if((a[i] - ans) % d != 0) {
-      cout << "error" << endl;
-    }
     ans = normalize(ans + x1 * (a[i] - ans) / d % (m[i] / d) * l, l * m[i] / d);
-    l = lcm(l, m[i]);
+    l *= m[i];
   }
 
-  cout << "! " << ans << endl;
+  cout << "! " << ans << "\n";
 }
 
 int main() {
