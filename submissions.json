@@ -1,4 +1,20 @@
 {
+  "AC30917067": {
+    "contest_id": "abc247",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc247/F.cpp",
+    "platform": "AtCoder",
+    "problem_index": "F",
+    "problem_name": "Cards",
+    "problem_url": "https://atcoder.jp/contests/abc247/tasks/abc247_f",
+    "submission_id": "AC30917067",
+    "submission_url": "https://atcoder.jp/contests/abc247/submissions/30917067",
+    "tags": [
+      "AtCoder",
+      "*500"
+    ],
+    "timestamp": "Apr/11/2022 23:45"
+  },
   "AC30966495": {
     "contest_id": "abc247",
     "language": "C++ (GCC 9.2.1)",
