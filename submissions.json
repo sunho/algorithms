@@ -1,4 +1,20 @@
 {
+  "AC30913348": {
+    "contest_id": "abc247",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc247/B.cpp",
+    "platform": "AtCoder",
+    "problem_index": "B",
+    "problem_name": "Unique Nicknames",
+    "problem_url": "https://atcoder.jp/contests/abc247/tasks/abc247_b",
+    "submission_id": "AC30913348",
+    "submission_url": "https://atcoder.jp/contests/abc247/submissions/30913348",
+    "tags": [
+      "AtCoder",
+      "*200"
+    ],
+    "timestamp": "Apr/11/2022 21:23"
+  },
   "AC30913435": {
     "contest_id": "abc247",
     "language": "C++ (GCC 9.2.1)",
