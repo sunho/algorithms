@@ -42,11 +42,12 @@ private:
 void solve() {
   int n;
   cin >> n;
+  fenwick_tree FT(n);
   vector<int> A(n);
   for(int i=0;i<n;i++) {
     cin >> A[i];
+    FT.update(A[i]-1, 1);
   }
-  sort(all(A));
   const int N = log2(n) + 2;
   int gans = 1e9;
   for(int a=0;a <= N;a++) {
@@ -57,12 +58,12 @@ void solve() {
         int sum = 0;
         int last = 0;
         for(int i=0;i<3;i++){
-          int c = A[min(sum + lens[i] - 1, n-1)];
-          int k = upper_bound(all(A), c) - A.begin() - 1;
-          if (k-last+1 > lens[i]) {
-            k = lower_bound(all(A), c) - A.begin() - 1;
+          int k = FT.lower_bound(sum + lens[i]);
+          if (k == n || FT.query(last,k+1) > lens[i]) {
+            k--;
           }
-          sum += k-last+1;
+          ll ss = FT.query(last,k+1);
+          sum += ss;
           last = k+1;
         }
         if (sum == n) {
