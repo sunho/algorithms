@@ -8,8 +8,36 @@ template<class T> using pqg = priority_queue<T, vector<T>, greater<T>>;
 template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
 template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
 
-int ilog2(ll x) { return 63 - __builtin_clzll(x); }
-int ilog2(int x) { return 31 - __builtin_clz(x); }
+struct fenwick_tree {
+  // [-bias, n - bias)
+  fenwick_tree(int n, int bias=0) : sums(n), bias(bias) {}
+  void update(int pos, ll dif) { // a[pos] += dif
+    pos += bias;
+    for (; pos < sums.size(); pos |= pos + 1) sums[pos] += dif;
+  }
+  ll query(int pos) { // sum of values in [0, pos)
+    pos += bias;
+    ll res = 0;
+    for (; pos > 0; pos &= pos - 1) res += sums[pos-1];
+    return res;
+  }
+  ll query(int l, int r) { // sum of values in [l, r)
+    return query(r) - query(l);
+  }
+  int lower_bound(ll sum) {// min pos st sum of [0, pos] >= sum
+    // Returns n if no sum is >= sum, or -1 if empty sum is.
+    if (sum <= 0) return -1;
+    int pos = 0;
+    for (int pw = 1 << 25; pw; pw >>= 1) {
+      if (pos + pw <= sums.size() && sums[pos + pw-1] < sum)
+        pos += pw, sum -= sums[pos-1];
+    }
+    return pos-bias;
+  }
+private:
+  vector<ll> sums;
+  ll bias;
+};
 
 void solve() {
   int n;
@@ -19,27 +47,26 @@ void solve() {
     cin >> A[i];
   }
   sort(all(A));
-  const int N = ilog2(n) + 1;
+  const int N = log2(n) + 2;
   int gans = 1e9;
-  for(int a=0;a<=N;a++) {
+  for(int a=0;a <= N;a++) {
     for(int b=0;b<=N;b++){
       for(int c=0;c<=N;c++){
         array<int,3> lens = {1 << a, 1 << b, 1 << c};
-        int len_sum = lens[0] + lens[1] + lens[2];
-        if (len_sum < n) continue;
+        if (lens[0] + lens[1] + lens[2] < n) continue;
         int sum = 0;
         int last = 0;
-        for(auto len : lens){
-          int c = A[min(sum + len - 1, n-1)];
+        for(int i=0;i<3;i++){
+          int c = A[min(sum + lens[i] - 1, n-1)];
           int k = upper_bound(all(A), c) - A.begin() - 1;
-          if (k-last+1 > len) {
+          if (k-last+1 > lens[i]) {
             k = lower_bound(all(A), c) - A.begin() - 1;
           }
           sum += k-last+1;
           last = k+1;
         }
         if (sum == n) {
-          gans = min(gans, len_sum-n);
+          gans = min(gans, lens[2]+lens[1]+lens[0]-n);
         }
       }
     }
