@@ -1,11 +1,11 @@
 // when number of distinct elements is large
 // this is actually faster than hash map or binary map
 
-int maxfreq(vector<i64>& a) {
+int maxfreq(vector<int>& a) {
   int res = 0;
   int cur = 0;
   sort(all(a));
-  rep(i, 0, a.size()) {
+  for(int i=0; i < a.size(); i++) {
     if (i == 0 || a[i] == a[i-1]) {
       cur++;
       ckmax(res, cur);
@@ -14,4 +14,4 @@ int maxfreq(vector<i64>& a) {
     }
   }
   return res;
-}
+}👨‍👩‍👧‍👦

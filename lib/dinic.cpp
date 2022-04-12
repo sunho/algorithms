@@ -23,7 +23,7 @@ struct dinic {
         if (c > 0 && h[v] == -1) {
           h[v] = h[u] + 1;
           if (v == t)
-              return true;
+            return true;
           q.push(v);
         }
       }

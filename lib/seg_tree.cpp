@@ -1,3 +1,131 @@
+struct seg_tree {
+  seg_tree(int n, int bias=0) : n(n), bias(bias), a(n*4) {
+  }
+  seg_tree(vector<int>&v) : n(v.size()), bias(0), a(n*4) {
+    build(0, n - 1, 1, v);
+  }
+  struct node {
+    ll sum = 0;
+    void update(ll v) {
+      sum += v;
+    }
+  };
+  node merge(const node &x, const node &y) {
+    node ret;
+    ret.sum = x.sum + y.sum;
+    return ret;
+  }
+  void build(int l, int r, int rt, vector<int>& v) {
+    if(l == r) {
+      a[rt].sum = v[l];
+      return;
+    }
+    int m = (l + r) / 2;
+    build(l, m, rt*2,v);
+    build(m + 1, r, rt*2+1,v);
+    a[rt] = merge(a[rt*2], a[rt*2+1]);
+  }
+  template <typename... V>
+  void update(int pos, int l, int r, int rt, const V&... v) {
+    if(l == r) {
+      a[rt].update(v...);
+      return;
+    }
+    int m = (l + r) / 2;
+    if(pos <= m) update(pos, l, m, rt*2, v...);
+    else update(pos, m+1, r, rt*2+1, v...);
+    a[rt] = merge(a[rt*2], a[rt*2+1]);
+  }
+  template <typename... V>
+  void update(int pos, const V&... v) {
+    pos += bias;
+    update(pos, 0, n - 1, 1, v...);
+  }
+  node query(int L, int R, int l, int r, int rt) {
+    if(L <= l && r <= R) return a[rt];
+    node ret;
+    int m = (l + r) / 2;
+    if(L <= m) ret = merge(ret, query(L, R, l, m, rt*2));
+    if(m < R) ret = merge(ret, query(L, R, m+1, r, rt*2+1));
+    return ret;
+  }
+  ll query(int L, int R) {
+    L += bias, R += bias;
+    return query(L, R-1, 0, n - 1, 1).sum;
+  }
+
+  int n;
+  int bias;
+  vector<node> a;
+};
+
+struct lazy_seg_tree {
+  lazy_seg_tree(int n) : n(n), a(n*4) {
+    build(0, n - 1, 1);
+  }
+  struct node {
+    ll sum = 0, add = 0;
+    void update(int l, int r, ll v) {
+      sum = sum + (r - l + 1) * v;
+      add = add + v;
+    }
+  };
+  node merge(const node &x, const node &y) {
+    node ret;
+    ret.sum = x.sum + y.sum;
+    return ret;
+  }
+  void pushdown(int l, int r, int rt) {
+    int m = (l + r) / 2;
+    a[rt*2].update(l, m, a[rt].add);
+    a[rt*2+1].update(m+1, r, a[rt].add);
+    a[rt].add = 0;
+  }
+  void build(int l, int r, int rt) {
+    if(l == r) {
+      return;
+    }
+    int m = (l + r) / 2;
+    build(l, m, rt*2);
+    build(m + 1, r, rt*2+1);
+    a[rt] = merge(a[rt*2], a[rt*2+1]);
+  }
+  template <typename... V>
+  void update(int L, int R, int l, int r, int rt, const V&... v) {
+    if(L <= l && r <= R) {
+      a[rt].update(l, r, v...);
+      return;
+    }
+    pushdown(l, r, rt);
+    int m = (l + r) / 2;
+    if(L <= m) update(L, R, l, m, rt*2, v...);
+    if(m < R) update(L, R, m+1, r, rt*2+1, v...);
+    a[rt] = merge(a[rt*2], a[rt*2+1]);
+  }
+  template <typename... V>
+  void update(int L, int R, const V&... v) {
+    update(L, R-1, 0, n - 1, 1, v...);
+  }
+  node query(int L, int R, int l, int r, int rt) {
+    if(L <= l && r <= R) return a[rt];
+    node ret;
+    pushdown(l, r, rt);
+    int m = (l + r) / 2;
+    if(L <= m) ret = merge(ret, query(L, R, l, m, rt*2));
+    if(m < R) ret = merge(ret, query(L, R, m+1, r, rt*2+1));
+    return ret;
+  }
+  node query(int L, int R) {
+    return query(L, R-1, 0, n - 1, 1);
+  }
+
+  int n;
+  vector<node> a;
+};
+
+
+// faster version
+// use when it's slow
 template<class T>
 struct seg_tree {
   // [-bias, n - bias)
@@ -30,55 +158,4 @@ private:
   int n;
   int bias;
   vector<T> seg;
-};
-
-struct lazy_seg_tree {
-  lazy_seg_tree() = delete;
-  lazy_seg_tree(int n) : n(n), d(n), t(2*n), h(sizeof(int) * 8 - __builtin_clz(n)) {
-  }
-  int combine(int a, int b) {
-    return max(a,b);
-  }
-  void apply(int p, int value) {
-    t[p] += value;
-    if (p < n) d[p] += value;
-  }
-  void build(int p) {
-    while (p > 1) p >>= 1, t[p] = combine(t[p<<1], t[p<<1|1]) + d[p];
-  }
-  void push(int p) {
-    for (int s = h; s > 0; --s) {
-      int i = p >> s;
-      if (d[i] != 0) {
-        apply(i<<1, d[i]);
-        apply(i<<1|1, d[i]);
-        d[i] = 0;
-      }
-    }
-  }
-  void inc(int l, int r, int value) {
-    l += n, r += n;
-    int l0 = l, r0 = r;
-    for (; l < r; l >>= 1, r >>= 1) {
-      if (l&1) apply(l++, value);
-      if (r&1) apply(--r, value);
-    }
-    build(l0);
-    build(r0 - 1);
-  }
-  int query(int l, int r) {
-    int res = -2e9;
-    l += n, r += n;
-    push(l);
-    push(r - 1);
-    for (; l < r; l >>= 1, r >>= 1) {
-      if (l&1) res = combine(res, t[l++]);
-      if (r&1) res = combine(t[--r], res);
-    }
-    return res;
-  }
-  int n;
-  vector<int> d;
-  vector<int> t;
-  int h;
 };

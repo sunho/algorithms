@@ -32,13 +32,13 @@ struct poly_hash {
     if (str.size() < length) return {};
     hint h = 0, pw = 1;
     for(int i=0;i<length;i++)
-      h = h * PolyHash::base + str[i], pw = pw * PolyHash::base;
+      h = h * poly_hash::base + str[i], pw = pw * poly_hash::base;
     vector<hint> ret = {h};
     for(int i=length;i<str.size();i++) {
-      ret.push_back(h = h * PolyHash::base + str[i] - pw * str[i-length]);
+      ret.push_back(h = h * poly_hash::base + str[i] - pw * str[i-length]);
     }
     return ret;
   }
-  static hint hash_string(string& s){hint h{}; for(char c:s) h=h*PolyHash::base+c;return h;}
+  static hint hash_string(string& s){hint h{}; for(char c:s) h=h*poly_hash::base+c;return h;}
 };
 int poly_hash::base(rand_int(MM));

@@ -20,3 +20,4 @@ template<int P> struct g_zint {
   friend istream& operator >> (istream& in, g_zint& rhs) { ll x; in >> x; rhs = g_zint(x); return in; }
 };
 using zint = g_zint<998244353>;
+
