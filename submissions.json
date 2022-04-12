@@ -2143,6 +2143,25 @@
     ],
     "timestamp": "May/10/2022 15:50"
   },
+  "CF153461177": {
+    "contest_id": 1660,
+    "language": "GNU C++17 (64)",
+    "path": "codeforces/1660/F2.cpp",
+    "platform": "Codeforces",
+    "problem_index": "F2",
+    "problem_name": "Promising String (hard version)",
+    "problem_url": "https://codeforces.com/contest/1660/problem/F2",
+    "submission_id": "CF153461177",
+    "submission_url": "https://codeforces.com/contest/1660/submission/153461177",
+    "tags": [
+      "data structures",
+      "implementation",
+      "math",
+      "strings",
+      "*2100"
+    ],
+    "timestamp": "Apr/12/2022 22:08"
+  },
   "CF153462246": {
     "contest_id": 1632,
     "language": "GNU C++17 (64)",
