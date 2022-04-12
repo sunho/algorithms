@@ -22,11 +22,9 @@ void solve() {
   sort(all(rev), [&](int a, int b) {
     return M[a] < M[b];
   });
-  auto M2 = M;
-  for(int i=0;i<n;i++) {
-    M2[i] = M[rev[i]];
-  }
-  M = M2;
+  sort(all(M), [&](const auto& a, const auto& b) {
+    return a < b;
+  });
   vector<multiset<int>> A(n);
   vector<multiset<int>> B(n);
   for(int i=0;i<n;i++) {
