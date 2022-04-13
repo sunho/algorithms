@@ -2143,6 +2143,28 @@
     ],
     "timestamp": "May/10/2022 15:50"
   },
+  "CF153535464": {
+    "contest_id": 1598,
+    "language": "GNU C++17 (64)",
+    "path": "codeforces/1598/E.cpp",
+    "platform": "Codeforces",
+    "problem_index": "E",
+    "problem_name": "Staircases",
+    "problem_url": "https://codeforces.com/contest/1598/problem/E",
+    "submission_id": "CF153535464",
+    "submission_url": "https://codeforces.com/contest/1598/submission/153535464",
+    "tags": [
+      "brute force",
+      "combinatorics",
+      "data structures",
+      "dfs and similar",
+      "dp",
+      "implementation",
+      "math",
+      "*2100"
+    ],
+    "timestamp": "Apr/13/2022 17:36"
+  },
   "CF153538005": {
     "contest_id": 1598,
     "language": "GNU C++17 (64)",
