@@ -1,4 +1,20 @@
 {
+  "AC30966495": {
+    "contest_id": "abc247",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc247/G.cpp",
+    "platform": "AtCoder",
+    "problem_index": "G",
+    "problem_name": "Dream Team",
+    "problem_url": "https://atcoder.jp/contests/abc247/tasks/abc247_g",
+    "submission_id": "AC30966495",
+    "submission_url": "https://atcoder.jp/contests/abc247/submissions/30966495",
+    "tags": [
+      "AtCoder",
+      "*600"
+    ],
+    "timestamp": "Apr/14/2022 22:26"
+  },
   "AC30968721": {
     "contest_id": "abc246",
     "language": "C++ (GCC 9.2.1)",
