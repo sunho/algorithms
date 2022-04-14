@@ -7,7 +7,7 @@ using ll = long long;
 template<class T> using pqg = priority_queue<T, vector<T>, greater<T>>;
 template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
 template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
-  
+
 void solve() {
   int n;
   cin >> n;
@@ -36,41 +36,41 @@ void solve() {
   }
   ll maxi = 0;
   array<int, 10> ans{};
-  priority_queue<pair<ll,pair<int, array<int, 10>>>> pq;
-  array<int,10> last{};
-  ll tmp = 0;
-  for(int i=0;i<n;i++){
+  array<int, 10> last{};
+  for(int i=0;i<n;i++) {
     last[i] = C[i].size()-1;
-    tmp += C[i][last[i]];
   }
-  pq.push({tmp, {0,last}});
-  while (!pq.empty()) {
-    auto [l, pp] = pq.top();
-    auto [pos, idx] = pp;
-    pq.pop();
-    if (!S.count(idx)) {
-      ans = idx;
-      break;
-    }
-    if (idx[pos] != 0) {
-      idx[pos]--;
-      pq.push({l+C[pos][idx[pos]]-C[pos][idx[pos]+1], {pos, idx}});
-      idx[pos]++;
-    }
-    if (pos + 1 < n) {
-      pq.push({l, {pos+1, idx}});
+  if (!S.count(last)) {
+    ans = last;
+  } else {
+    for (auto s : S) {
+      for (int k : {-1, 1}) {
+        for(int i=0;i<n;i++) {
+          if (0 <= s[i] + k && s[i]+k < C[i].size()) {
+            auto cand = s;
+            cand[i]+=k;
+            ll sum = 0;
+            for(int j=0;j<n;j++) {
+              sum += C[j][cand[j]];
+            }
+            if (!S.count(cand) && ckmax(maxi, sum)) {
+              ans = cand;
+            }
+          }
+        }
+      }
     }
   }
   for(int i=0;i<n;i++){
     cout << ans[i] + 1 << " ";
   }
 }
-  
+
 int main() {
   cin.sync_with_stdio(0); cin.tie(0);
   cin.exceptions(cin.failbit);
-  
+
   solve();
-  
+
   return 0;
 }
