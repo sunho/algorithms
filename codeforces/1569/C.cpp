@@ -44,31 +44,44 @@ void solve() {
   for(int i=1;i<=n;i++) {
     fact[i]=fact[i-1]*i;
   }
-  int last_mx = 0;
-  vector<pair<int,int>> mx(2);
-  mx[0].x = A[n-1];
-  for(int i=n-1; i>=0; i--) {
-    if (mx[last_mx].x == A[i]) mx[last_mx].y++;
-    else { 
-      last_mx++;
-      if (last_mx >= 2) break;
-       mx[last_mx].x = A[i];
-       mx[last_mx].y = 1;
+
+  vector<zint> ifact(n+1);
+  ifact[1] = n;
+  for(int i=2;i<=n;i++) {
+    ifact[i]=ifact[i-1]*(n-i+1);
+  }
+
+  int maxi = -1;
+  int maxin = 0;
+  int smaxi = -1;
+  int q = 0;
+  for(int i=n-1;i>=0;i--) {
+    if (maxi == -1) {
+      maxi = A[i];
+    }
+    if (maxi == A[i]) {
+      maxin++;
+      continue;
+    }
+    if (smaxi == -1) {
+      smaxi = A[i];
+    }
+    if(smaxi == A[i]) {
+      q++;
     }
   }
-  if (mx[1].y == 0) {
+  if (q == 0) {
     cout << fact[n] << "\n";
     return;
   }
-  if (mx[0].y != 1) {
+  if (maxin != 1) {
     cout << fact[n] << "\n";
     return;
   }
-  if (mx[0].x - mx[1].x > 1) {
+  if (maxi - smaxi > 1) {
     cout << 0 << "\n";
     return;
   }
-  int q=mx[1].y;
   zint ans = fact[n];
   zint exc = 0;
   for(int i=1;i<=n-q;i++) { 
