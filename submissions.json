@@ -1,4 +1,20 @@
 {
+  "AC31005267": {
+    "contest_id": "abc248",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc248/A.cpp",
+    "platform": "AtCoder",
+    "problem_index": "A",
+    "problem_name": "Lacked Number",
+    "problem_url": "https://atcoder.jp/contests/abc248/tasks/abc248_a",
+    "submission_id": "AC31005267",
+    "submission_url": "https://atcoder.jp/contests/abc248/submissions/31005267",
+    "tags": [
+      "AtCoder",
+      "*100"
+    ],
+    "timestamp": "Apr/16/2022 21:02"
+  },
   "AC31007686": {
     "contest_id": "abc248",
     "language": "C++ (GCC 9.2.1)",
