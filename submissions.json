@@ -2143,6 +2143,27 @@
     ],
     "timestamp": "May/10/2022 15:50"
   },
+  "CF153927418": {
+    "contest_id": 1659,
+    "language": "GNU C++17 (64)",
+    "path": "codeforces/1659/C.cpp",
+    "platform": "Codeforces",
+    "problem_index": "C",
+    "problem_name": "Line Empire",
+    "problem_url": "https://codeforces.com/contest/1659/problem/C",
+    "submission_id": "CF153927418",
+    "submission_url": "https://codeforces.com/contest/1659/submission/153927418",
+    "tags": [
+      "binary search",
+      "brute force",
+      "dp",
+      "greedy",
+      "implementation",
+      "math",
+      "*1500"
+    ],
+    "timestamp": "Apr/18/2022 01:04"
+  },
   "CF153937276": {
     "contest_id": 1659,
     "language": "GNU C++17 (64)",
