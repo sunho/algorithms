@@ -5,8 +5,9 @@ template<class T> using pqg = priority_queue<T, vector<T>, greater<T> >;
 template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
 template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
 
-template<class T> T power(T a, ll b) { T res = 1; for (; b; b /= 2, a *= a) { if (b % 2) { res *= a; } } return res; }
+
 int P;
+template<class T> T power(T a, ll b) { T res = 1; for (; b; b /= 2, a *= a) { if (b % 2) { res *= a; } } return res; }
 struct g_zint {
   int x;
   // assumes -P <= x <= 2P
@@ -33,25 +34,30 @@ void solve() {
   int n;
   cin >> n;
   cin >> P;
-  vector<vector<array<zint,3>>> dp(n, vector<array<zint,3>>(n+3, array<zint,3>{}));
-  dp[0][0][0] = 1;
-  dp[0][1][2] = 1;
+  vector<array<zint,3>> dp(n+3, array<zint,3>{});
+  vector<array<zint,3>> next(n+3,array<zint,3>{});
+  dp[0][0] = 1;
+  dp[1][2] = 1;
   for(int i=0;i<n-1;i++){
-    for(int j=0;j<=n-1;j++) {
+    for(int i=0;i<n+3;i++) next[i] = {0,0,0};
+    for(int j=0;j<=min(i+1,n-1);j++) {
       for(int k : {0,1}) {
-        dp[i+1][j][0] += dp[i][j][k];
-        dp[i+1][j+1][0] += 2*dp[i][j][k];
-        dp[i+1][j+1][1] += dp[i][j][k];
-        dp[i+1][j+2][2] += 2*dp[i][j][k];
+        next[j][0] += dp[j][k];
+        next[j+1][0] += dp[j][k];
+        next[j+1][0] += dp[j][k];
+        next[j+1][1] += dp[j][k];
+        next[j+2][2] += dp[j][k];
+        next[j+2][2] += dp[j][k];
       }
-      dp[i+1][j][0] += dp[i][j][2];
-      dp[i+1][j+1][2] += dp[i][j][2];
+      next[j][0] += dp[j][2];
+      next[j+1][2] += dp[j][2];
     }
+    dp = next;
   }
   for(int i=1;i<=n-1;i++) {
     zint ans = 0;
     for(int k=0;k<2;k++){
-      ans += dp[n-1][i][k];
+      ans += dp[i][k];
     }
     cout << ans << " ";
   }
