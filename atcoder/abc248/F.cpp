@@ -38,7 +38,7 @@ void solve() {
   dp[1][2] = 1;
   for(int i=0;i<n-1;i++){
     vector<vector<zint>> next(n+3,vector<zint>(3,0));
-    for(int j=0;j<=min(i+1,n-1);j++) {
+    for(int j=0;j<=n-1;j++) {
       for(int k : {0,1}) {
         next[j][0] += dp[j][k];
         next[j+1][0] += dp[j][k];
