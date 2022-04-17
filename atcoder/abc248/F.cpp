@@ -38,14 +38,17 @@ void solve() {
   dp[0][1][2] = 1;
   for(int i=0;i<n-1;i++){
     for(int j=0;j<=n-1;j++) {
-      for(int k : {0,1}) {
-        dp[i+1][j][0] += dp[i][j][k];
-        dp[i+1][j+1][0] += 2*dp[i][j][k];
-        dp[i+1][j+1][1] += dp[i][j][k];
-        dp[i+1][j+2][2] += 2*dp[i][j][k];
+      for(int k=0;k<3;k++) {
+        if (k==0 || k == 1) {
+          dp[i+1][j][0] += dp[i][j][k];
+          dp[i+1][j+1][0] += 2*dp[i][j][k];
+          dp[i+1][j+1][1] += dp[i][j][k];
+          dp[i+1][j+2][2] += 2*dp[i][j][k];
+        } else if (k == 2) {
+          dp[i+1][j][0] += dp[i][j][k];
+          dp[i+1][j+1][2] += dp[i][j][k];
+        }
       }
-      dp[i+1][j][0] += dp[i][j][2];
-      dp[i+1][j+1][2] += dp[i][j][2];
     }
   }
   for(int i=1;i<=n-1;i++) {

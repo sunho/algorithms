@@ -1,4 +1,20 @@
 {
+  "AC31058839": {
+    "contest_id": "abc248",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc248/F.cpp",
+    "platform": "AtCoder",
+    "problem_index": "F",
+    "problem_name": "Keep Connect",
+    "problem_url": "https://atcoder.jp/contests/abc248/tasks/abc248_f",
+    "submission_id": "AC31058839",
+    "submission_url": "https://atcoder.jp/contests/abc248/submissions/31058839",
+    "tags": [
+      "AtCoder",
+      "*500"
+    ],
+    "timestamp": "Apr/17/2022 14:12"
+  },
   "AC31058869": {
     "contest_id": "abc248",
     "language": "C++ (GCC 9.2.1)",
