@@ -33,29 +33,27 @@ void solve() {
   int n;
   cin >> n;
   cin >> P;
-  vector<vector<zint>> dp(n+3, vector<zint>(3, 0));
-  dp[0][0] = 1;
-  dp[1][2] = 1;
+  vector<vector<vector<zint>>> dp(n, vector<vector<zint>>(n+3, vector<zint>(3, 0)));
+  dp[0][0][0] = 1;
+  dp[0][1][2] = 1;
   for(int i=0;i<n-1;i++){
-    vector<vector<zint>> next(n+3,vector<zint>(3,0));
     for(int j=0;j<=n-1;j++) {
       for(int k : {0,1}) {
-        next[j][0] += dp[j][k];
-        next[j+1][0] += dp[j][k];
-        next[j+1][0] += dp[j][k];
-        next[j+1][1] += dp[j][k];
-        next[j+2][2] += dp[j][k];
-        next[j+2][2] += dp[j][k];
+        dp[i+1][j][0] += dp[i][j][k];
+        dp[i+1][j+1][0] += dp[i][j][k];
+        dp[i+1][j+1][0] += dp[i][j][k];
+        dp[i+1][j+1][1] += dp[i][j][k];
+        dp[i+1][j+2][2] += dp[i][j][k];
+        dp[i+1][j+2][2] += dp[i][j][k];
       }
-      next[j][0] += dp[j][2];
-      next[j+1][2] += dp[j][2];
+      dp[i+1][j][0] += dp[i][j][2];
+      dp[i+1][j+1][2] += dp[i][j][2];
     }
-    dp = move(next);
   }
   for(int i=1;i<=n-1;i++) {
     zint ans = 0;
     for(int k=0;k<2;k++){
-      ans += dp[i][k];
+      ans += dp[n-1][i][k];
     }
     cout << ans << " ";
   }
