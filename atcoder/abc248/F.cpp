@@ -29,12 +29,11 @@ struct g_zint {
 };
 using zint = g_zint;
 
-zint dp[3009][3009][3];
 void solve() {
   int n;
   cin >> n;
   cin >> P;
-  
+  vector<vector<array<zint,3>>> dp(n, vector<array<zint,3>>(n+3, array<zint,3>{}));
   dp[0][0][0] = 1;
   dp[0][1][2] = 1;
   for(int i=0;i<n-1;i++){
