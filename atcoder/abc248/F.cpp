@@ -11,8 +11,7 @@ struct g_zint {
   int x;
   // assumes -P <= x <= 2P
   static int norm(int x) { if (x < 0) { x += P; } if (x >= P) { x -= P; } return x; }
-  g_zint() : x(0) {}
-  g_zint(int x) : x(norm(x)) {}
+  g_zint(int x = 0) : x(norm(x)) {}
   g_zint(ll x) : x(norm(x % P)) {}
   int val() const { return x; }
   g_zint operator-() const { return g_zint(norm(P - x)); }
@@ -34,11 +33,11 @@ void solve() {
   int n;
   cin >> n;
   cin >> P;
-  vector<vector<zint>> dp(n+3, vector<zint>(3));
+  vector<vector<zint>> dp(n+3, vector<zint>(3, 0));
   dp[0][0] = 1;
   dp[1][2] = 1;
   for(int i=0;i<n-1;i++){
-    vector<vector<zint>> next(n+3,vector<zint>(3));
+    vector<vector<zint>> next(n+3,vector<zint>(3,0));
     for(int j=0;j<=min(i+1,n-1);j++) {
       for(int k : {0,1}) {
         next[j][0] += dp[j][k];
