@@ -29,11 +29,12 @@ struct g_zint {
 };
 using zint = g_zint;
 
+
 void solve() {
   int n;
   cin >> n;
   cin >> P;
-  vector<vector<vector<zint>>> dp(n, vector<vector<zint>>(n+3, vector<zint>(3, 0)));
+  vector<vector<vector<zint>>> dp(n, vector<vector<zint>>(n, vector<zint>(3, 0)));
   dp[0][0][0] = 1;
   dp[0][1][2] = 1;
   for(int i=0;i<n-1;i++){
@@ -41,12 +42,18 @@ void solve() {
       for(int k=0;k<3;k++) {
         if (k==0 || k == 1) {
           dp[i+1][j][0] += dp[i][j][k];
-          dp[i+1][j+1][0] += 2*dp[i][j][k];
-          dp[i+1][j+1][1] += dp[i][j][k];
-          dp[i+1][j+2][2] += 2*dp[i][j][k];
+          if (j < n-1) {
+            dp[i+1][j+1][0] += 2*dp[i][j][k];
+            dp[i+1][j+1][1] += dp[i][j][k];
+            if (j < n-2) {
+              dp[i+1][j+2][2] += 2*dp[i][j][k];
+            }
+          }
         } else if (k == 2) {
           dp[i+1][j][0] += dp[i][j][k];
-          dp[i+1][j+1][2] += dp[i][j][k];
+          if (j < n-1) {
+            dp[i+1][j+1][2] += dp[i][j][k];
+          }
         }
       }
     }
