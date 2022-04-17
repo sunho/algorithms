@@ -5,9 +5,8 @@ template<class T> using pqg = priority_queue<T, vector<T>, greater<T> >;
 template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
 template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
 
-
-int P;
 template<class T> T power(T a, ll b) { T res = 1; for (; b; b /= 2, a *= a) { if (b % 2) { res *= a; } } return res; }
+int P;
 struct g_zint {
   int x;
   // assumes -P <= x <= 2P
@@ -35,11 +34,10 @@ void solve() {
   cin >> n;
   cin >> P;
   vector<array<zint,3>> dp(n+3, array<zint,3>{});
-  vector<array<zint,3>> next(n+3,array<zint,3>{});
   dp[0][0] = 1;
   dp[1][2] = 1;
   for(int i=0;i<n-1;i++){
-    for(int i=0;i<n+3;i++) next[i] = {0,0,0};
+    vector<array<zint,3>> next(n+3,array<zint,3>{});
     for(int j=0;j<=min(i+1,n-1);j++) {
       for(int k : {0,1}) {
         next[j][0] += dp[j][k];
@@ -52,7 +50,7 @@ void solve() {
       next[j][0] += dp[j][2];
       next[j+1][2] += dp[j][2];
     }
-    dp = next;
+    dp = move(next);
   }
   for(int i=1;i<=n-1;i++) {
     zint ans = 0;
