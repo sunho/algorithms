@@ -29,7 +29,7 @@ struct g_zint {
 };
 using zint = g_zint;
 
-zint dp[2][3009][3];
+zint dp[3009][3009][3];
 void solve() {
   int n;
   cin >> n;
@@ -38,24 +38,23 @@ void solve() {
   dp[0][0][0] = 1;
   dp[0][1][2] = 1;
   for(int i=0;i<n-1;i++){
-    for(int j=0;j<=n-1;j++) for(int k =0;k<3;k++) dp[(i^1)&1][j][k] = 0;
     for(int j=0;j<=min(i+1,n-1);j++) {
       for(int k : {0,1}) {
-        dp[(i^1)&1][j][0] += dp[i&1][j][k];
-        dp[(i^1)&1][j+1][0] += dp[i&1][j][k];
-        dp[(i^1)&1][j+1][0] += dp[i&1][j][k];
-        dp[(i^1)&1][j+1][1] += dp[i&1][j][k];
-        dp[(i^1)&1][j+2][2] += dp[i&1][j][k];
-        dp[(i^1)&1][j+2][2] += dp[i&1][j][k];
+        dp[i+1][j][0] += dp[i][j][k];
+        dp[i+1][j+1][0] += dp[i][j][k];
+        dp[i+1][j+1][0] += dp[i][j][k];
+        dp[i+1][j+1][1] += dp[i][j][k];
+        dp[i+1][j+2][2] += dp[i][j][k];
+        dp[i+1][j+2][2] += dp[i][j][k];
       }
-      dp[(i^1)&1][j][0] += dp[i&1][j][2];
-      dp[(i^1)&1][j+1][2] += dp[i&1][j][2];
+      dp[i+1][j][0] += dp[i][j][2];
+      dp[i+1][j+1][2] += dp[i][j][2];
     }
   }
   for(int i=1;i<=n-1;i++) {
     zint ans = 0;
     for(int k=0;k<2;k++){
-      ans += dp[(n-1)&1][i][k];
+      ans += dp[n-1][i][k];
     }
     cout << ans << " ";
   }
