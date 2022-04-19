@@ -2143,6 +2143,24 @@
     ],
     "timestamp": "May/10/2022 15:50"
   },
+  "CF154092281": {
+    "contest_id": 1668,
+    "language": "GNU C++17 (64)",
+    "path": "codeforces/1668/B.cpp",
+    "platform": "Codeforces",
+    "problem_index": "B",
+    "problem_name": "Social Distance",
+    "problem_url": "https://codeforces.com/contest/1668/problem/B",
+    "submission_id": "CF154092281",
+    "submission_url": "https://codeforces.com/contest/1668/submission/154092281",
+    "tags": [
+      "greedy",
+      "math",
+      "sortings",
+      "*900"
+    ],
+    "timestamp": "Apr/20/2022 00:04"
+  },
   "CF154123923": {
     "contest_id": 1668,
     "language": "GNU C++17 (64)",
