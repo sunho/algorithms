@@ -2143,6 +2143,21 @@
     ],
     "timestamp": "May/10/2022 15:50"
   },
+  "CF154193783": {
+    "contest_id": 390,
+    "language": "GNU C++17 (64)",
+    "path": "codeforces/390/D.cpp",
+    "platform": "Codeforces",
+    "problem_index": "D",
+    "problem_name": "Inna and Sweet Matrix",
+    "problem_url": "https://codeforces.com/contest/390/problem/D",
+    "submission_id": "CF154193783",
+    "submission_url": "https://codeforces.com/contest/390/submission/154193783",
+    "tags": [
+      "constructive algorithms"
+    ],
+    "timestamp": "Apr/20/2022 20:55"
+  },
   "CF154509006": {
     "contest_id": 1671,
     "language": "GNU C++17 (64)",
