@@ -1,4 +1,20 @@
 {
+  "AC31180130": {
+    "contest_id": "abc249",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc249/B.cpp",
+    "platform": "AtCoder",
+    "problem_index": "B",
+    "problem_name": "Perfect String",
+    "problem_url": "https://atcoder.jp/contests/abc249/tasks/abc249_b",
+    "submission_id": "AC31180130",
+    "submission_url": "https://atcoder.jp/contests/abc249/submissions/31180130",
+    "tags": [
+      "AtCoder",
+      "*200"
+    ],
+    "timestamp": "Apr/23/2022 21:12"
+  },
   "AC31191172": {
     "contest_id": "abc249",
     "language": "C++ (GCC 9.2.1)",
