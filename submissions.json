@@ -1,4 +1,20 @@
 {
+  "AC31264895": {
+    "contest_id": "abc249",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc249/F.cpp",
+    "platform": "AtCoder",
+    "problem_index": "F",
+    "problem_name": "Ignore Operations",
+    "problem_url": "https://atcoder.jp/contests/abc249/tasks/abc249_f",
+    "submission_id": "AC31264895",
+    "submission_url": "https://atcoder.jp/contests/abc249/submissions/31264895",
+    "tags": [
+      "AtCoder",
+      "*500"
+    ],
+    "timestamp": "Apr/25/2022 19:40"
+  },
   "AC31277421": {
     "contest_id": "abc249",
     "language": "C++ (GCC 9.2.1)",
