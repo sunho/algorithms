@@ -32,34 +32,56 @@ struct g_zint {
 };
 using zint = g_zint;
 
+struct fenwick_tree {
+  // [-bias, n - bias)
+  fenwick_tree(int n, int bias=0) : sums(n), bias(bias) {}
+  void update(int pos, zint dif) { // a[pos] += dif
+    pos += bias;
+    for (; pos < (int)sums.size(); pos |= pos + 1) sums[pos] += dif;
+  }
+  zint query(int pos) { // sum of values in [0, pos)
+    pos += bias;
+    zint res = 0;
+    for (; pos > 0; pos &= pos - 1) res += sums[pos-1];
+    return res;
+  }
+  zint query(int l, int r) { // sum of values in [l, r)
+    return query(r) - query(l);
+  }
+private:
+  vector<zint> sums;
+  int bias;
+};
+
 void solve() {
   int n;
   cin >> n >> P;
-  const int N = 3101;
-  vector<vector<zint>> pf(n+2, vector<zint>(n+2, 0));
-  vector<vector<zint>> dp(n+1, vector<zint>(n+1, 0));
-  dp[0][0] = 1;
-  for(int i=1;i<=n;i++) { pf[0][i] = dp[0][0]; }
-  array<int,5> pt = {1,10,100,1000,10000};
-  for(int i=1;i<=n;i++){
-    for(int j=1;j<=n;j++){
-      for(int k=1;k<=(int)pt.size()-1;k++){
-        int pi = i-(k+1);
-        if(pi < 0) continue;
-        int s=max(j-pt[k]+1,0);
-        int e=max(j-pt[k-1]+1,0);
-        dp[i][j] += (pf[pi][e] - pf[pi][s]);
+  const int N = 3001;
+  vector<vector<zint>> lazy(N*2, vector<zint>(n+1));
+  vector<zint> dp(n+1, 0);
+  lazy[0][0] = 1;
+  lazy[1][0] = -1;
+  for(int i=0;i<n;i++){
+    for(int j=0;j<n;j++){
+      dp[j] += lazy[i][j];
+      array<int,5> pt = {1,10,100,1000,10000};
+      zint cur = dp[j];
+      for(int k=0;k<(int)pt.size()-1;k++){
+        int mult = i == 0 ? 26 : 25;
+        if(j+k+2 <= n) {
+          lazy[i+pt[k]][j+k+2] += cur * mult;
+          if (k != (int)pt.size()-2) {
+            lazy[i+pt[k+1]][j+k+2] -= cur * mult;
+          }
+        }
       }
-      dp[i][j] *= 25;
-      pf[i][j+1] = pf[i][j] + dp[i][j];
     }
   }
   zint ans = 0;
-  for(int j=1;j<n;j++){
-    ans += dp[j][n];
+  for(int j=0;j<n;j++){
+    dp[j] += lazy[n][j];
+    ans += dp[j];
   }
-  ans /= 25;
-  ans *= 26;
   cout << ans << "\n";
 }
 

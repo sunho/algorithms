@@ -1,4 +1,20 @@
 {
+  "AC31277421": {
+    "contest_id": "abc249",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc249/E.cpp",
+    "platform": "AtCoder",
+    "problem_index": "E",
+    "problem_name": "RLE",
+    "problem_url": "https://atcoder.jp/contests/abc249/tasks/abc249_e",
+    "submission_id": "AC31277421",
+    "submission_url": "https://atcoder.jp/contests/abc249/submissions/31277421",
+    "tags": [
+      "AtCoder",
+      "*500"
+    ],
+    "timestamp": "Apr/26/2022 12:10"
+  },
   "AC31278963": {
     "contest_id": "abc249",
     "language": "C++ (GCC 9.2.1)",
