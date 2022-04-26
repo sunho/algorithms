@@ -1,4 +1,20 @@
 {
+  "AC31284040": {
+    "contest_id": "abc239",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc239/F.cpp",
+    "platform": "AtCoder",
+    "problem_index": "F",
+    "problem_name": "Construct Highway",
+    "problem_url": "https://atcoder.jp/contests/abc239/tasks/abc239_f",
+    "submission_id": "AC31284040",
+    "submission_url": "https://atcoder.jp/contests/abc239/submissions/31284040",
+    "tags": [
+      "AtCoder",
+      "*500"
+    ],
+    "timestamp": "Apr/26/2022 18:43"
+  },
   "AC31300026": {
     "contest_id": "abc142",
     "language": "C++ (GCC 9.2.1)",
