@@ -1,4 +1,20 @@
 {
+  "AC31300026": {
+    "contest_id": "abc142",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc142/F.cpp",
+    "platform": "AtCoder",
+    "problem_index": "F",
+    "problem_name": "Pure",
+    "problem_url": "https://atcoder.jp/contests/abc142/tasks/abc142_f",
+    "submission_id": "AC31300026",
+    "submission_url": "https://atcoder.jp/contests/abc142/submissions/31300026",
+    "tags": [
+      "AtCoder",
+      "*600"
+    ],
+    "timestamp": "Apr/27/2022 16:10"
+  },
   "AC31315326": {
     "contest_id": "abc140",
     "language": "C++ (GCC 9.2.1)",
