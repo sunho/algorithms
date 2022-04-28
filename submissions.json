@@ -1,4 +1,20 @@
 {
+  "AC31323636": {
+    "contest_id": "abc155",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc155/D.cpp",
+    "platform": "AtCoder",
+    "problem_index": "D",
+    "problem_name": "Pairs",
+    "problem_url": "https://atcoder.jp/contests/abc155/tasks/abc155_d",
+    "submission_id": "AC31323636",
+    "submission_url": "https://atcoder.jp/contests/abc155/submissions/31323636",
+    "tags": [
+      "AtCoder",
+      "*400"
+    ],
+    "timestamp": "Apr/28/2022 20:36"
+  },
   "AC31346637": {
     "contest_id": "agc036",
     "language": "C++ (GCC 9.2.1)",
