@@ -1,4 +1,20 @@
 {
+  "AC31315326": {
+    "contest_id": "abc140",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc140/E.cpp",
+    "platform": "AtCoder",
+    "problem_index": "E",
+    "problem_name": "Second Sum",
+    "problem_url": "https://atcoder.jp/contests/abc140/tasks/abc140_e",
+    "submission_id": "AC31315326",
+    "submission_url": "https://atcoder.jp/contests/abc140/submissions/31315326",
+    "tags": [
+      "AtCoder",
+      "*500"
+    ],
+    "timestamp": "Apr/28/2022 11:47"
+  },
   "AC31323636": {
     "contest_id": "abc155",
     "language": "C++ (GCC 9.2.1)",
