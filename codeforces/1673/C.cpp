@@ -54,7 +54,11 @@ void solve() {
   int n;
   cin >> n;
   int m = (int)palins.size();
-  cout << dp[n].query(0,m) << "\n";
+  zint ans = 0;
+  for(int i=0;i<m;i++){
+    ans += dp[n].query(i,i+1);
+  }
+  cout << ans << "\n";
 }
 
 int main() {
