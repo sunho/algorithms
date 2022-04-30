@@ -30,15 +30,31 @@ template<int P> struct g_zint {
 };
 using zint = g_zint<1000000007>;
 
-vector<vector<zint>> pf;
-vector<vector<zint>> dp;
+struct fenwick_tree {
+  // [-bias, n - bias)
+  fenwick_tree(int n) : sums(n) {}
+  void update(int pos, zint dif) { // a[pos] += dif
+    for (; pos < (int)sums.size(); pos |= pos + 1) sums[pos] += dif;
+  }
+  zint query(int pos) { // sum of values in [0, pos)
+    zint res = 0;
+    for (; pos > 0; pos &= pos - 1) res += sums[pos-1];
+    return res;
+  }
+  zint query(int l, int r) { // sum of values in [l, r)
+    return query(r) - query(l);
+  }
+private:
+  vector<zint> sums;
+};
+vector<fenwick_tree> dp;
 vector<int> palins;
 
 void solve() {
   int n;
   cin >> n;
   int m = (int)palins.size();
-  cout << pf[n][m] << "\n";
+  cout << dp[n].query(0,m) << "\n";
 }
 
 int main() {
@@ -66,18 +82,13 @@ int main() {
   }
 
   int m = (int)palins.size();
-  pf = vector<vector<zint>>(N+1, vector<zint>(m+1, 0));
-  dp = vector<vector<zint>>(N+1, vector<zint>(m));
-  dp[0][0] = 1;
-  for(int i=1;i<=m;i++){
-    pf[0][i] = 1;
-  }
+  dp = vector<fenwick_tree>(N+1, fenwick_tree(m));
+  dp[0].update(0, 1);
   for(int i=1;i<=N;i++){
     for(int j=0;j<m;j++) {
       if (i - palins[j] >= 0) {
-        dp[i][j] = pf[i-palins[j]][j+1];
+        dp[i].update(j, dp[i-palins[j]].query(0, j+1));
       }
-      pf[i][j+1] = dp[i][j] + pf[i][j];
     }
   }
 
