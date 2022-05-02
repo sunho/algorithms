@@ -2143,6 +2143,24 @@
     ],
     "timestamp": "May/10/2022 15:50"
   },
+  "CF155624104": {
+    "contest_id": 1674,
+    "language": "GNU C++17 (64)",
+    "path": "codeforces/1674/D.cpp",
+    "platform": "Codeforces",
+    "problem_index": "D",
+    "problem_name": "A-B-C Sort",
+    "problem_url": "https://codeforces.com/contest/1674/problem/D",
+    "submission_id": "CF155624104",
+    "submission_url": "https://codeforces.com/contest/1674/submission/155624104",
+    "tags": [
+      "constructive algorithms",
+      "implementation",
+      "sortings",
+      "*1200"
+    ],
+    "timestamp": "May/03/2022 00:02"
+  },
   "CF155679653": {
     "contest_id": 1674,
     "language": "GNU C++17 (64)",
