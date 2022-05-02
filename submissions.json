@@ -2143,6 +2143,24 @@
     ],
     "timestamp": "May/10/2022 15:50"
   },
+  "CF155679653": {
+    "contest_id": 1674,
+    "language": "GNU C++17 (64)",
+    "path": "codeforces/1674/F.cpp",
+    "platform": "Codeforces",
+    "problem_index": "F",
+    "problem_name": "Desktop Rearrangement",
+    "problem_url": "https://codeforces.com/contest/1674/problem/F",
+    "submission_id": "CF155679653",
+    "submission_url": "https://codeforces.com/contest/1674/submission/155679653",
+    "tags": [
+      "data structures",
+      "greedy",
+      "implementation",
+      "*1800"
+    ],
+    "timestamp": "May/03/2022 01:22"
+  },
   "CF155699330": {
     "contest_id": 1674,
     "language": "GNU C++17 (64)",
