@@ -2142,5 +2142,23 @@
       "*500"
     ],
     "timestamp": "May/10/2022 15:50"
+  },
+  "CF155713196": {
+    "contest_id": 1674,
+    "language": "GNU C++17 (64)",
+    "path": "codeforces/1674/G.cpp",
+    "platform": "Codeforces",
+    "problem_index": "G",
+    "problem_name": "Remove Directed Edges",
+    "problem_url": "https://codeforces.com/contest/1674/problem/G",
+    "submission_id": "CF155713196",
+    "submission_url": "https://codeforces.com/contest/1674/submission/155713196",
+    "tags": [
+      "dfs and similar",
+      "dp",
+      "graphs",
+      "*2000"
+    ],
+    "timestamp": "May/03/2022 10:34"
   }
 }
