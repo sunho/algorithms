@@ -52,9 +52,9 @@ void solve() {
           int ni = i + k;
           int dd = k + d;
           if (j >> dd & 1) continue;
-          int newmask = j | (1 << dd);
-          if (i > d && !(newmask & 1)) continue;
-          dp[i+1][(j | (1 << dd)) >> 1] += dp[i][j];
+          // if (j & 1) {
+            dp[i+1][(j | (1 << dd)) >> 1] += dp[i][j];
+          // }
         }
       } else {
         int dd = (A[i] - 1)-i;
@@ -64,13 +64,16 @@ void solve() {
         }
         dd += d;
         if (j >> dd & 1) continue;
-        int newmask = j | (1 << dd);
-        if (i > d && !(newmask & 1)) continue;
+        // if (!(j >> dd & 1) && ((d != 0 && (j & 1)))) {
+          
         dp[i+1][(j | (1 << dd)) >> 1] += dp[i][j];
+        // }
       }
     }
   }
-
+  // for(int i=0;i<M;i++){
+  //   cout << dp[n][i] << "\n";
+  // }
   int fin = 0;
   for(int k = -d; k <= d; k++) {
     int dd = k + d;

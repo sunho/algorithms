@@ -1,4 +1,20 @@
 {
+  "AC31408618": {
+    "contest_id": "arc132",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/arc132/C.cpp",
+    "platform": "AtCoder",
+    "problem_index": "C",
+    "problem_name": "Almost Sorted",
+    "problem_url": "https://atcoder.jp/contests/arc132/tasks/arc132_c",
+    "submission_id": "AC31408618",
+    "submission_url": "https://atcoder.jp/contests/arc132/submissions/31408618",
+    "tags": [
+      "AtCoder",
+      "*600"
+    ],
+    "timestamp": "May/03/2022 11:41"
+  },
   "AC31408860": {
     "contest_id": "arc132",
     "language": "C++ (GCC 9.2.1)",
