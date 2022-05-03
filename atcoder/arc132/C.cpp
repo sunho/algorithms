@@ -53,7 +53,7 @@ void solve() {
           int dd = k + d;
           if (j >> dd & 1) continue;
           int newmask = j | (1 << dd);
-          if (i >= d && !(newmask & 1)) continue;
+          if (i > d && !(newmask & 1)) continue;
           dp[i+1][(j | (1 << dd)) >> 1] += dp[i][j];
         }
       } else {
@@ -65,7 +65,7 @@ void solve() {
         dd += d;
         if (j >> dd & 1) continue;
         int newmask = j | (1 << dd);
-        if (i >= d && !(newmask & 1)) continue;
+        if (i > d && !(newmask & 1)) continue;
         dp[i+1][(j | (1 << dd)) >> 1] += dp[i][j];
       }
     }
