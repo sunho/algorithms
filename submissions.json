@@ -1,4 +1,20 @@
 {
+  "AC31424376": {
+    "contest_id": "arc126",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/arc126/C.cpp",
+    "platform": "AtCoder",
+    "problem_index": "C",
+    "problem_name": "Maximize GCD",
+    "problem_url": "https://atcoder.jp/contests/arc126/tasks/arc126_c",
+    "submission_id": "AC31424376",
+    "submission_url": "https://atcoder.jp/contests/arc126/submissions/31424376",
+    "tags": [
+      "AtCoder",
+      "*600"
+    ],
+    "timestamp": "May/04/2022 09:03"
+  },
   "AC31425395": {
     "contest_id": "abc229",
     "language": "C++ (GCC 9.2.1)",
