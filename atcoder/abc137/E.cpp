@@ -34,15 +34,9 @@ void solve() {
     inqueue[u] = false;
 
     for (auto [v, w] : g[u]) {
-      if (negcyc[u]) {
-        if (!negcyc[v] && !inqueue[v]) {
-          inqueue[v] = true;
-          q.push(v);
-        }
-        negcyc[v] = true;
-      } else if (!negcyc[v] && d[u] + (ll)w < d[v]) {
+      if (d[u] + (ll)w < d[v]) {
         d[v] = d[u] + (ll)w;
-        if (!inqueue[v]) {
+        if (!inqueue[v] && !negcyc[v]) {
           cnt[v]++;
           if (cnt[v] <= n) {
             inqueue[v] = true;
@@ -53,7 +47,14 @@ void solve() {
             q.push(v);
           }
         }
-      } 
+      }
+      if (negcyc[u]) {
+        if (!negcyc[v] && !inqueue[v]) {
+          inqueue[v] = true;
+          q.push(v);
+        }
+        negcyc[v] = true;
+      }
     }
   }
   
