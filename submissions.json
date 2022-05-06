@@ -1,4 +1,20 @@
 {
+  "AC31476258": {
+    "contest_id": "arc128",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/arc128/C.cpp",
+    "platform": "AtCoder",
+    "problem_index": "C",
+    "problem_name": "Max Dot",
+    "problem_url": "https://atcoder.jp/contests/arc128/tasks/arc128_c",
+    "submission_id": "AC31476258",
+    "submission_url": "https://atcoder.jp/contests/arc128/submissions/31476258",
+    "tags": [
+      "AtCoder",
+      "*600"
+    ],
+    "timestamp": "May/07/2022 02:50"
+  },
   "AC31478582": {
     "contest_id": "acl1",
     "language": "C++ (GCC 9.2.1)",
