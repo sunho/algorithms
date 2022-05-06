@@ -1,4 +1,20 @@
 {
+  "AC31460748": {
+    "contest_id": "nikkei2019-2-qual",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/nikkei2019-2-qual/D.cpp",
+    "platform": "AtCoder",
+    "problem_index": "D",
+    "problem_name": "Shortest Path on a Line",
+    "problem_url": "https://atcoder.jp/contests/nikkei2019-2-qual/tasks/nikkei2019_2_qual_d",
+    "submission_id": "AC31460748",
+    "submission_url": "https://atcoder.jp/contests/nikkei2019-2-qual/submissions/31460748",
+    "tags": [
+      "AtCoder",
+      "*600"
+    ],
+    "timestamp": "May/06/2022 09:08"
+  },
   "AC31460812": {
     "contest_id": "nikkei2019-2-qual",
     "language": "C++ (GCC 9.2.1)",
