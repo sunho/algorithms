@@ -1,4 +1,20 @@
 {
+  "AC31478600": {
+    "contest_id": "acl1",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/acl1/B.cpp",
+    "platform": "AtCoder",
+    "problem_index": "B",
+    "problem_name": "Sum is Multiple",
+    "problem_url": "https://atcoder.jp/contests/acl1/tasks/acl1_b",
+    "submission_id": "AC31478600",
+    "submission_url": "https://atcoder.jp/contests/acl1/submissions/31478600",
+    "tags": [
+      "AtCoder",
+      "*600"
+    ],
+    "timestamp": "May/07/2022 10:08"
+  },
   "AC31479013": {
     "contest_id": "abc169",
     "language": "C++ (GCC 9.2.1)",
