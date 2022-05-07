@@ -1,4 +1,20 @@
 {
+  "AC31480759": {
+    "contest_id": "arc113",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/arc113/D.cpp",
+    "platform": "AtCoder",
+    "problem_index": "D",
+    "problem_name": "Sky Reflector",
+    "problem_url": "https://atcoder.jp/contests/arc113/tasks/arc113_d",
+    "submission_id": "AC31480759",
+    "submission_url": "https://atcoder.jp/contests/arc113/submissions/31480759",
+    "tags": [
+      "AtCoder",
+      "*600"
+    ],
+    "timestamp": "May/07/2022 13:23"
+  },
   "AC31500586": {
     "contest_id": "abc186",
     "language": "C++ (GCC 9.2.1)",
