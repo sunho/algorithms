@@ -55,32 +55,31 @@ vector<ll> factorize(ll n) {
 void solve() {
   ll n;
   cin >> n;
-  ll ans = n-1;
-  if (n==1) {
+  if (n == 1) {
     cout << 1 << "\n";
     return;
   }
-  auto factors = factorize(n);
-  if (factors.size() == 1) {
-    cout << ans << "\n";
-    return;
-  }
-  factors = factorize(2*n);
-  for(int mask = 0; mask < (1 << factors.size()); mask++) {
-    vector<ll> a;
-    vector<ll> m;
-    for(int i=0;i<(int)factors.size();i++) {
-      if (mask & (1 << i)) {
-        a.push_back(-1);
-      } else {
+  ll ans = n-1;
+  n*=2;
+  for(ll i = 1; i*i <= n; i++) {
+    if(n%i == 0) {
+      for (ll j : {i,n/i}) {
+        ll x = j;
+        ll y = n/j;
+        if (gcd(x,y) != 1) continue;
+        vector<ll> a;
+        vector<ll> m;
         a.push_back(0);
+        a.push_back(-1);
+        m.push_back(x);
+        m.push_back(y);
+        ll cand = do_crt(a,m);
+        if (cand <= 1) continue;
+        ans = min(ans, cand);
       }
-      m.push_back(factors[i]);
     }
-    ll cand = do_crt(a,m);
-    if (cand <= 1) continue;
-    ans = min(ans, cand);
   }
+ 
   cout << ans << "\n";
 }
   
