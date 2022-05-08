@@ -1,4 +1,20 @@
 {
+  "AC31554307": {
+    "contest_id": "abc250",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc250/F.cpp",
+    "platform": "AtCoder",
+    "problem_index": "F",
+    "problem_name": "One Fourth",
+    "problem_url": "https://atcoder.jp/contests/abc250/tasks/abc250_f",
+    "submission_id": "AC31554307",
+    "submission_url": "https://atcoder.jp/contests/abc250/submissions/31554307",
+    "tags": [
+      "AtCoder",
+      "*500"
+    ],
+    "timestamp": "May/09/2022 00:29"
+  },
   "AC31555237": {
     "contest_id": "acl1",
     "language": "C++ (GCC 9.2.1)",
