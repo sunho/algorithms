@@ -40,26 +40,30 @@ struct DSU {
 void solve() {
   int n;
   cin >> n;
+  vector<int> mini(n);
   DSU dsu(n);
   vector<tuple<int,int,int>> A(n);
   for(int i=0;i<n;i++){
     int a,b;                                                                                                                                                                                                                                                                                                                                                                                                                    
     cin >> a >> b;
+    mini[i] = b;
     A[i] = {a,b,i};
   }
   sort(all(A));
-  set<int> S;
-  set<int> R;
-  for(int i=1;i<=n;i++){
-    R.insert(i);
+  map<int,int> mpY;
+  for(int i=0;i<n;i++){
+    auto [x,y,id] = A[i];
+    mpY[y] = id;
   }
   for(int i=0;i<n-1;i++){
     auto [x,y,id] = A[i];
     auto [x2,y2,id2] = A[i+1];
-    S.insert(y);
-    R.erase(y);
-    if (!(*S.begin() > *--R.end())) {
+    mpY.erase(y);
+    auto it = mpY.upper_bound(max(mini[dsu.get(id)], mini[dsu.get(id2)]));
+    if (mini[dsu.get(id)] < y2 || it != mpY.end()) {
+      int m = min(mini[dsu.get(id)],mini[dsu.get(id2)]); 
       dsu.unite(id, id2);
+      mini[dsu.get(id)] = m;
     }
   }
   for(int i=0;i<n;i++){
