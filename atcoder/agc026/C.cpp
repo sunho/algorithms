@@ -22,7 +22,6 @@ void solve() {
       is_palin = true;
     }
   }
-  const int N = 19;
   ll ans = 0;
   for(int mask = 0; mask <(1<<n); mask++){
     string a,b;
@@ -43,10 +42,10 @@ void solve() {
       }
       continue;
     }
-    array<array<ll, N>, N> dp{};
+    vector<vector<ll>> dp(k+1, vector<ll>(m+1));
     dp[0][0] = 1;
     for(int i=0;i<n;i++){
-      array<array<ll, N>, N> next{};
+      vector<vector<ll>> next(k+1, vector<ll>(m+1));
       for(int j=0;j<=k;j++){
         for(int z=0;z<=m;z++){
           next[j][z] += dp[j][z];
@@ -54,7 +53,7 @@ void solve() {
           if (z < m && st[i] == b[z]) next[j][z+1] += dp[j][z];
         }
       }
-      dp = next;
+      dp = move(next);
     }
     ans += dp[k][m];
   }
