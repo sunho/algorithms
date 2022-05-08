@@ -1,4 +1,20 @@
 {
+  "AC31556701": {
+    "contest_id": "agc026",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/agc026/C.cpp",
+    "platform": "AtCoder",
+    "problem_index": "C",
+    "problem_name": "String Coloring",
+    "problem_url": "https://atcoder.jp/contests/agc026/tasks/agc026_c",
+    "submission_id": "AC31556701",
+    "submission_url": "https://atcoder.jp/contests/agc026/submissions/31556701",
+    "tags": [
+      "AtCoder",
+      "*600"
+    ],
+    "timestamp": "May/09/2022 05:10"
+  },
   "AC31556729": {
     "contest_id": "agc026",
     "language": "C++ (GCC 9.2.1)",

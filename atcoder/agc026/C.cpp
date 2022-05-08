@@ -12,7 +12,17 @@ void solve() {
   cin >> n;
   string s;
   cin >> s;
-  map<pair<string,string>, ll> left;
+  string st;
+  st = s.substr(n);
+  bool is_palin = false;
+  {
+    string t = s.substr(0,n);
+    reverse(all(t));
+    if (t == st) {
+      is_palin = true;
+    }
+  }
+  const int N = 19;
   ll ans = 0;
   for(int mask = 0; mask <(1<<n); mask++){
     string a,b;
@@ -25,18 +35,28 @@ void solve() {
     }
     reverse(all(a));
     reverse(all(b));
-    left[{a,b}]++;
-  }
-  for(int mask = 0; mask <(1<<n); mask++){
-    string a,b;
-    for(int i=0;i<n;i++){
-      if (mask >> i & 1) {
-        a.push_back(s[i+n]);
-      } else {
-        b.push_back(s[i+n]);
+    int k = (int)a.size();
+    int m = (int)b.size();
+    if (k == 0 || m == 0) {
+      if (is_palin) {
+        ans++;
       }
+      continue;
     }
-    ans += left[{a,b}];
+    array<array<ll, N>, N> dp{};
+    dp[0][0] = 1;
+    for(int i=0;i<n;i++){
+      array<array<ll, N>, N> next{};
+      for(int j=0;j<=k;j++){
+        for(int z=0;z<=m;z++){
+          next[j][z] += dp[j][z];
+          if (j < k && st[i] == a[j]) next[j+1][z] += dp[j][z];
+          if (z < m && st[i] == b[z]) next[j][z+1] += dp[j][z];
+        }
+      }
+      dp = next;
+    }
+    ans += dp[k][m];
   }
   cout << ans << "\n";
 }
