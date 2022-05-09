@@ -1,4 +1,20 @@
 {
+  "AC31576390": {
+    "contest_id": "abc227",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc227/D.cpp",
+    "platform": "AtCoder",
+    "problem_index": "D",
+    "problem_name": "Project Planning",
+    "problem_url": "https://atcoder.jp/contests/abc227/tasks/abc227_d",
+    "submission_id": "AC31576390",
+    "submission_url": "https://atcoder.jp/contests/abc227/submissions/31576390",
+    "tags": [
+      "AtCoder",
+      "*400"
+    ],
+    "timestamp": "May/10/2022 03:26"
+  },
   "AC31578923": {
     "contest_id": "abc215",
     "language": "C++ (GCC 9.2.1)",
