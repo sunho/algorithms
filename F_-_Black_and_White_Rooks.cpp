@@ -1,15 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
+#define x first
+#define y second
 #define all(x) begin(x), end(x)
-#define lb(x,a) (int)(lower_bound(all((x)),(a)) - (x).begin())
-#define ub(x,a) (int)(upper_bound(all((x)),(a)) - (x).begin())
+template<class T> using pqg = priority_queue<T, vector<T>, greater<T>>;
 template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
 template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
-
 template<class T> T power(T a, ll b) { T res = 1; for (; b; b /= 2, a *= a) { if (b % 2) { res *= a; } } return res; }
+
 struct zint {
-  static const int MOD_DEFAULT = 1000000007; // 1000000007
+  static const int MOD_DEFAULT = 998244353; // 1000000007
   int P;
   int x;
   // assumes -P <= x <= 2P
@@ -31,29 +32,59 @@ struct zint {
   friend istream& operator >> (istream& in, zint& rhs) { ll x; in >> x; rhs = zint(x); return in; }
 };
 
-vector<zint> fact;
+
+void binom_coeff(int BM, vector<vector<zint>>& C) {
+  C.assign(BM+1, vector<zint>(BM+1, 0));
+  C[0][0] = 1;
+  for (int n = 1; n <= BM; ++n) {
+    C[n][0] = C[n][n] = 1;
+    for (int k = 1; k < n; ++k)
+      C[n][k] = C[n - 1][k - 1] + C[n - 1][k];
+  }
+}
+
 void solve() {
-  int n,k;
-  cin >> n >> k;
-  cout << fact[n]/(fact[n-k]*fact[k]) << "\n";
+    int n,m,b,w;
+    cin >> n >> m >> b >> w;
+
+    const int M = 2510;
+    vector<vector<zint>> C;
+    binom_coeff(2510, C);
+  
+    vector<int> D= {b,w};
+    vector<vector<vector<zint>>> f(2, vector<vector<zint>>(n+1, vector<zint>(m+1)));
+    for(int z=0;z<2;z++){
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=m;j++){
+                f[z][i][j] = C[i*j][D[z]];
+                for(int ii=1;ii<=i;ii++){
+                    for(int jj=1;jj<=j;jj++){
+                        if (ii == i && jj == j) continue;
+                        f[z][i][j] -= C[i][ii] * C[j][jj] * f[z][ii][jj];
+                    }
+                }
+            }
+        }
+    }
+
+    zint ans = 0;
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=m;j++){
+            for(int ii=1;ii<=n-i;ii++){
+                for(int jj=1;jj<=m-j;jj++){
+                    ans += C[n][i] * C[m][j] * C[n-i][ii] * C[m-j][jj] * f[0][i][j] * f[1][ii][jj];
+                }
+            }
+        }
+    }
+    cout << ans << "\n";
 }
 
 int main() {
-  cin.sync_with_stdio(0); cin.tie(0);
-  cin.exceptions(cin.failbit);
+    cin.sync_with_stdio(0); cin.tie(0);
+    cin.exceptions(cin.failbit);
 
-  const int N = 4e6;
-  fact = vector<zint>(N+1);
-  fact[0] = 1;
-  for(int i=1;i<=N;i++) {
-    fact[i] = fact[i-1]*i;
-  }
-
-  int t;
-  cin >> t;
-  while (t--) {
     solve();
-  }
 
-  return 0;
+    return 0;
 }

@@ -8,6 +8,7 @@ template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
 template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
 
 struct mo_query {
+  using func = function<void(int)>;
   int n;
   vector<pair<int, int>> lr;
 
@@ -17,11 +18,10 @@ struct mo_query {
     lr.emplace_back(l, r);
   }
 
-  template< typename AL, typename AR, typename EL, typename ER, typename O >
-  void build(const AL &add_left, const AR &add_right, const EL &erase_left, const ER &erase_right, const O &out) {
+  void build(const func &add_left, const func &add_right, const func &erase_left, const func &erase_right, const func &out) {
     int q = (int) lr.size();
-    int bs = n / min< int >(n, (int)sqrt(q));
-    vector< int > ord(q);
+    int bs = n / min<int>(n, (int)sqrt(q));
+    vector<int> ord(q);
     iota(begin(ord), end(ord), 0);
     sort(begin(ord), end(ord), [&](int a, int b) {
       int ablock = lr[a].first / bs, bblock = lr[b].first / bs;
@@ -38,8 +38,7 @@ struct mo_query {
     }
   }
 
-  template< typename A, typename E, typename O >
-  void build(const A &add, const E &erase, const O &out) {
+  void build(const func &add, const func &erase, const func &out) {
     build(add, add, erase, erase, out);
   }
 };

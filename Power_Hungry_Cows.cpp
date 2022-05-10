@@ -7,31 +7,19 @@ using ll = long long;
 template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
 template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
 
-void sieves(int PN, vector<ll>& lp, vector<ll>& pr) {
-  lp.assign(PN+1,0);
-  for (int i=2; i <= PN; ++i) {
-    if (lp[i] == 0) {
-      lp[i] = i;
-      pr.push_back(i);
-    }
-    for (int j=0; j < (int)pr.size() && pr[j] <= lp[i] && i*pr[j] <= PN; ++j) {
-      lp[i * pr[j]] = pr[j];
-    }
-  }
-}
-
 void solve() {
-  vector<ll> lp, pr;
-  sieves(1e6, lp,pr);
-  ll n;
-  cin >> n;
-  ll ans = 0;
-  for(int i=0;i<(int)pr.size();i++){
-    ll q = pr[i]*pr[i]*pr[i];
-    ll k = n/q;
-    ans += min(i, ub(pr, k));
+  int p;
+  cin >> p;
+  vector<int> dp(2*p+1);
+  vector<bool> vis(2*p+1);
+  queue<int> q;
+  q.push(1);
+  while(!q.empty()){
+    int u = q.front();
+    q.pop();
+    u*2
   }
-  cout << ans << "\n";
+  cout << cnt << "\n";
 }
 
 int main() {
