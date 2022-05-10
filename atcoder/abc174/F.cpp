@@ -7,77 +7,77 @@ using ll = long long;
 template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
 template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
 
-struct fenwick_tree {
-  // [-bias, n - bias)
-  fenwick_tree(int n, int bias=0) : sums(n), bias(bias) {}
-  void update(int pos, ll dif) { // a[pos] += dif
-    pos += bias;
-    for (; pos < (int)sums.size(); pos |= pos + 1) sums[pos] += dif;
+struct mo_query {
+  int n;
+  vector<pair<int, int>> lr;
+
+  explicit mo_query(int n) : n(n) {}
+
+  void add(int l, int r) { /* [l, r) */
+    lr.emplace_back(l, r);
   }
-  ll query(int pos) { // sum of values in [0, pos)
-    pos += bias;
-    ll res = 0;
-    for (; pos > 0; pos &= pos - 1) res += sums[pos-1];
-    return res;
-  }
-  ll query(int l, int r) { // sum of values in [l, r)
-    return query(r) - query(l);
-  }
-  int lower_bound(ll sum) {// min pos st sum of [0, pos] >= sum
-    // Returns n if no sum is >= sum, or -1 if empty sum is.
-    if (sum <= 0) return -1;
-    int pos = 0;
-    for (int pw = 1 << 25; pw; pw >>= 1) {
-      if (pos + pw <= (int)sums.size() && sums[pos + pw-1] < sum)
-        pos += pw, sum -= sums[pos-1];
+
+  template< typename AL, typename AR, typename EL, typename ER, typename O >
+  void build(const AL &add_left, const AR &add_right, const EL &erase_left, const ER &erase_right, const O &out) {
+    int q = (int) lr.size();
+    int bs = n / min< int >(n, (int)sqrt(q));
+    vector< int > ord(q);
+    iota(begin(ord), end(ord), 0);
+    sort(begin(ord), end(ord), [&](int a, int b) {
+      int ablock = lr[a].first / bs, bblock = lr[b].first / bs;
+      if(ablock != bblock) return ablock < bblock;
+      return (ablock & 1) ? lr[a].second > lr[b].second : lr[a].second < lr[b].second;
+    });
+    int l = 0, r = 0;
+    for(auto idx : ord) {
+      while(l > lr[idx].first) add_left(--l);
+      while(r < lr[idx].second) add_right(r++);
+      while(l < lr[idx].first) erase_left(l++);
+      while(r > lr[idx].second) erase_right(--r);
+      out(idx);
     }
-    return pos-bias;
   }
-private:
-  vector<ll> sums;
-  int bias;
+
+  template< typename A, typename E, typename O >
+  void build(const A &add, const E &erase, const O &out) {
+    build(add, add, erase, erase, out);
+  }
 };
 
 void solve() {
   int n,q;
   cin >> n >> q;
   vector<int> C(n);
-  vector<list<int>> pos(n);
   for(int i=0;i<n;i++) {
     cin >> C[i];
     C[i]--;
-    pos[C[i]].push_back(i);
   }
-  vector<tuple<int,int,int>> qs(q);
+  mo_query mo(q);
   for(int i=0;i<q;i++){
     int l,r;
     cin >> l >> r;
     --l;
-    qs[i] = {l,r,i};
+    mo.add(l,r);
   }
-  sort(all(qs));
-  fenwick_tree ft(n);
-  int last_l = 0;
+  int color = 0;
+  vector<int> cnt(n);
   vector<int> ans(q);
-  for(int i=0;i<n;i++){
-    if (!pos[i].empty()) {
-      ft.update(*pos[i].begin(), 1);
+  auto add = [&](int i) {
+    if(cnt[C[i]]== 0) {
+      color++;
     }
-  }
-  for(int i=0;i<q;i++){
-    auto [l,r,k] = qs[i];
-    for(int j=last_l;j<l;j++) {
-      if (!pos[C[j]].empty()){
-        ft.update(*pos[C[j]].begin(),-1);
-        pos[C[j]].pop_front();
-        if (!pos[C[j]].empty()) {
-          ft.update(*pos[C[j]].begin(),1);
-        }
-      }
+    cnt[C[i]]++;
+  };
+  auto remove = [&](int i) {
+    cnt[C[i]]--;
+    if(cnt[C[i]]==0){
+      color--;
     }
-    ans[k] = (int)ft.query(l,r);
-    last_l = l;
-  }
+  };
+  auto out = [&](int i) {
+    ans[i] = color;
+  };
+  mo.build(add,remove,out);
   for(int i=0;i<q;i++){
     cout << ans[i] << "\n";
   }
