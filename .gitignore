@@ -5,6 +5,8 @@
 *.synctex.gz
 *.exe
 *.bin
+.cph
+*.dSYM   
 
 #Added by cargo
 
