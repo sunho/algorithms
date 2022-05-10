@@ -9,9 +9,43 @@ for (int i=2; i <= PN; ++i) {
     lp[i] = i;
     pr.push_back(i);
   }
-  for (int j=0; j < pr.size() && pr[j] <= lp[i] && i*pr[j] <= PN; ++j) {
+  for (int j=0; j < (int)pr.size() && pr[j] <= lp[i] && i*pr[j] <= PN; ++j) {
     lp[i * pr[j]] = pr[j];
   }
+}
+
+// factor one number count p
+// O(sqrt(n))
+vector<ll> factorize(ll n) {
+  vector<ll> facts;
+  for (ll d = 2; d * d <= n; d++) {
+    while (n % d == 0) {
+      facts.push_back(d);
+      n /= d;
+    }
+  }
+  if (n > 1)
+    facts.push_back(n);
+  return facts;
+}
+
+// factor one number count p^k
+// O(sqrt(n))
+vector<pair<ll,int>> factorize(ll n) {
+  vector<pair<ll,int>> facts;
+  for (ll d = 2; d * d <= n; d++) {
+    int k=0;
+    while (n % d == 0) {
+      n /= d;
+      k++;
+    }
+    if (k != 0) {
+      facts.push_back({d,k});
+    }
+  }
+  if (n > 1)
+    facts.push_back({n,1});
+  return facts;
 }
 
 // returns a vector of length n, containing 1 if a number is prime, else 0.

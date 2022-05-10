@@ -26,5 +26,5 @@ struct DSU {
     p[y] = x;
     scc--;
     return true;
-	}
+  }
 };

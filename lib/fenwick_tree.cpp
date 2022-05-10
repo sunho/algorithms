@@ -3,7 +3,7 @@ struct fenwick_tree {
   fenwick_tree(int n, int bias=0) : sums(n), bias(bias) {}
   void update(int pos, ll dif) { // a[pos] += dif
     pos += bias;
-    for (; pos < sums.size(); pos |= pos + 1) sums[pos] += dif;
+    for (; pos < (int)sums.size(); pos |= pos + 1) sums[pos] += dif;
   }
   ll query(int pos) { // sum of values in [0, pos)
     pos += bias;
@@ -19,14 +19,51 @@ struct fenwick_tree {
     if (sum <= 0) return -1;
     int pos = 0;
     for (int pw = 1 << 25; pw; pw >>= 1) {
-      if (pos + pw <= sums.size() && sums[pos + pw-1] < sum)
+      if (pos + pw <= (int)sums.size() && sums[pos + pw-1] < sum)
         pos += pw, sum -= sums[pos-1];
     }
     return pos-bias;
   }
 private:
   vector<ll> sums;
-  ll bias;
+  int bias;
+};
+ 
+struct fenwick_tree {
+  // [-bias, n - bias)
+  fenwick_tree(int n) : sums(n) {}
+  void update(int pos, ll dif) { // a[pos] += dif
+    for (; pos < (int)sums.size(); pos |= pos + 1) sums[pos] += dif;
+  }
+  ll query(int pos) { // sum of values in [0, pos)
+    ll res = 0;
+    for (; pos > 0; pos &= pos - 1) res += sums[pos-1];
+    return res;
+  }
+  ll query(int l, int r) { // sum of values in [l, r)
+    return query(r) - query(l);
+  }
+private:
+  vector<ll> sums;
+};
+
+
+struct fenwick_tree {
+  // [-bias, n - bias)
+  fenwick_tree(int n) : sums(n) {}
+  void update(int pos, zint dif) { // a[pos] += dif
+    for (; pos < (int)sums.size(); pos |= pos + 1) sums[pos] += dif;
+  }
+  zint query(int pos) { // sum of values in [0, pos)
+    zint res = 0;
+    for (; pos > 0; pos &= pos - 1) res += sums[pos-1];
+    return res;
+  }
+  zint query(int l, int r) { // sum of values in [l, r)
+    return query(r) - query(l);
+  }
+private:
+  vector<zint> sums;
 };
 
 struct fenwick_tree_lazy {

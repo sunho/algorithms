@@ -5,3 +5,7 @@
 *.synctex.gz
 *.exe
 *.bin
+
+#Added by cargo
+
+/target

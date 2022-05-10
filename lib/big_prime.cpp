@@ -1,7 +1,7 @@
+// big prime library
 // as the last resort
 // it's a dark magic
-
-mt19937 randint(chrono::steady_clock::now().time_since_epoch().count());
+mt19937 randint((mt19937::result_type)chrono::steady_clock::now().time_since_epoch().count());
  
 // returns a random integer over [a, b] inclusive
 inline int uniform_randint(const int a, const int b) {
@@ -21,7 +21,7 @@ vector<int> random_sample(int k, int n) {
   double w = exp(log(rand01())/k);
   int i = k-1;
   while (i < n) {
-    i += 1+floor(log(rand01())/log(1-w));
+    i += 1+(int)floor(log(rand01())/log(1-w));
     if (i < n) {
       r[uniform_randint(0, k-1)] = i;
       w *= exp(log(rand01())/k);
@@ -56,7 +56,7 @@ vector<ll> primesupto(int n) {
 // works for n <= 10^18
 bool isprime(ll n) {
   static vector<bool> sieve = primesieve(1000000);
-  if (n < sieve.size()) return sieve[n];
+  if (n < (int)sieve.size()) return sieve[n];
   if (n%2 == 0) return false;
   ll d = n-1, r = 0;
   while (d%2 == 0) r++, d >>= 1;
@@ -91,14 +91,18 @@ vector<ll> primefactors(ll n) {
     return out;
   }
   __int128 x = 2, y = 2;
+  __int128 c = uniform_int_distribution<ll>(1, n-1)(randint);
   ll f = 0;
   for (ll z = 1; 1; z <<= 1) {
     y = x;
-    for (ll i = 0; i < z; i++)
-      if ((f = gcd(ll((x = (x*x+1)%n)-y), n)) > 1) {
+    for (ll i = 0; i < z; i++) {
+      x = (((x*x)%n)+c)%n;
+      f = gcd((ll)(x-y), n);
+      if (f > 1) {
         out.push_back(min(f, n/f)), out.push_back(max(f, n/f));
         return out;
       }
+    }
   }
   return out;
 }
@@ -115,7 +119,7 @@ ll primepower(ll n) {
         if ((f = f || (x *= (p+i)) > n)) break;
       if (!f && x <= n) {
         p += i;
-        if (x == n && isprime(p)) return p;
+        if (x == n && isprime((ll)p)) return (ll)p;
       }
     }
   }

@@ -1,4 +1,4 @@
-template<class T> using pqg = priority_queue<T, vector<T>, greater<T>>;
+template<class T> using pqg = priority_queue<T, vector<T>, greater<T> >;
 
 pqg<pair<ll,int>> q;
 q.push({0,0});

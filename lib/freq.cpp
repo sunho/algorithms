@@ -4,7 +4,7 @@
 int maxfreq(vector<int>& a) {
   int res = 0;
   int cur = 0;
-  sort(all(a));
+  sort(a.begin(), a.end());
   for(int i=0; i < a.size(); i++) {
     if (i == 0 || a[i] == a[i-1]) {
       cur++;
@@ -14,4 +14,4 @@ int maxfreq(vector<int>& a) {
     }
   }
   return res;
-}👨‍👩‍👧‍👦
+}
