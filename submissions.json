@@ -1,4 +1,20 @@
 {
+  "AC31581192": {
+    "contest_id": "abc174",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc174/F.cpp",
+    "platform": "AtCoder",
+    "problem_index": "F",
+    "problem_name": "Range Set Query",
+    "problem_url": "https://atcoder.jp/contests/abc174/tasks/abc174_f",
+    "submission_id": "AC31581192",
+    "submission_url": "https://atcoder.jp/contests/abc174/submissions/31581192",
+    "tags": [
+      "AtCoder",
+      "*600"
+    ],
+    "timestamp": "May/10/2022 13:30"
+  },
   "AC31581199": {
     "contest_id": "abc174",
     "language": "C++ (GCC 9.2.1)",

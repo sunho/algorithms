@@ -42,7 +42,7 @@ void solve() {
   int n,q;
   cin >> n >> q;
   vector<int> C(n);
-  vector<deque<int>> pos(n);
+  vector<list<int>> pos(n);
   for(int i=0;i<n;i++) {
     cin >> C[i];
     C[i]--;
