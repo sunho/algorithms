@@ -6,10 +6,9 @@ using ll = long long;
 #define ub(x,a) (int)(upper_bound(all((x)),(a)) - (x).begin())
 template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
 template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
-// mod int
-// inv() and division doesn't work if P is not prime
+
 template<class T> T power(T a, ll b) { T res = 1; for (; b; b /= 2, a *= a) { if (b % 2) { res *= a; } } return res; }
-int P = 998244353; // 1000000007
+int P = 1000000007;
 struct zint {
   int x;
   // assumes -P <= x <= 2P
@@ -31,31 +30,18 @@ struct zint {
   friend istream& operator >> (istream& in, zint& rhs) { ll x; in >> x; rhs = zint(x); return in; }
 };
 
-vector<pair<ll,int>> factorize(ll n) {
-  vector<pair<ll,int>> facts;
-  for (ll d = 2; d * d <= n; d++) {
-    int k=0;
-    while (n % d == 0) {
-      n /= d;
-      k++;
-    }
-    if (k != 0) {
-      facts.push_back({d,k});
-    }
-  }
-  if (n > 1)
-    facts.push_back({n,1});
-  return facts;
-}
-
 void solve() {
-  const int N = 1e6;
-  int max_size = 0;
-  for(int i=1;i<=N;i++){
-    int sz = (int)factorize(i).size();
-    max_size = max(max_size, sz);
+  int n;
+  cin >> n;
+  vector<int> C(n);
+  for(int i=0;i<n;i++) cin >> C[i];
+  sort(all(C));
+  zint ans = 1;
+  for(int i=0;i<n;i++){
+    ans *= (C[i]-i);
   }
-  cout << max_size << "\n";
+  cout << ans << "\n";
+
 }
 
 int main() {
