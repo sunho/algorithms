@@ -2,6 +2,8 @@
 
 Most of the code here was initially collected from online (cp-algorithm, atcoder) and modified in personal tatse. (code style, variation, etc)
 
+Each file is inteneded to be copy & pasted without dependency to other (except using ll = long long)
+
 They all have been tested at actual cp problems on atcoder, codeforces, and baekjoon.
 
 ## List 
