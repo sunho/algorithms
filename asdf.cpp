@@ -1,61 +1,31 @@
 #include <bits/stdc++.h>
 using namespace std;
-using ll = long long;
-#define all(x) begin(x), end(x)
-#define lb(x,a) (int)(lower_bound(all((x)),(a)) - (x).begin())
-#define ub(x,a) (int)(upper_bound(all((x)),(a)) - (x).begin())
-template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
-template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
-// mod int
-// inv() and division doesn't work if P is not prime
-template<class T> T power(T a, ll b) { T res = 1; for (; b; b /= 2, a *= a) { if (b % 2) { res *= a; } } return res; }
-int P = 998244353; // 1000000007
-struct zint {
-  int x;
-  // assumes -P <= x <= 2P
-  int norm(int x) const { if (x < 0) { x += P; } if (x >= P) { x -= P; } return x; }
-  zint(int x = 0) : x(norm(x)) {}
-  zint(ll x) : x(norm((int)(x % P))) {}
-  int val() const { return x; }
-  zint operator-() const { return zint(norm(P - x)); }
-  zint inv() const { assert(x != 0); return power(*this, P - 2); }
-  zint& operator*=(const zint& rhs) { x = (int)(ll(x) * rhs.x % P); return *this; }
-  zint& operator+=(const zint& rhs) { x = norm(x + rhs.x); return *this; }
-  zint& operator-=(const zint& rhs) { x = norm(x - rhs.x); return *this; }
-  zint& operator/=(const zint& rhs) { return *this *= rhs.inv();}
-  friend zint operator*(const zint& lhs, const zint& rhs) { zint res = lhs; res *= rhs; return res; }
-  friend zint operator+(const zint& lhs, const zint& rhs) { zint res = lhs; res += rhs; return res; }
-  friend zint operator-(const zint& lhs, const zint& rhs) { zint res = lhs; res -= rhs; return res; }
-  friend zint operator/(const zint& lhs, const zint& rhs) { zint res = lhs; res /= rhs; return res; }
-  friend ostream& operator << (ostream& out, const zint& rhs) { out << rhs.val(); return out; }
-  friend istream& operator >> (istream& in, zint& rhs) { ll x; in >> x; rhs = zint(x); return in; }
-};
-
-vector<pair<ll,int>> factorize(ll n) {
-  vector<pair<ll,int>> facts;
-  for (ll d = 2; d * d <= n; d++) {
-    int k=0;
-    while (n % d == 0) {
-      n /= d;
-      k++;
-    }
-    if (k != 0) {
-      facts.push_back({d,k});
-    }
-  }
-  if (n > 1)
-    facts.push_back({n,1});
-  return facts;
-}
 
 void solve() {
-  const int N = 1e6;
-  int max_size = 0;
-  for(int i=1;i<=N;i++){
-    int sz = (int)factorize(i).size();
-    max_size = max(max_size, sz);
+  int n,m;
+  vector<vector<char>> M(n, vector<char>(m));
+  queue<tuple<int,int,int>> q;
+  q.push({M[0][0],0,0});
+  set<tuple<int,int,int>> visited;
+  int ans = 0;
+  while(!q.empty()) {
+    auto [gift, x, y] = q.front();
+    q.pop();
+    vector<pair<int,int>> cands = { {x,y+1}, {x+1,y}, {x-1,y}, {x,y-1}};
+    for (auto [x2, y2] : cands) {
+      if (x2 < 0 || x2 >= n || y2 < 0 || y2 >= m) continue;
+      char C = M[x2][y2];
+      if (gift & (1<<(C-'A'))) continue; // 중복
+      int gift2 = gift | (1<<(C-'A'));
+      if (visited.count({gift2, x2, y2})) continue;
+      if (x2 == n - 1 && y2 == m - 1) {
+        ans = max(ans, popcount(gift2));
+      }
+      q.push({gift2, x2, y2});
+      visited.insert({gift2, x2, y2});
+    }
   }
-  cout << max_size << "\n";
+  cout << ans << "\n";
 }
 
 int main() {
@@ -65,4 +35,5 @@ int main() {
   solve();
 
   return 0;
+
 }
