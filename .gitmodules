@@ -1,0 +1,3 @@
+[submodule "icpc_lib"]
+	path = icpc_lib
+	url = git@github.com:DeAnzaCPC/icpc_lib.git
