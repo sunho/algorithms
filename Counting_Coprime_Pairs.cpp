@@ -2,11 +2,12 @@
 using namespace std;
 using ll = long long;
 
+
+
+
 int main() {
   int n;
   cin >> n;
-
-
 
   vector<int> A(n);
   for (int i=0;i<n;i++){
@@ -14,6 +15,7 @@ int main() {
   }
   sort(begin(A),end(A));
 
+  const int PN = 1e6;
   ll ans = 0;
   vector<int> cnt(PN+1);
   vector<int> factors;

@@ -11,6 +11,7 @@ void solve() {
   map<ll, int> cnt;
   for (int i=0;i<n;i++){
     pf[i+1] = pf[i] + A[i];
+    cout << dbg(i) dbg(pf) << "\n";
   }
   for (int i=0;i<=n;i++){
     cnt[pf[i]]++;
