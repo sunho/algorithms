@@ -95,6 +95,9 @@
         "stack": "cpp",
         "__bit_reference": "cpp",
         "stacktrace": "cpp",
-        "__tuple": "cpp"
+        "__tuple": "cpp",
+        "__locale": "cpp",
+        "__mutex_base": "cpp",
+        "__node_handle": "cpp"
     }
 }

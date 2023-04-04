@@ -19,7 +19,7 @@ ostream& operator<<(ostream& os, const pair<Ts...>& p){
 
 // Modular Integer
 // does arithmetics (mod P) automatically
-int MOD = 1000000007; // 998244353
+const int MOD = 1000000007; // 998244353
 struct mint {
   int v=0; 
   int val() { return v; }
@@ -41,79 +41,49 @@ ostream& operator<<(ostream& os, mint p){
 }
 
 void solve() {
-  int n,m;
+  int n, m;
   cin >> n >> m;
   vector<int> A(n);
-  for (int i=0;i<n;i++){
+  for (int i=0;i<n;i++)
     cin >> A[i];
-  }
-  mint zeros = 0;
-  for (int l=0;l<n;l++){
-    for (int r=l;r<n;r++){
-      if (A[r] == 1) break;
-      zeros+=1;
-    }
-  }
-  int last = 0;
-  int first = 0;
-  for (int i=n-1;i>=0;i--){
-    if (A[i] != 1) 
-      break;
-    last++;
-  }
+  const int MK = 5050 + 1;
+  int K = n*(n+1)/2;
+  vector dp(n+1, array<array<mint,2>, MK>{});
+  dp[0][0][0] = 1;
+  int max_k = 0;
   for (int i=0;i<n;i++){
-    if (A[i] != 1) 
-      break;
-    first++;
-  }
-  A = vector<int>(A.begin() + first, A.end() - last);
-  n = A.size();
-  vector<mint> dp(n+1);
-  vector<mint> facts(n+1);
-  facts[0] = 1;
-  for(int i=1;i<=n;i++){
-    facts[i] = (m-i+1)*facts[i-1];
-  }
-  dp[0] = 1;
-  mint ans = 0;
-  int l_last = 0;
-  for (int i=0;i<n;i++){
-    if (A[i] == 2)
-      l_last = i;
-  }
-  for (int k=1;k<=n;k++){
-    vector<mint> next(n+1);
-    for (int l=0;l<n;l++){
-      bool found = false;
-      for (int r=l+1;r<=n;r++){
-        if (A[r-1] == 2) {
-          found = true;
-        }
-        if (A[r-1] == 1) {
-          if (found) {
-            int z = r;
-            while (z <= n && A[z-1] == 1) {
-              z++;
+    vector next(n+1, array<array<mint,2>, MK>{});
+    max_k = min(K, max_k+i+1);
+    for (int last=0;last<=i;last++){
+      for (int k=0;k<=max_k;k++){
+        for (int z=0;z<2;z++){
+          if (A[i] == 2) {
+            if (k+(i-last+1) <= K) {
+              next[last][k+(i-last+1)][z] += dp[last][k][z];
             }
-            while (z <= n) {
-              next[z] += dp[l];
-              if (A[z-1] == 2)
-                break;
-              z++;
+            next[i+1][k][z^1] += dp[last][k][z];
+          } else if (A[i] == 1) {
+            next[i+1][k][z] += dp[last][k][z];
+          } else {
+            if (k+(i-last+1) <= K) {
+              next[last][k+(i-last+1)][z] += dp[last][k][z];
             }
           }
-          break;
-        } 
-        if (found || r >= l_last) {
-          next[r] += dp[l];
         }
       }
     }
-    ans += next[n] * (pow(zeros, m) - pow(zeros-k, m));
     dp = move(next);
-    cout << dbg(dp) dbg(ans) dbg(zeros) << "\n";
   }
-  cout << ans.val() << "\n";
+
+  mint ans = 0;
+  for (int j=0;j<=K;j++){
+    mint ddd = pow(mint(j),m);
+    for (int i=0;i<=n;i++){
+      mint nd = ddd * (dp[i][j][0] - dp[i][j][1]);
+      ans += nd;
+    }
+  }
+  cout << ans.v << "\n";
 }
 
 int main() {
