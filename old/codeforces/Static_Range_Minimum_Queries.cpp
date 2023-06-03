@@ -1,19 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
-
 int ilog2(int x) {
   return 32-__builtin_clz(x)-1;
 }
 
 struct sparse_table {
   vector<vector<int>> st;
-  sparse_table(const vector<int>& A) {
-    const int n = A.size();
-    st = vector(32, vector(n, 0));
-    for (int i=0;i<n;i++) st[0][i] = A[i];
-    for (int i=0;i<ilog2(n);i++){
-      for (int j=1<<i;j<n;j++) {
+  sparse_table(const vector<int>& a) : st(1, a) {
+    for (int i=0;i<ilog2(a.size());i++){
+      st.emplace_back(a.size());
+      for (int j=1<<i;j<a.size();j++) {
         st[i+1][j] = min(st[i][j], st[i][j-(1<<i)]);
       }
     }

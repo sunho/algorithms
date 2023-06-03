@@ -2,6 +2,31 @@
 using namespace std;
 using ll = long long;
 
+vector<vector<int>> treeJump(vector<int>& P){
+	int d = ceil(log2(P.size()));
+	vector<vector<int>> up(d, P);
+	for(int i=1;i<d;i++) for(int j=0;j<P.size();j++)
+		up[i][j] = up[i-1][up[i-1][j]];
+	return up;
+}
+
+int jmp(vector<vector<int>>& up, int node, int steps){
+	for(int i=0;i<up.size();i++)
+		if(steps&(1<<i)) node = up[i][node];
+	return node;
+}
+
+int lca(vector<vector<int>>& up, vector<int>& depth, int a, int b) {
+	if (depth[a] < depth[b]) swap(a, b);
+	a = jmp(up, a, depth[a] - depth[b]);
+	if (a == b) return a;
+	for (int i = up.size()-1;i>=0;i--) {
+		int c = up[i][a], d = up[i][b];
+		if (c != d) a = c, b = d;
+	}
+	return up[0][a];
+}
+
 void solve() {
   int n,q;
   cin >> n >> q;
@@ -12,17 +37,36 @@ void solve() {
     prd[i]--;
     adj[prd[i]].push_back(i);
   }
-  vector<array<int, 32>> up(n);
-  int l = ceil(log2(n+1));
-  for (int i=0;i<l;i++){
-    for (int j=0;j<n;j++){
-      if (i == 0)
-        up[j][i] = prd[j];
-      else
-        up[j][i] = up[up[j][i-1]][i-1];
+  auto up = treeJump(prd);
+  vector<int> depth(n);
+  auto dfs = [&](auto self, int u, int p, int level) -> void {
+    depth[u] = level;
+    for (int v : adj[u]) if (v != p) {
+      self(self, v, u, level+1);
     }
-  }
+  };
+  dfs(dfs,0,-1,0);
 
+  while(q--){
+    int u,v;
+    cin >> u >> v;
+    --u,--v;
+    cout << lca(up, depth, u,v) + 1 << "\n";
+  }
+}
+
+int main() {
+  cin.sync_with_stdio(false);
+  cin.tie(nullptr);
+
+  solve();
+
+  return 0;
+}
+
+
+
+/*
   int time = 0;
   vector<int> tin(n);
   vector<int> tout(n);
@@ -53,13 +97,4 @@ void solve() {
     }
     cout << up[u][0] + 1 << "\n";
   }
-}
-
-int main() {
-  cin.sync_with_stdio(false);
-  cin.tie(nullptr);
-
-  solve();
-
-  return 0;
-}
+*/

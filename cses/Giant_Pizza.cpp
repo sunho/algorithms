@@ -2,19 +2,56 @@
 using namespace std;
 using ll = long long;
 
-struct TwoSAT {
+// Strongly Connected Components
+struct sc_components {
   int n;
-  vector<int> res;
-
-  vector<vector<int>> adj;
-  vector<vector<int>> adj_inv;
+  vector<vector<int>> adj, adj_inv;
   vector<vector<int>> comps;
   vector<int> comp_ids;
   int num_comp = 0;
+  sc_components(int n) : n(n), adj(n), adj_inv(n) {}
 
-  vector<int> order;
-  vector<int> vis;
-  TwoSAT(int n) : n(n), adj(2*n), adj_inv(2*n) {}
+  // add edge
+  void add(int u, int v) {
+    adj[u].push_back(v);
+    adj_inv[v].push_back(u);
+  }
+
+  // find strongly connected components of graph
+  void run() {
+    vector<bool> vis(n);
+    vector<int> order;
+    auto topo_dfs = [&](auto self, int u) -> void {
+      vis[u] = true;
+      for (int v : adj[u]) if (!vis[v]) self(self, v);
+      order.push_back(u);
+    };
+    for (int i=0;i<n;i++) if(!vis[i]) topo_dfs(topo_dfs, i);
+    reverse(begin(order), end(order));
+    comp_ids.assign(n, 0);
+    vis.assign(n, false);
+    auto comp_dfs = [&](auto self, int u) -> void {
+      vis[u] = true;
+      comp_ids[u] = num_comp;
+      comps.back().push_back(u);
+      for (int v : adj_inv[u]) if (!vis[v]) self(self, v);
+    };
+    for (int i : order)
+      if (!vis[i]) {
+        comps.push_back({});
+        comp_dfs(comp_dfs, i);
+        num_comp++;
+      }
+  }
+};
+
+// 2 SAT implementation
+struct two_sat {
+  int n;
+  vector<int> res;
+  sc_components scc;
+
+  two_sat(int n) : n(n), scc(2*n) {}
 
   int inv(int v) {
     if (v < n)
@@ -31,55 +68,17 @@ struct TwoSAT {
 
   // a or b <=> (~b => a and ~a => b)
   void add(int a, int b) {
-    adj[inv(a)].push_back(b);
-    adj[inv(b)].push_back(a);
-    adj_inv[b].push_back(inv(a));
-    adj_inv[a].push_back(inv(b));
-  }
-
-  void topo_dfs(int u) {
-    vis[u] = true;
-    for (int v : adj[u]) {
-      if (!vis[v]) topo_dfs(v);
-    }
-    order.push_back(u);
-  }
-
-  void comp_dfs(int u) {
-    vis[u] = true;
-    comp_ids[u] = num_comp;
-    comps[num_comp].push_back(u);
-    for (int v : adj_inv[u]) {
-      if (!vis[v]) comp_dfs(v);
-    }
+    scc.add(inv(a), b);
+    scc.add(inv(b), a);
   }
 
   bool run() {
-    vis.assign(n*2, false);
-    for (int i=0;i<n*2;i++)
-      if (!vis[i])
-        topo_dfs(i);
-    reverse(begin(order), end(order));
-
-    vis.assign(n*2, false);
-    comp_ids.assign(n*2, 0);
-    for (int i : order) {
-      if (!vis[i]) {
-        comps.push_back({});
-        comp_dfs(i);
-        num_comp++;
-      }
-    }
+    scc.run();
   
     res.assign(n, -1);
-
-    // Say C is early component and C' is later components
-    // By SCC theorem we have edge (C,C') is only possible not
-    // other way around. We will never get contradition (a<=>~a) 
-    // by iterating components in reverse order.
-    for (int i=num_comp-1;i>=0;i--){
-      for (int a : comps[i]) {
-        if (comp_ids[a] == comp_ids[inv(a)]) {
+    for (int i=scc.num_comp-1;i>=0;i--){
+      for (int a : scc.comps[i]) {
+        if (scc.comp_ids[a] == scc.comp_ids[inv(a)]) {
           return false;
         }
         if (res[norm(a)] == -1)
@@ -93,7 +92,7 @@ struct TwoSAT {
 int main() {
   int n, m;
   cin >> n >> m;
-  TwoSAT ts(m);
+  two_sat ts(m);
   for (int i=0;i<n;i++){
     char a0,a1;
     int p0,p1;

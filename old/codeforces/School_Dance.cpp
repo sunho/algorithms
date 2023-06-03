@@ -23,6 +23,8 @@ struct bipariate_match {
       }
       return false;
     };
+
+    // arbitrary matching heuristics
     vector<bool> used(n);
     for (int i=0;i<n;i++){
       for (int v : adj[i]) {
@@ -35,7 +37,7 @@ struct bipariate_match {
     }
 
     for (int i=0;i<n;i++) {
-      if (used[i]) continue;
+      if (used[i]) continue; // if implicit graph needs match[i] == -1
       vis.assign(n, false);
       dfs(dfs, i);
     }
