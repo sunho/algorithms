@@ -33,7 +33,7 @@ struct bipariate_match {
     }
 
     for (int i=0;i<n;i++) {
-      if (used[i] || mt[i] != -1) continue;
+      if (used[i]) continue; // add mt[i] != -1 check when abitrary
       vis.assign(n, false);
       dfs(dfs, i);
     }

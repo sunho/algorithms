@@ -104,5 +104,6 @@
         "__threading_support": "cpp"
     },
     "editor.stickyTabStops": true,
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "cph.general.onceMaintainerMessage": false
 }
