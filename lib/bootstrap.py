@@ -1,5 +1,4 @@
-"""
-For heavy recursion
+""" For heavy recursion
 """
 from types import GeneratorType
 def bootstrap(f, stack=[]):

@@ -1,43 +1,45 @@
 // Debug
 #ifdef LOCAL
-freopen("input.txt", "r" , stdin);
+freopen("input.txt", "r", stdin);
 freopen("output.txt", "w", stdout);
 #endif
 
-#define dbg(x) "(" << #x <<": " << (x) << ") "
-template<typename Ostream, typename Cont>
-enable_if_t<is_same_v<Ostream,ostream>, Ostream&> 
-operator<<(Ostream& os, const Cont& v){
-	os<<"[";
-	for(auto& x:v){os<<x<<", ";}
-	return os<<"]";
+#define dbg(x) "(" << #x << ": " << (x) << ") "
+template <typename Ostream, typename Cont>
+enable_if_t<is_same_v<Ostream, ostream>, Ostream &> operator<<(Ostream &os,
+                                                               const Cont &v) {
+  os << "[";
+  for (auto &x : v) {
+    os << x << ", ";
+  }
+  return os << "]";
 }
-template<typename ...Ts>
-ostream& operator<<(ostream& os, const pair<Ts...>& p){
-	return os<<"{"<<p.first<<", "<<p.second<<"}";
+template <typename... Ts>
+ostream &operator<<(ostream &os, const pair<Ts...> &p) {
+  return os << "{" << p.first << ", " << p.second << "}";
 }
-ostream& operator<<(ostream& os, mint p){
-	return os<<p.val();
-}
+ostream &operator<<(ostream &os, mint p) { return os << p.val(); }
 
 // Order statistics tree
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace __gnu_pbds;
 
-template<typename T>
-using indexed_set = tree<T,null_type,less<T>,rb_tree_tag, tree_order_statistics_node_update>;
+template <typename T>
+using indexed_set =
+    tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
 // Hash table
 // For sane OJs
 struct custom_hash {
-	size_t operator()(uint64_t x) const {
-		static const uint64_t FIXED_RANDOM = chrono::steady_clock::now().time_since_epoch().count();
-		x ^= FIXED_RANDOM;
-		return x ^ (x >> 16);
-	}
+  size_t operator()(uint64_t x) const {
+    static const uint64_t FIXED_RANDOM =
+        chrono::steady_clock::now().time_since_epoch().count();
+    x ^= FIXED_RANDOM;
+    return x ^ (x >> 16);
+  }
 };
 
-template<typename K, typename V>
+template <typename K, typename V>
 using hash_map = unordered_map<K, V, custom_hash>;
 
 // Hash table
@@ -51,19 +53,45 @@ struct custom_hash {
   }
 
   size_t operator()(uint64_t x) const {
-    static const uint64_t FIXED_RANDOM = chrono::steady_clock::now().time_since_epoch().count();
+    static const uint64_t FIXED_RANDOM =
+        chrono::steady_clock::now().time_since_epoch().count();
     return splitmix64(x + FIXED_RANDOM);
   }
 };
 
-template<typename K, typename V>
+template <typename K, typename V>
 using hash_map = unordered_map<K, V, custom_hash>;
 
 void print(__int128 x) {
   if (x < 0) {
-    cout<<'-';
+    cout << '-';
     x = -x;
   }
-  if (x > 9) print(x / 10);
-  cout<<(int)(x % 10);
+  if (x > 9)
+    print(x / 10);
+  cout << (int)(x % 10);
+}
+
+// ternary search dobule
+double m1 = l + (r - l) / 3, m2 = r - (r - l) / 3;
+if (f(m1) < f(m2)) {
+  r = m2;
+} else {
+  l = m1;
+}
+
+int l = -1, r = n;
+while (r - l > 1) {
+  int mid = (r + l) >> 1;
+  if (f(mid) > f(mid + 1))
+    r = mid;
+  else
+    l = mid;
+}
+// lo + 1 is the answer
+
+ll rand_long(ll mn, ll mx) {
+  static mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+  uniform_int_distribution<ll> gen(mn, mx);
+  return gen(rng);
 }

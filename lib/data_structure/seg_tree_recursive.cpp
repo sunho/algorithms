@@ -1,12 +1,10 @@
 // Segment Tree
 const int inf = 1e9;
+template<typename Info>
 struct seg_tree {
-  typedef int Info;
   int n;
   vector<Info> info;
-  const Info def = inf;
-  seg_tree(int n) : n(n), info(4*n, def) {}
-  Info combine(const Info& a, const Info& b) { return min(a,b); }
+  seg_tree(int n) : n(n), info(4*n, Info()) {}
   void pull(int v) { info[v] = info[v*2] + info[v*2+1]; }
   void update(int v, int l, int r, int x, const Info& val) {
     if (l == r) {
@@ -21,7 +19,7 @@ struct seg_tree {
   void update(int x, const Info& val) { update(1, 0, n-1, x, val); }
   Info query(int v, int l, int r, int x, int y) {
     if (l > y || r < x)
-      return def;
+      return Info();
     if (l >= x && r <= y)
       return info[v];
     int m = (l + r) / 2;

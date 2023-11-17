@@ -1,28 +1,53 @@
-#include <bits/stdc++.h>
-using namespace std;
-using ll = long long;
-using pii = pair<int, int>;
-using vi = vector<int>;
-#define x first
-#define y second
-#define rep(i,a,b) for(int i = a; i < (b); ++i)
-#define all(x) begin(x), end(x)
-#define trav(x,a) for(auto& x : (a))
-#define endl '\n'
-template<class T> bool ckmin(T&a, const T&b) { bool B = a > b; a = min(a,b); return B; }
-template<class T> bool ckmax(T&a, const T&b) { bool B = a < b; a = max(a,b); return B; }
-template <typename T,typename U> pair<T,U> operator+(const pair<T,U> & l,const pair<T,U> & r) { return {l.first+r.first,l.second+r.second}; }
+#include <stack>
+#include <string>
+#include <unordered_map>
+#include <sstream>
 
-int main() {
-    cin.sync_with_stdio(0); cin.tie(0);
-    cin.exceptions(cin.failbit);
-
-    set<int> test;
-    rep(i,1,100) test.insert(i);
-    for (auto it = test.rbegin(); it != test.rend(); ) {
-        cout << *it << '\n';
-        test.erase(next(it).base());
+static inline std::string pretty_indent(const std:::string& str, int max_width = 64) {
+  int root = -1;
+  std::unordered_map<int, vector<int>> g;
+  std::unordered_map<int, int> open_to_close;
+  std::stack<int> st;
+  const std::string TAB = "  ";
+  for (int i=0;i<str.size();i++){
+    if (str[i] == '(') {
+      if (!st.empty()) {
+        g[st.top()].push_back(i);
+      }
+      st.push(i);
+      if (root == -1) {
+        root = i;
+      }
+    } else if (str[i] == ')') {
+      open_to_close[st.top()] = i;
+      st.pop();
     }
-
-    return 0;
+  }
+  const auto dfs = [&](auto&& self, int cur, int start, int end) {
+    if (end - start + 1 > max_width) {
+      std::vector<std::string> res;
+      res.push_back(str.substr(start,cur-start+1));
+      int last = cur+1;
+      for (int v : adj[cur]) {
+        auto child = self(self, v, last, open_to_close[v]);
+        for (std::string s : child) {
+          res.push_back(TAB + s);
+        }
+        last = open_to_close[v]+1;
+      }
+      res.push_back(")");
+      return res;
+    } else {
+      return std::vector<string>({str.substr(start, end-start+1)});
+    }
+  };
+  if (root != -1) {
+    std::ostringstream ss("");
+    auto res = dfs(dfs, root, 0, str.size()-1);
+    for (auto s : res) {
+      ss << s << "\n";
+    }
+    return ss.str();
+  }
+  return str;
 }

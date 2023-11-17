@@ -47,3 +47,24 @@ vector<pair<ll,int>> factorize(ll n) {
     facts.push_back({n,1});
   return facts;
 }
+
+// [gcd(x,y)=1] -> sum_d|gcd(x,y) mobis(d)
+void generate_mobius(int PN, vector<int>& mobius, vector<ll>& pr) {
+  vector<bool> comp(PN+1);
+  mobius.assign(PN+1,0);
+  mobius[1] = 1;
+  for (int i=2; i <= PN; ++i) {
+    if (!comp[i]) {
+      pr.push_back(i);
+      mobius[i] = -1;
+    }
+    for (int j=0; j < pr.size() && i*pr[j] <= PN; ++j) {
+      comp[i*pr[j]] = true;
+      if (i % pr[j] == 0) {
+        break;
+      }
+      mobius[i*pr[j]] = mobius[i]*mobius[pr[j]];
+    }
+  }
+}
+
