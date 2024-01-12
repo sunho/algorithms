@@ -22,3 +22,21 @@ int lca(vector<vector<int>>& up, vector<int>& depth, int a, int b) {
 	}
 	return up[0][a];
 }
+
+vector<vector<int>> mnJump(vector<vector<int>>& up, vector<int>& A){
+	int d = ceil(log2(A.size()));
+	vector<vector<int>> res(d, A);
+	for(int i=1;i<d;i++) for(int j=0;j<A.size();j++)
+		res[i][j] = min(res[i-1][j], res[i-1][up[i-1][j]]);
+	return res;
+}
+
+vector<vector<int>> mxJump(vector<vector<int>>& up, vector<int>& A){
+	int d = ceil(log2(A.size()));
+	vector<vector<int>> res(d, A);
+	for(int i=1;i<d;i++) for(int j=0;j<A.size();j++)
+		res[i][j] = max(res[i-1][j], res[i-1][up[i-1][j]]);
+	return res;
+}
+
+

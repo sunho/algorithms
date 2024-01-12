@@ -23,6 +23,14 @@ vector<int> rnd_array(int n, int mn, int mx) {
   return A;
 }
 
+vector<pair<int, int>> rnd_tree(int n) {
+  vector<pair<int, int>> res;
+  for (int i = 2; i <= n; i++) {
+    res.push_back({i, rnd(1, i - 1)});
+  }
+  return res;
+}
+
 int main() {
   int n = rnd(1, 100);
   cout << n << "\n";

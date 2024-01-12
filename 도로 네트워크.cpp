@@ -1,0 +1,136 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+
+vector<vector<int>> mnJump(vector<vector<int>>& up, vector<int>& A){
+	int d = ceil(log2(A.size()));
+	vector<vector<int>> res(d, A);
+	for(int i=1;i<d;i++) for(int j=0;j<A.size();j++)
+		res[i][j] = min(res[i-1][j], res[i-1][up[i-1][j]]);
+	return res;
+}
+
+vector<vector<int>> mxJump(vector<vector<int>>& up, vector<int>& A){
+	int d = ceil(log2(A.size()));
+	vector<vector<int>> res(d, A);
+	for(int i=1;i<d;i++) for(int j=0;j<A.size();j++)
+		res[i][j] = max(res[i-1][j], res[i-1][up[i-1][j]]);
+	return res;
+}
+
+vector<vector<int>> treeJump(vector<int>& P){
+	int d = ceil(log2(P.size()));
+	vector<vector<int>> up(d, P);
+	for(int i=1;i<d;i++) for(int j=0;j<P.size();j++)
+		up[i][j] = up[i-1][up[i-1][j]];
+	return up;
+}
+
+int jmp(vector<vector<int>>& up, int node, int steps){
+	for(int i=0;i<up.size();i++)
+		if(steps&(1<<i)) node = up[i][node];
+	return node;
+}
+
+int lca(vector<vector<int>>& up, vector<int>& depth, int a, int b) {
+	if (depth[a] < depth[b]) swap(a, b);
+	a = jmp(up, a, depth[a] - depth[b]);
+	if (a == b) return a;
+	for (int i = up.size()-1;i>=0;i--) {
+		int c = up[i][a], d = up[i][b];
+		if (c != d) a = c, b = d;
+	}
+	return up[0][a];
+}
+
+// Union Find using disjoint subset union
+struct union_find {
+  int n;
+  vector<int> p;
+  vector<int> sz;
+  union_find(int n) : n(n), p(n), sz(n, 1) {
+    iota(begin(p),end(p), 0);
+  }
+  int leader(int x) {
+    if (p[x] == x)
+      return x;
+    return p[x] = leader(p[x]);
+  }
+  void unite(int x, int y) {
+    int l = leader(x), s = leader(y);
+    if (l == s) return;
+    if (sz[s] > sz[l]) swap(s,l);
+    p[s] = l, sz[l] += sz[s];
+  }
+};
+
+void solve() {
+  int n;
+  cin >> n;
+  vector<vector<pair<int,int>>> adj(n);
+  for (int i=0;i<n-1;i++){
+    int u,v,w;
+    cin >> u >> v >> w;
+    --u,--v;
+    adj[u].push_back({v,w});
+    adj[v].push_back({u,w});
+  }
+  const int inf = 1e9+3;
+  vector<int> A(n,0);
+  vector<int> A2(n,inf);
+  vector<int> depth(n);
+  vector<int> P(n,-1);
+  auto dfs = [&](auto&& self, int u, int p, int d) -> void {
+    P[u] = p;
+    depth[u] = d; 
+    for (auto [v,w] : adj[u]) {
+      if (p == v) continue;
+      A[v] = w;
+      A2[v] = w;
+      self(self, v, u, d+1);
+    }
+  };
+  dfs(dfs, 0, 0, 0);
+  auto up = treeJump(P);
+  auto mxUp = mxJump(up, A);
+  auto mnUp = mnJump(up, A2);
+  auto jump = [&](int u, int k) {
+    int mn = inf;
+    int mx = 0;
+    for (int i=up.size()-1;i>=0;i--) {
+      if ((k >> i) & 1) {
+        mn = min(mn, mnUp[i][u]);
+        mx = max(mx, mxUp[i][u]);
+        u = up[i][u];
+      }
+    }
+    return make_pair(mn,mx);
+  };
+  int q;
+  cin >> q;
+  while (q--) {
+    int u,v;
+    cin >> u >> v;
+    --u,--v;
+    int mn = inf;
+    int mx = 0;
+    int l = lca(up, depth, u,v);
+    if (l != u) {
+      auto [mn2, mx2] = jump(u, depth[u]-depth[l]);
+      mn = min(mn, mn2);
+      mx = max(mx, mx2);
+    }
+    if (l != v) {
+      auto [mn2, mx2] = jump(v, depth[v]-depth[l]);
+      mn = min(mn, mn2);
+      mx = max(mx, mx2);
+    }
+    cout << mn << " " << mx << "\n";
+  }
+}
+
+int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
+  solve();
+}

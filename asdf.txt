@@ -1,0 +1,688 @@
+
+hello.o:	file format mach-o 64-bit x86-64
+
+Disassembly of section __TEXT,__text:
+
+0000000000000000 <_$s5hello10OldStudentC10studentFeeSivpfi>:
+       0: 55                           	pushq	%rbp
+       1: 48 89 e5                     	movq	%rsp, %rbp
+       4: b8 20 03 00 00               	movl	$800, %eax              ## imm = 0x320
+       9: 5d                           	popq	%rbp
+       a: c3                           	retq
+       b: 0f 1f 44 00 00               	nopl	(%rax,%rax)
+
+0000000000000010 <_$s5hello10OldStudentC10studentFeeSivg>:
+      10: 55                           	pushq	%rbp
+      11: 48 89 e5                     	movq	%rsp, %rbp
+      14: 48 83 ec 30                  	subq	$48, %rsp
+      18: 4c 89 ef                     	movq	%r13, %rdi
+      1b: 48 83 c7 10                  	addq	$16, %rdi
+      1f: 31 c0                        	xorl	%eax, %eax
+      21: 89 c1                        	movl	%eax, %ecx
+      23: 48 8d 75 e8                  	leaq	-24(%rbp), %rsi
+      27: 48 89 75 d8                  	movq	%rsi, -40(%rbp)
+      2b: ba 20 00 00 00               	movl	$32, %edx
+      30: e8 00 00 00 00               	callq	0x35 <_$s5hello10OldStudentC10studentFeeSivg+0x25>
+      35: 48 8b 7d d8                  	movq	-40(%rbp), %rdi
+      39: 49 8b 45 10                  	movq	16(%r13), %rax
+      3d: 48 89 45 e0                  	movq	%rax, -32(%rbp)
+      41: e8 00 00 00 00               	callq	0x46 <_$s5hello10OldStudentC10studentFeeSivg+0x36>
+      46: 48 8b 45 e0                  	movq	-32(%rbp), %rax
+      4a: 48 83 c4 30                  	addq	$48, %rsp
+      4e: 5d                           	popq	%rbp
+      4f: c3                           	retq
+
+0000000000000050 <_$s5hello10OldStudentC10studentFeeSivs>:
+      50: 55                           	pushq	%rbp
+      51: 48 89 e5                     	movq	%rsp, %rbp
+      54: 48 83 ec 30                  	subq	$48, %rsp
+      58: 48 89 7d d8                  	movq	%rdi, -40(%rbp)
+      5c: 4c 89 ef                     	movq	%r13, %rdi
+      5f: 48 83 c7 10                  	addq	$16, %rdi
+      63: 31 c0                        	xorl	%eax, %eax
+      65: 89 c1                        	movl	%eax, %ecx
+      67: 48 8d 75 e8                  	leaq	-24(%rbp), %rsi
+      6b: 48 89 75 e0                  	movq	%rsi, -32(%rbp)
+      6f: ba 21 00 00 00               	movl	$33, %edx
+      74: e8 00 00 00 00               	callq	0x79 <_$s5hello10OldStudentC10studentFeeSivs+0x29>
+      79: 48 8b 45 d8                  	movq	-40(%rbp), %rax
+      7d: 48 8b 7d e0                  	movq	-32(%rbp), %rdi
+      81: 49 89 45 10                  	movq	%rax, 16(%r13)
+      85: e8 00 00 00 00               	callq	0x8a <_$s5hello10OldStudentC10studentFeeSivs+0x3a>
+      8a: 48 83 c4 30                  	addq	$48, %rsp
+      8e: 5d                           	popq	%rbp
+      8f: c3                           	retq
+
+0000000000000090 <_$s5hello10OldStudentC10studentFeeSivM>:
+      90: 55                           	pushq	%rbp
+      91: 48 89 e5                     	movq	%rsp, %rbp
+      94: 48 83 ec 10                  	subq	$16, %rsp
+      98: 4c 89 6d f0                  	movq	%r13, -16(%rbp)
+      9c: 48 89 fe                     	movq	%rdi, %rsi
+      9f: 48 8b 7d f0                  	movq	-16(%rbp), %rdi
+      a3: 48 83 c7 10                  	addq	$16, %rdi
+      a7: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+      ab: 31 c0                        	xorl	%eax, %eax
+      ad: 89 c1                        	movl	%eax, %ecx
+      af: ba 21 00 00 00               	movl	$33, %edx
+      b4: e8 00 00 00 00               	callq	0xb9 <_$s5hello10OldStudentC10studentFeeSivM+0x29>
+      b9: 48 8b 55 f8                  	movq	-8(%rbp), %rdx
+      bd: 48 8d 05 00 00 00 00         	leaq	(%rip), %rax            ## 0xc4 <_$s5hello10OldStudentC10studentFeeSivM+0x34>
+      c4: 48 83 c4 10                  	addq	$16, %rsp
+      c8: 5d                           	popq	%rbp
+      c9: c3                           	retq
+      ca: 66 0f 1f 44 00 00            	nopw	(%rax,%rax)
+
+00000000000000d0 <_$s5hello10OldStudentC10studentFeeSivM.resume.0>:
+      d0: 55                           	pushq	%rbp
+      d1: 48 89 e5                     	movq	%rsp, %rbp
+      d4: 48 83 ec 10                  	subq	$16, %rsp
+      d8: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+      dc: 40 88 f0                     	movb	%sil, %al
+      df: a8 01                        	testb	$1, %al
+      e1: 75 0b                        	jne	0xee <_$s5hello10OldStudentC10studentFeeSivM.resume.0+0x1e>
+      e3: 48 8b 7d f8                  	movq	-8(%rbp), %rdi
+      e7: e8 00 00 00 00               	callq	0xec <_$s5hello10OldStudentC10studentFeeSivM.resume.0+0x1c>
+      ec: eb 09                        	jmp	0xf7 <_$s5hello10OldStudentC10studentFeeSivM.resume.0+0x27>
+      ee: 48 8b 7d f8                  	movq	-8(%rbp), %rdi
+      f2: e8 00 00 00 00               	callq	0xf7 <_$s5hello10OldStudentC10studentFeeSivM.resume.0+0x27>
+      f7: 48 83 c4 10                  	addq	$16, %rsp
+      fb: 5d                           	popq	%rbp
+      fc: c3                           	retq
+      fd: 0f 1f 00                     	nopl	(%rax)
+
+0000000000000100 <_$s5hello10OldStudentC3FeeSSvg>:
+     100: 55                           	pushq	%rbp
+     101: 48 89 e5                     	movq	%rsp, %rbp
+     104: 41 55                        	pushq	%r13
+     106: 48 83 ec 68                  	subq	$104, %rsp
+     10a: 4c 89 6d a0                  	movq	%r13, -96(%rbp)
+     10e: 48 c7 45 f0 00 00 00 00      	movq	$0, -16(%rbp)
+     116: 0f 57 c0                     	xorps	%xmm0, %xmm0
+     119: 0f 29 45 e0                  	movaps	%xmm0, -32(%rbp)
+     11d: 4c 89 6d f0                  	movq	%r13, -16(%rbp)
+     121: bf 0f 00 00 00               	movl	$15, %edi
+     126: 48 89 7d 98                  	movq	%rdi, -104(%rbp)
+     12a: be 01 00 00 00               	movl	$1, %esi
+     12f: e8 00 00 00 00               	callq	0x134 <_$s5hello10OldStudentC3FeeSSvg+0x34>
+     134: 48 8b 75 98                  	movq	-104(%rbp), %rsi
+     138: 48 89 45 e0                  	movq	%rax, -32(%rbp)
+     13c: 48 89 55 e8                  	movq	%rdx, -24(%rbp)
+     140: 48 8d 3d 59 08 00 00         	leaq	2137(%rip), %rdi        ## 0x9a0 <_$sSa12_endMutationyyF+0x10>
+     147: ba 01 00 00 00               	movl	$1, %edx
+     14c: 89 55 b4                     	movl	%edx, -76(%rbp)
+     14f: e8 00 00 00 00               	callq	0x154 <_$s5hello10OldStudentC3FeeSSvg+0x54>
+     154: 48 89 c7                     	movq	%rax, %rdi
+     157: 48 89 d6                     	movq	%rdx, %rsi
+     15a: 48 89 75 a8                  	movq	%rsi, -88(%rbp)
+     15e: 4c 8d 6d e0                  	leaq	-32(%rbp), %r13
+     162: 4c 89 6d c0                  	movq	%r13, -64(%rbp)
+     166: e8 00 00 00 00               	callq	0x16b <_$s5hello10OldStudentC3FeeSSvg+0x6b>
+     16b: 4c 8b 6d a0                  	movq	-96(%rbp), %r13
+     16f: 48 8b 7d a8                  	movq	-88(%rbp), %rdi
+     173: e8 00 00 00 00               	callq	0x178 <_$s5hello10OldStudentC3FeeSSvg+0x78>
+     178: 49 8b 45 00                  	movq	(%r13), %rax
+     17c: 48 8b 40 58                  	movq	88(%rax), %rax
+     180: ff d0                        	callq	*%rax
+     182: 4c 8b 6d c0                  	movq	-64(%rbp), %r13
+     186: 48 89 45 d8                  	movq	%rax, -40(%rbp)
+     18a: 48 8b 35 00 00 00 00         	movq	(%rip), %rsi            ## 0x191 <_$s5hello10OldStudentC3FeeSSvg+0x91>
+     191: 48 8b 15 00 00 00 00         	movq	(%rip), %rdx            ## 0x198 <_$s5hello10OldStudentC3FeeSSvg+0x98>
+     198: 48 8d 7d d8                  	leaq	-40(%rbp), %rdi
+     19c: e8 00 00 00 00               	callq	0x1a1 <_$s5hello10OldStudentC3FeeSSvg+0xa1>
+     1a1: 4c 8b 6d c0                  	movq	-64(%rbp), %r13
+     1a5: 8b 55 b4                     	movl	-76(%rbp), %edx
+     1a8: 48 8d 3d 01 08 00 00         	leaq	2049(%rip), %rdi        ## 0x9b0 <_$sSa12_endMutationyyF+0x20>
+     1af: 31 c0                        	xorl	%eax, %eax
+     1b1: 89 c6                        	movl	%eax, %esi
+     1b3: e8 00 00 00 00               	callq	0x1b8 <_$s5hello10OldStudentC3FeeSSvg+0xb8>
+     1b8: 48 89 c7                     	movq	%rax, %rdi
+     1bb: 48 89 d6                     	movq	%rdx, %rsi
+     1be: 48 89 75 b8                  	movq	%rsi, -72(%rbp)
+     1c2: e8 00 00 00 00               	callq	0x1c7 <_$s5hello10OldStudentC3FeeSSvg+0xc7>
+     1c7: 48 8b 7d b8                  	movq	-72(%rbp), %rdi
+     1cb: e8 00 00 00 00               	callq	0x1d0 <_$s5hello10OldStudentC3FeeSSvg+0xd0>
+     1d0: 48 8b 45 e0                  	movq	-32(%rbp), %rax
+     1d4: 48 89 45 c8                  	movq	%rax, -56(%rbp)
+     1d8: 48 8b 7d e8                  	movq	-24(%rbp), %rdi
+     1dc: 48 89 7d d0                  	movq	%rdi, -48(%rbp)
+     1e0: e8 00 00 00 00               	callq	0x1e5 <_$s5hello10OldStudentC3FeeSSvg+0xe5>
+     1e5: 48 8b 7d c0                  	movq	-64(%rbp), %rdi
+     1e9: e8 00 00 00 00               	callq	0x1ee <_$s5hello10OldStudentC3FeeSSvg+0xee>
+     1ee: 48 8b 7d c8                  	movq	-56(%rbp), %rdi
+     1f2: 48 8b 75 d0                  	movq	-48(%rbp), %rsi
+     1f6: e8 00 00 00 00               	callq	0x1fb <_$s5hello10OldStudentC3FeeSSvg+0xfb>
+     1fb: 48 83 c4 68                  	addq	$104, %rsp
+     1ff: 41 5d                        	popq	%r13
+     201: 5d                           	popq	%rbp
+     202: c3                           	retq
+     203: 66 66 66 66 2e 0f 1f 84 00 00 00 00 00       	nopw	%cs:(%rax,%rax)
+
+0000000000000210 <_$ss26DefaultStringInterpolationVWOh>:
+     210: 55                           	pushq	%rbp
+     211: 48 89 e5                     	movq	%rsp, %rbp
+     214: 48 83 ec 10                  	subq	$16, %rsp
+     218: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+     21c: 48 8b 7f 08                  	movq	8(%rdi), %rdi
+     220: e8 00 00 00 00               	callq	0x225 <_$ss26DefaultStringInterpolationVWOh+0x15>
+     225: 48 8b 45 f8                  	movq	-8(%rbp), %rax
+     229: 48 83 c4 10                  	addq	$16, %rsp
+     22d: 5d                           	popq	%rbp
+     22e: c3                           	retq
+     22f: 90                           	nop
+
+0000000000000230 <_$s5hello10OldStudentCfd>:
+     230: 55                           	pushq	%rbp
+     231: 48 89 e5                     	movq	%rsp, %rbp
+     234: 4c 89 e8                     	movq	%r13, %rax
+     237: 48 c7 45 f8 00 00 00 00      	movq	$0, -8(%rbp)
+     23f: 48 89 45 f8                  	movq	%rax, -8(%rbp)
+     243: 5d                           	popq	%rbp
+     244: c3                           	retq
+     245: 66 66 2e 0f 1f 84 00 00 00 00 00     	nopw	%cs:(%rax,%rax)
+
+0000000000000250 <_$s5hello10OldStudentCfD>:
+     250: 55                           	pushq	%rbp
+     251: 48 89 e5                     	movq	%rsp, %rbp
+     254: 48 83 ec 10                  	subq	$16, %rsp
+     258: 48 c7 45 f8 00 00 00 00      	movq	$0, -8(%rbp)
+     260: 4c 89 6d f8                  	movq	%r13, -8(%rbp)
+     264: e8 00 00 00 00               	callq	0x269 <_$s5hello10OldStudentCfD+0x19>
+     269: 48 89 c7                     	movq	%rax, %rdi
+     26c: be 18 00 00 00               	movl	$24, %esi
+     271: ba 07 00 00 00               	movl	$7, %edx
+     276: e8 00 00 00 00               	callq	0x27b <_$s5hello10OldStudentCfD+0x2b>
+     27b: 48 83 c4 10                  	addq	$16, %rsp
+     27f: 5d                           	popq	%rbp
+     280: c3                           	retq
+     281: 66 66 66 66 66 66 2e 0f 1f 84 00 00 00 00 00 	nopw	%cs:(%rax,%rax)
+
+0000000000000290 <_$s5hello10OldStudentCACycfC>:
+     290: 55                           	pushq	%rbp
+     291: 48 89 e5                     	movq	%rsp, %rbp
+     294: 41 55                        	pushq	%r13
+     296: 50                           	pushq	%rax
+     297: 4c 89 ef                     	movq	%r13, %rdi
+     29a: be 18 00 00 00               	movl	$24, %esi
+     29f: ba 07 00 00 00               	movl	$7, %edx
+     2a4: e8 00 00 00 00               	callq	0x2a9 <_$s5hello10OldStudentCACycfC+0x19>
+     2a9: 49 89 c5                     	movq	%rax, %r13
+     2ac: e8 00 00 00 00               	callq	0x2b1 <_$s5hello10OldStudentCACycfC+0x21>
+     2b1: 48 83 c4 08                  	addq	$8, %rsp
+     2b5: 41 5d                        	popq	%r13
+     2b7: 5d                           	popq	%rbp
+     2b8: c3                           	retq
+     2b9: 0f 1f 80 00 00 00 00         	nopl	(%rax)
+
+00000000000002c0 <_$s5hello10OldStudentCACycfc>:
+     2c0: 55                           	pushq	%rbp
+     2c1: 48 89 e5                     	movq	%rsp, %rbp
+     2c4: 4c 89 e8                     	movq	%r13, %rax
+     2c7: 48 c7 45 f8 00 00 00 00      	movq	$0, -8(%rbp)
+     2cf: 48 89 45 f8                  	movq	%rax, -8(%rbp)
+     2d3: 48 c7 40 10 20 03 00 00      	movq	$800, 16(%rax)          ## imm = 0x320
+     2db: 5d                           	popq	%rbp
+     2dc: c3                           	retq
+     2dd: 0f 1f 00                     	nopl	(%rax)
+
+00000000000002e0 <_$s5hello10NewStudentC6amountSivpfi>:
+     2e0: 55                           	pushq	%rbp
+     2e1: 48 89 e5                     	movq	%rsp, %rbp
+     2e4: b8 e8 03 00 00               	movl	$1000, %eax             ## imm = 0x3E8
+     2e9: 5d                           	popq	%rbp
+     2ea: c3                           	retq
+     2eb: 0f 1f 44 00 00               	nopl	(%rax,%rax)
+
+00000000000002f0 <_$s5hello10NewStudentC6amountSivg>:
+     2f0: 55                           	pushq	%rbp
+     2f1: 48 89 e5                     	movq	%rsp, %rbp
+     2f4: 48 83 ec 30                  	subq	$48, %rsp
+     2f8: 4c 89 ef                     	movq	%r13, %rdi
+     2fb: 48 83 c7 18                  	addq	$24, %rdi
+     2ff: 31 c0                        	xorl	%eax, %eax
+     301: 89 c1                        	movl	%eax, %ecx
+     303: 48 8d 75 e8                  	leaq	-24(%rbp), %rsi
+     307: 48 89 75 d8                  	movq	%rsi, -40(%rbp)
+     30b: ba 20 00 00 00               	movl	$32, %edx
+     310: e8 00 00 00 00               	callq	0x315 <_$s5hello10NewStudentC6amountSivg+0x25>
+     315: 48 8b 7d d8                  	movq	-40(%rbp), %rdi
+     319: 49 8b 45 18                  	movq	24(%r13), %rax
+     31d: 48 89 45 e0                  	movq	%rax, -32(%rbp)
+     321: e8 00 00 00 00               	callq	0x326 <_$s5hello10NewStudentC6amountSivg+0x36>
+     326: 48 8b 45 e0                  	movq	-32(%rbp), %rax
+     32a: 48 83 c4 30                  	addq	$48, %rsp
+     32e: 5d                           	popq	%rbp
+     32f: c3                           	retq
+
+0000000000000330 <_$s5hello10NewStudentC6amountSivs>:
+     330: 55                           	pushq	%rbp
+     331: 48 89 e5                     	movq	%rsp, %rbp
+     334: 48 83 ec 30                  	subq	$48, %rsp
+     338: 48 89 7d d8                  	movq	%rdi, -40(%rbp)
+     33c: 4c 89 ef                     	movq	%r13, %rdi
+     33f: 48 83 c7 18                  	addq	$24, %rdi
+     343: 31 c0                        	xorl	%eax, %eax
+     345: 89 c1                        	movl	%eax, %ecx
+     347: 48 8d 75 e8                  	leaq	-24(%rbp), %rsi
+     34b: 48 89 75 e0                  	movq	%rsi, -32(%rbp)
+     34f: ba 21 00 00 00               	movl	$33, %edx
+     354: e8 00 00 00 00               	callq	0x359 <_$s5hello10NewStudentC6amountSivs+0x29>
+     359: 48 8b 45 d8                  	movq	-40(%rbp), %rax
+     35d: 48 8b 7d e0                  	movq	-32(%rbp), %rdi
+     361: 49 89 45 18                  	movq	%rax, 24(%r13)
+     365: e8 00 00 00 00               	callq	0x36a <_$s5hello10NewStudentC6amountSivs+0x3a>
+     36a: 48 83 c4 30                  	addq	$48, %rsp
+     36e: 5d                           	popq	%rbp
+     36f: c3                           	retq
+
+0000000000000370 <_$s5hello10NewStudentC6amountSivM>:
+     370: 55                           	pushq	%rbp
+     371: 48 89 e5                     	movq	%rsp, %rbp
+     374: 48 83 ec 10                  	subq	$16, %rsp
+     378: 4c 89 6d f0                  	movq	%r13, -16(%rbp)
+     37c: 48 89 fe                     	movq	%rdi, %rsi
+     37f: 48 8b 7d f0                  	movq	-16(%rbp), %rdi
+     383: 48 83 c7 18                  	addq	$24, %rdi
+     387: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+     38b: 31 c0                        	xorl	%eax, %eax
+     38d: 89 c1                        	movl	%eax, %ecx
+     38f: ba 21 00 00 00               	movl	$33, %edx
+     394: e8 00 00 00 00               	callq	0x399 <_$s5hello10NewStudentC6amountSivM+0x29>
+     399: 48 8b 55 f8                  	movq	-8(%rbp), %rdx
+     39d: 48 8d 05 00 00 00 00         	leaq	(%rip), %rax            ## 0x3a4 <_$s5hello10NewStudentC6amountSivM+0x34>
+     3a4: 48 83 c4 10                  	addq	$16, %rsp
+     3a8: 5d                           	popq	%rbp
+     3a9: c3                           	retq
+     3aa: 66 0f 1f 44 00 00            	nopw	(%rax,%rax)
+
+00000000000003b0 <_$s5hello10NewStudentC6amountSivM.resume.0>:
+     3b0: 55                           	pushq	%rbp
+     3b1: 48 89 e5                     	movq	%rsp, %rbp
+     3b4: 48 83 ec 10                  	subq	$16, %rsp
+     3b8: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+     3bc: 40 88 f0                     	movb	%sil, %al
+     3bf: a8 01                        	testb	$1, %al
+     3c1: 75 0b                        	jne	0x3ce <_$s5hello10NewStudentC6amountSivM.resume.0+0x1e>
+     3c3: 48 8b 7d f8                  	movq	-8(%rbp), %rdi
+     3c7: e8 00 00 00 00               	callq	0x3cc <_$s5hello10NewStudentC6amountSivM.resume.0+0x1c>
+     3cc: eb 09                        	jmp	0x3d7 <_$s5hello10NewStudentC6amountSivM.resume.0+0x27>
+     3ce: 48 8b 7d f8                  	movq	-8(%rbp), %rdi
+     3d2: e8 00 00 00 00               	callq	0x3d7 <_$s5hello10NewStudentC6amountSivM.resume.0+0x27>
+     3d7: 48 83 c4 10                  	addq	$16, %rsp
+     3db: 5d                           	popq	%rbp
+     3dc: c3                           	retq
+     3dd: 0f 1f 00                     	nopl	(%rax)
+
+00000000000003e0 <_$s5hello10NewStudentC3FeeSSvg>:
+     3e0: 55                           	pushq	%rbp
+     3e1: 48 89 e5                     	movq	%rsp, %rbp
+     3e4: 41 55                        	pushq	%r13
+     3e6: 48 81 ec 98 00 00 00         	subq	$152, %rsp
+     3ed: 4c 89 ad 70 ff ff ff         	movq	%r13, -144(%rbp)
+     3f4: 48 c7 45 f0 00 00 00 00      	movq	$0, -16(%rbp)
+     3fc: 0f 57 c0                     	xorps	%xmm0, %xmm0
+     3ff: 0f 29 45 e0                  	movaps	%xmm0, -32(%rbp)
+     403: 4c 89 6d f0                  	movq	%r13, -16(%rbp)
+     407: 4c 89 ef                     	movq	%r13, %rdi
+     40a: e8 00 00 00 00               	callq	0x40f <_$s5hello10NewStudentC3FeeSSvg+0x2f>
+     40f: e8 00 00 00 00               	callq	0x414 <_$s5hello10NewStudentC3FeeSSvg+0x34>
+     414: 48 8b bd 70 ff ff ff         	movq	-144(%rbp), %rdi
+     41b: 48 89 45 a8                  	movq	%rax, -88(%rbp)
+     41f: 48 89 55 c0                  	movq	%rdx, -64(%rbp)
+     423: e8 00 00 00 00               	callq	0x428 <_$s5hello10NewStudentC3FeeSSvg+0x48>
+     428: bf 1a 00 00 00               	movl	$26, %edi
+     42d: 48 89 bd 68 ff ff ff         	movq	%rdi, -152(%rbp)
+     434: be 01 00 00 00               	movl	$1, %esi
+     439: e8 00 00 00 00               	callq	0x43e <_$s5hello10NewStudentC3FeeSSvg+0x5e>
+     43e: 48 8b b5 68 ff ff ff         	movq	-152(%rbp), %rsi
+     445: 48 89 45 e0                  	movq	%rax, -32(%rbp)
+     449: 48 89 55 e8                  	movq	%rdx, -24(%rbp)
+     44d: 48 8d 3d 6c 05 00 00         	leaq	1388(%rip), %rdi        ## 0x9c0 <_$sSa12_endMutationyyF+0x30>
+     454: ba 01 00 00 00               	movl	$1, %edx
+     459: 89 55 84                     	movl	%edx, -124(%rbp)
+     45c: e8 00 00 00 00               	callq	0x461 <_$s5hello10NewStudentC3FeeSSvg+0x81>
+     461: 48 89 c7                     	movq	%rax, %rdi
+     464: 48 89 d6                     	movq	%rdx, %rsi
+     467: 48 89 b5 78 ff ff ff         	movq	%rsi, -136(%rbp)
+     46e: 4c 8d 6d e0                  	leaq	-32(%rbp), %r13
+     472: 4c 89 6d 90                  	movq	%r13, -112(%rbp)
+     476: e8 00 00 00 00               	callq	0x47b <_$s5hello10NewStudentC3FeeSSvg+0x9b>
+     47b: 4c 8b ad 70 ff ff ff         	movq	-144(%rbp), %r13
+     482: 48 8b bd 78 ff ff ff         	movq	-136(%rbp), %rdi
+     489: e8 00 00 00 00               	callq	0x48e <_$s5hello10NewStudentC3FeeSSvg+0xae>
+     48e: 49 8b 45 00                  	movq	(%r13), %rax
+     492: 48 8b 80 88 00 00 00         	movq	136(%rax), %rax
+     499: ff d0                        	callq	*%rax
+     49b: 4c 8b 6d 90                  	movq	-112(%rbp), %r13
+     49f: 48 89 45 d8                  	movq	%rax, -40(%rbp)
+     4a3: 48 8b 35 00 00 00 00         	movq	(%rip), %rsi            ## 0x4aa <_$s5hello10NewStudentC3FeeSSvg+0xca>
+     4aa: 48 8b 15 00 00 00 00         	movq	(%rip), %rdx            ## 0x4b1 <_$s5hello10NewStudentC3FeeSSvg+0xd1>
+     4b1: 48 8d 7d d8                  	leaq	-40(%rbp), %rdi
+     4b5: e8 00 00 00 00               	callq	0x4ba <_$s5hello10NewStudentC3FeeSSvg+0xda>
+     4ba: 4c 8b 6d 90                  	movq	-112(%rbp), %r13
+     4be: 8b 55 84                     	movl	-124(%rbp), %edx
+     4c1: 48 8d 3d e8 04 00 00         	leaq	1256(%rip), %rdi        ## 0x9b0 <_$sSa12_endMutationyyF+0x20>
+     4c8: 31 c0                        	xorl	%eax, %eax
+     4ca: 89 c6                        	movl	%eax, %esi
+     4cc: e8 00 00 00 00               	callq	0x4d1 <_$s5hello10NewStudentC3FeeSSvg+0xf1>
+     4d1: 48 89 c7                     	movq	%rax, %rdi
+     4d4: 48 89 d6                     	movq	%rdx, %rsi
+     4d7: 48 89 75 88                  	movq	%rsi, -120(%rbp)
+     4db: e8 00 00 00 00               	callq	0x4e0 <_$s5hello10NewStudentC3FeeSSvg+0x100>
+     4e0: 48 8b 7d 88                  	movq	-120(%rbp), %rdi
+     4e4: e8 00 00 00 00               	callq	0x4e9 <_$s5hello10NewStudentC3FeeSSvg+0x109>
+     4e9: 48 8b 45 e0                  	movq	-32(%rbp), %rax
+     4ed: 48 89 45 98                  	movq	%rax, -104(%rbp)
+     4f1: 48 8b 7d e8                  	movq	-24(%rbp), %rdi
+     4f5: 48 89 7d a0                  	movq	%rdi, -96(%rbp)
+     4f9: e8 00 00 00 00               	callq	0x4fe <_$s5hello10NewStudentC3FeeSSvg+0x11e>
+     4fe: 48 8b 7d 90                  	movq	-112(%rbp), %rdi
+     502: e8 00 00 00 00               	callq	0x507 <_$s5hello10NewStudentC3FeeSSvg+0x127>
+     507: 48 8b 7d 98                  	movq	-104(%rbp), %rdi
+     50b: 48 8b 75 a0                  	movq	-96(%rbp), %rsi
+     50f: e8 00 00 00 00               	callq	0x514 <_$s5hello10NewStudentC3FeeSSvg+0x134>
+     514: 48 8b 7d a8                  	movq	-88(%rbp), %rdi
+     518: 48 8b 75 c0                  	movq	-64(%rbp), %rsi
+     51c: 48 89 45 b0                  	movq	%rax, -80(%rbp)
+     520: 48 89 d1                     	movq	%rdx, %rcx
+     523: 48 8b 55 b0                  	movq	-80(%rbp), %rdx
+     527: 48 89 4d b8                  	movq	%rcx, -72(%rbp)
+     52b: e8 00 00 00 00               	callq	0x530 <_$s5hello10NewStudentC3FeeSSvg+0x150>
+     530: 48 8b 7d b8                  	movq	-72(%rbp), %rdi
+     534: 48 89 45 c8                  	movq	%rax, -56(%rbp)
+     538: 48 89 55 d0                  	movq	%rdx, -48(%rbp)
+     53c: e8 00 00 00 00               	callq	0x541 <_$s5hello10NewStudentC3FeeSSvg+0x161>
+     541: 48 8b 7d c0                  	movq	-64(%rbp), %rdi
+     545: e8 00 00 00 00               	callq	0x54a <_$s5hello10NewStudentC3FeeSSvg+0x16a>
+     54a: 48 8b 45 c8                  	movq	-56(%rbp), %rax
+     54e: 48 8b 55 d0                  	movq	-48(%rbp), %rdx
+     552: 48 81 c4 98 00 00 00         	addq	$152, %rsp
+     559: 41 5d                        	popq	%r13
+     55b: 5d                           	popq	%rbp
+     55c: c3                           	retq
+     55d: 0f 1f 00                     	nopl	(%rax)
+
+0000000000000560 <_$s5hello10NewStudentCACycfC>:
+     560: 55                           	pushq	%rbp
+     561: 48 89 e5                     	movq	%rsp, %rbp
+     564: 41 55                        	pushq	%r13
+     566: 50                           	pushq	%rax
+     567: 4c 89 ef                     	movq	%r13, %rdi
+     56a: be 20 00 00 00               	movl	$32, %esi
+     56f: ba 07 00 00 00               	movl	$7, %edx
+     574: e8 00 00 00 00               	callq	0x579 <_$s5hello10NewStudentCACycfC+0x19>
+     579: 49 89 c5                     	movq	%rax, %r13
+     57c: e8 00 00 00 00               	callq	0x581 <_$s5hello10NewStudentCACycfC+0x21>
+     581: 48 83 c4 08                  	addq	$8, %rsp
+     585: 41 5d                        	popq	%r13
+     587: 5d                           	popq	%rbp
+     588: c3                           	retq
+     589: 0f 1f 80 00 00 00 00         	nopl	(%rax)
+
+0000000000000590 <_$s5hello10NewStudentCACycfc>:
+     590: 55                           	pushq	%rbp
+     591: 48 89 e5                     	movq	%rsp, %rbp
+     594: 41 55                        	pushq	%r13
+     596: 48 83 ec 18                  	subq	$24, %rsp
+     59a: 4c 89 ef                     	movq	%r13, %rdi
+     59d: 48 89 7d e0                  	movq	%rdi, -32(%rbp)
+     5a1: 48 c7 45 f0 00 00 00 00      	movq	$0, -16(%rbp)
+     5a9: e8 00 00 00 00               	callq	0x5ae <_$s5hello10NewStudentCACycfc+0x1e>
+     5ae: 48 8b 7d e0                  	movq	-32(%rbp), %rdi
+     5b2: 48 89 7d f0                  	movq	%rdi, -16(%rbp)
+     5b6: 48 c7 47 18 e8 03 00 00      	movq	$1000, 24(%rdi)         ## imm = 0x3E8
+     5be: e8 00 00 00 00               	callq	0x5c3 <_$s5hello10NewStudentCACycfc+0x33>
+     5c3: 4c 8b 6d f0                  	movq	-16(%rbp), %r13
+     5c7: e8 00 00 00 00               	callq	0x5cc <_$s5hello10NewStudentCACycfc+0x3c>
+     5cc: 48 89 c7                     	movq	%rax, %rdi
+     5cf: 48 89 7d e8                  	movq	%rdi, -24(%rbp)
+     5d3: e8 00 00 00 00               	callq	0x5d8 <_$s5hello10NewStudentCACycfc+0x48>
+     5d8: 48 8b 45 e8                  	movq	-24(%rbp), %rax
+     5dc: 48 89 45 f0                  	movq	%rax, -16(%rbp)
+     5e0: 48 8b 7d f0                  	movq	-16(%rbp), %rdi
+     5e4: e8 00 00 00 00               	callq	0x5e9 <_$s5hello10NewStudentCACycfc+0x59>
+     5e9: 48 8b 45 e8                  	movq	-24(%rbp), %rax
+     5ed: 48 83 c4 18                  	addq	$24, %rsp
+     5f1: 41 5d                        	popq	%r13
+     5f3: 5d                           	popq	%rbp
+     5f4: c3                           	retq
+     5f5: 66 66 2e 0f 1f 84 00 00 00 00 00     	nopw	%cs:(%rax,%rax)
+
+0000000000000600 <_$s5hello10NewStudentCfd>:
+     600: 55                           	pushq	%rbp
+     601: 48 89 e5                     	movq	%rsp, %rbp
+     604: 48 83 ec 10                  	subq	$16, %rsp
+     608: 48 c7 45 f8 00 00 00 00      	movq	$0, -8(%rbp)
+     610: 4c 89 6d f8                  	movq	%r13, -8(%rbp)
+     614: e8 00 00 00 00               	callq	0x619 <_$s5hello10NewStudentCfd+0x19>
+     619: 48 83 c4 10                  	addq	$16, %rsp
+     61d: 5d                           	popq	%rbp
+     61e: c3                           	retq
+     61f: 90                           	nop
+
+0000000000000620 <_$s5hello10NewStudentCfD>:
+     620: 55                           	pushq	%rbp
+     621: 48 89 e5                     	movq	%rsp, %rbp
+     624: 48 83 ec 10                  	subq	$16, %rsp
+     628: 48 c7 45 f8 00 00 00 00      	movq	$0, -8(%rbp)
+     630: 4c 89 6d f8                  	movq	%r13, -8(%rbp)
+     634: e8 00 00 00 00               	callq	0x639 <_$s5hello10NewStudentCfD+0x19>
+     639: 48 89 c7                     	movq	%rax, %rdi
+     63c: be 20 00 00 00               	movl	$32, %esi
+     641: ba 07 00 00 00               	movl	$7, %edx
+     646: e8 00 00 00 00               	callq	0x64b <_$s5hello10NewStudentCfD+0x2b>
+     64b: 48 83 c4 10                  	addq	$16, %rsp
+     64f: 5d                           	popq	%rbp
+     650: c3                           	retq
+     651: 66 66 66 66 66 66 2e 0f 1f 84 00 00 00 00 00 	nopw	%cs:(%rax,%rax)
+
+0000000000000660 <_$s5hello2HiyyF>:
+     660: 55                           	pushq	%rbp
+     661: 48 89 e5                     	movq	%rsp, %rbp
+     664: 41 55                        	pushq	%r13
+     666: 48 81 ec c8 00 00 00         	subq	$200, %rsp
+     66d: 48 c7 45 f0 00 00 00 00      	movq	$0, -16(%rbp)
+     675: 0f 57 c0                     	xorps	%xmm0, %xmm0
+     678: 0f 29 45 e0                  	movaps	%xmm0, -32(%rbp)
+     67c: 31 c0                        	xorl	%eax, %eax
+     67e: 89 c7                        	movl	%eax, %edi
+     680: 48 89 bd 58 ff ff ff         	movq	%rdi, -168(%rbp)
+     687: e8 00 00 00 00               	callq	0x68c <_$s5hello2HiyyF+0x2c>
+     68c: 49 89 c5                     	movq	%rax, %r13
+     68f: e8 00 00 00 00               	callq	0x694 <_$s5hello2HiyyF+0x34>
+     694: 49 89 c5                     	movq	%rax, %r13
+     697: 4c 89 6d c8                  	movq	%r13, -56(%rbp)
+     69b: 4c 89 6d f0                  	movq	%r13, -16(%rbp)
+     69f: 4c 89 ef                     	movq	%r13, %rdi
+     6a2: e8 00 00 00 00               	callq	0x6a7 <_$s5hello2HiyyF+0x47>
+     6a7: 49 8b 45 00                  	movq	(%r13), %rax
+     6ab: 48 8b 40 60                  	movq	96(%rax), %rax
+     6af: bf 20 03 00 00               	movl	$800, %edi              ## imm = 0x320
+     6b4: ff d0                        	callq	*%rax
+     6b6: 4c 8b 6d c8                  	movq	-56(%rbp), %r13
+     6ba: 4c 89 ef                     	movq	%r13, %rdi
+     6bd: e8 00 00 00 00               	callq	0x6c2 <_$s5hello2HiyyF+0x62>
+     6c2: 49 8b 45 00                  	movq	(%r13), %rax
+     6c6: 48 8b 80 90 00 00 00         	movq	144(%rax), %rax
+     6cd: bf e8 03 00 00               	movl	$1000, %edi             ## imm = 0x3E8
+     6d2: ff d0                        	callq	*%rax
+     6d4: 48 8b 35 00 00 00 00         	movq	(%rip), %rsi            ## 0x6db <_$s5hello2HiyyF+0x7b>
+     6db: 48 83 c6 08                  	addq	$8, %rsi
+     6df: 48 89 75 98                  	movq	%rsi, -104(%rbp)
+     6e3: bf 01 00 00 00               	movl	$1, %edi
+     6e8: 48 89 bd 38 ff ff ff         	movq	%rdi, -200(%rbp)
+     6ef: e8 00 00 00 00               	callq	0x6f4 <_$s5hello2HiyyF+0x94>
+     6f4: 48 8b b5 38 ff ff ff         	movq	-200(%rbp), %rsi
+     6fb: 48 8b bd 58 ff ff ff         	movq	-168(%rbp), %rdi
+     702: 48 89 45 90                  	movq	%rax, -112(%rbp)
+     706: 48 89 55 a0                  	movq	%rdx, -96(%rbp)
+     70a: e8 00 00 00 00               	callq	0x70f <_$s5hello2HiyyF+0xaf>
+     70f: 48 8b b5 58 ff ff ff         	movq	-168(%rbp), %rsi
+     716: 48 89 45 e0                  	movq	%rax, -32(%rbp)
+     71a: 48 89 55 e8                  	movq	%rdx, -24(%rbp)
+     71e: 48 8d 3d 8b 02 00 00         	leaq	651(%rip), %rdi         ## 0x9b0 <_$sSa12_endMutationyyF+0x20>
+     725: 48 89 bd 50 ff ff ff         	movq	%rdi, -176(%rbp)
+     72c: ba 01 00 00 00               	movl	$1, %edx
+     731: 89 95 64 ff ff ff            	movl	%edx, -156(%rbp)
+     737: e8 00 00 00 00               	callq	0x73c <_$s5hello2HiyyF+0xdc>
+     73c: 48 89 c7                     	movq	%rax, %rdi
+     73f: 48 89 d6                     	movq	%rdx, %rsi
+     742: 48 89 b5 40 ff ff ff         	movq	%rsi, -192(%rbp)
+     749: 4c 8d 6d e0                  	leaq	-32(%rbp), %r13
+     74d: 4c 89 ad 70 ff ff ff         	movq	%r13, -144(%rbp)
+     754: e8 00 00 00 00               	callq	0x759 <_$s5hello2HiyyF+0xf9>
+     759: 4c 8b 6d c8                  	movq	-56(%rbp), %r13
+     75d: 48 8b bd 40 ff ff ff         	movq	-192(%rbp), %rdi
+     764: e8 00 00 00 00               	callq	0x769 <_$s5hello2HiyyF+0x109>
+     769: 49 8b 45 00                  	movq	(%r13), %rax
+     76d: 48 8b 40 70                  	movq	112(%rax), %rax
+     771: ff d0                        	callq	*%rax
+     773: 4c 8b ad 70 ff ff ff         	movq	-144(%rbp), %r13
+     77a: 48 89 45 d0                  	movq	%rax, -48(%rbp)
+     77e: 48 89 55 d8                  	movq	%rdx, -40(%rbp)
+     782: 48 8b 35 00 00 00 00         	movq	(%rip), %rsi            ## 0x789 <_$s5hello2HiyyF+0x129>
+     789: 48 89 75 88                  	movq	%rsi, -120(%rbp)
+     78d: 48 8b 15 00 00 00 00         	movq	(%rip), %rdx            ## 0x794 <_$s5hello2HiyyF+0x134>
+     794: 48 8b 0d 00 00 00 00         	movq	(%rip), %rcx            ## 0x79b <_$s5hello2HiyyF+0x13b>
+     79b: 48 8d 7d d0                  	leaq	-48(%rbp), %rdi
+     79f: 48 89 bd 48 ff ff ff         	movq	%rdi, -184(%rbp)
+     7a6: e8 00 00 00 00               	callq	0x7ab <_$s5hello2HiyyF+0x14b>
+     7ab: 4c 8b ad 70 ff ff ff         	movq	-144(%rbp), %r13
+     7b2: 48 8b bd 48 ff ff ff         	movq	-184(%rbp), %rdi
+     7b9: e8 00 00 00 00               	callq	0x7be <_$s5hello2HiyyF+0x15e>
+     7be: 48 8b bd 50 ff ff ff         	movq	-176(%rbp), %rdi
+     7c5: 48 8b b5 58 ff ff ff         	movq	-168(%rbp), %rsi
+     7cc: 8b 95 64 ff ff ff            	movl	-156(%rbp), %edx
+     7d2: e8 00 00 00 00               	callq	0x7d7 <_$s5hello2HiyyF+0x177>
+     7d7: 48 89 c7                     	movq	%rax, %rdi
+     7da: 48 89 d6                     	movq	%rdx, %rsi
+     7dd: 48 89 b5 68 ff ff ff         	movq	%rsi, -152(%rbp)
+     7e4: e8 00 00 00 00               	callq	0x7e9 <_$s5hello2HiyyF+0x189>
+     7e9: 48 8b bd 68 ff ff ff         	movq	-152(%rbp), %rdi
+     7f0: e8 00 00 00 00               	callq	0x7f5 <_$s5hello2HiyyF+0x195>
+     7f5: 48 8b 45 e0                  	movq	-32(%rbp), %rax
+     7f9: 48 89 85 78 ff ff ff         	movq	%rax, -136(%rbp)
+     800: 48 8b 7d e8                  	movq	-24(%rbp), %rdi
+     804: 48 89 7d 80                  	movq	%rdi, -128(%rbp)
+     808: e8 00 00 00 00               	callq	0x80d <_$s5hello2HiyyF+0x1ad>
+     80d: 48 8b bd 70 ff ff ff         	movq	-144(%rbp), %rdi
+     814: e8 00 00 00 00               	callq	0x819 <_$s5hello2HiyyF+0x1b9>
+     819: 48 8b bd 78 ff ff ff         	movq	-136(%rbp), %rdi
+     820: 48 8b 75 80                  	movq	-128(%rbp), %rsi
+     824: e8 00 00 00 00               	callq	0x829 <_$s5hello2HiyyF+0x1c9>
+     829: 4c 8b 45 88                  	movq	-120(%rbp), %r8
+     82d: 48 8b 7d 90                  	movq	-112(%rbp), %rdi
+     831: 48 8b 75 98                  	movq	-104(%rbp), %rsi
+     835: 48 89 c1                     	movq	%rax, %rcx
+     838: 48 89 d0                     	movq	%rdx, %rax
+     83b: 48 8b 55 a0                  	movq	-96(%rbp), %rdx
+     83f: 4c 89 42 18                  	movq	%r8, 24(%rdx)
+     843: 48 89 0a                     	movq	%rcx, (%rdx)
+     846: 48 89 42 08                  	movq	%rax, 8(%rdx)
+     84a: e8 00 00 00 00               	callq	0x84f <_$s5hello2HiyyF+0x1ef>
+     84f: 48 89 45 c0                  	movq	%rax, -64(%rbp)
+     853: e8 00 00 00 00               	callq	0x858 <_$s5hello2HiyyF+0x1f8>
+     858: 48 89 45 a8                  	movq	%rax, -88(%rbp)
+     85c: 48 89 55 b8                  	movq	%rdx, -72(%rbp)
+     860: e8 00 00 00 00               	callq	0x865 <_$s5hello2HiyyF+0x205>
+     865: 48 8b 75 a8                  	movq	-88(%rbp), %rsi
+     869: 48 8b 7d c0                  	movq	-64(%rbp), %rdi
+     86d: 48 89 c1                     	movq	%rax, %rcx
+     870: 49 89 d0                     	movq	%rdx, %r8
+     873: 48 8b 55 b8                  	movq	-72(%rbp), %rdx
+     877: 4c 89 45 b0                  	movq	%r8, -80(%rbp)
+     87b: e8 00 00 00 00               	callq	0x880 <_$s5hello2HiyyF+0x220>
+     880: 48 8b 7d b0                  	movq	-80(%rbp), %rdi
+     884: e8 00 00 00 00               	callq	0x889 <_$s5hello2HiyyF+0x229>
+     889: 48 8b 7d b8                  	movq	-72(%rbp), %rdi
+     88d: e8 00 00 00 00               	callq	0x892 <_$s5hello2HiyyF+0x232>
+     892: 48 8b 7d c0                  	movq	-64(%rbp), %rdi
+     896: e8 00 00 00 00               	callq	0x89b <_$s5hello2HiyyF+0x23b>
+     89b: 48 8b 7d c8                  	movq	-56(%rbp), %rdi
+     89f: e8 00 00 00 00               	callq	0x8a4 <_$s5hello2HiyyF+0x244>
+     8a4: 48 81 c4 c8 00 00 00         	addq	$200, %rsp
+     8ab: 41 5d                        	popq	%r13
+     8ad: 5d                           	popq	%rbp
+     8ae: c3                           	retq
+     8af: 90                           	nop
+
+00000000000008b0 <_$s5hello10NewStudentCMa>:
+     8b0: 50                           	pushq	%rax
+     8b1: 48 8d 3d 10 00 00 00         	leaq	16(%rip), %rdi          ## 0x8c8 <_$s5hello10NewStudentCMa+0x18>
+     8b8: e8 00 00 00 00               	callq	0x8bd <_$s5hello10NewStudentCMa+0xd>
+     8bd: 31 c9                        	xorl	%ecx, %ecx
+     8bf: 89 ca                        	movl	%ecx, %edx
+     8c1: 59                           	popq	%rcx
+     8c2: c3                           	retq
+     8c3: 66 66 66 66 2e 0f 1f 84 00 00 00 00 00       	nopw	%cs:(%rax,%rax)
+
+00000000000008d0 <_$sSSWOh>:
+     8d0: 55                           	pushq	%rbp
+     8d1: 48 89 e5                     	movq	%rsp, %rbp
+     8d4: 48 83 ec 10                  	subq	$16, %rsp
+     8d8: 48 89 7d f8                  	movq	%rdi, -8(%rbp)
+     8dc: 48 8b 7f 08                  	movq	8(%rdi), %rdi
+     8e0: e8 00 00 00 00               	callq	0x8e5 <_$sSSWOh+0x15>
+     8e5: 48 8b 45 f8                  	movq	-8(%rbp), %rax
+     8e9: 48 83 c4 10                  	addq	$16, %rsp
+     8ed: 5d                           	popq	%rbp
+     8ee: c3                           	retq
+     8ef: 90                           	nop
+
+00000000000008f0 <_$ss27_finalizeUninitializedArrayySayxGABnlF>:
+     8f0: 55                           	pushq	%rbp
+     8f1: 48 89 e5                     	movq	%rsp, %rbp
+     8f4: 41 55                        	pushq	%r13
+     8f6: 48 83 ec 18                  	subq	$24, %rsp
+     8fa: 48 89 75 f0                  	movq	%rsi, -16(%rbp)
+     8fe: 48 89 7d e8                  	movq	%rdi, -24(%rbp)
+     902: 31 c0                        	xorl	%eax, %eax
+     904: 89 c7                        	movl	%eax, %edi
+     906: e8 00 00 00 00               	callq	0x90b <_$ss27_finalizeUninitializedArrayySayxGABnlF+0x1b>
+     90b: 48 89 c7                     	movq	%rax, %rdi
+     90e: 4c 8d 6d e8                  	leaq	-24(%rbp), %r13
+     912: e8 00 00 00 00               	callq	0x917 <_$ss27_finalizeUninitializedArrayySayxGABnlF+0x27>
+     917: 48 8b 45 e8                  	movq	-24(%rbp), %rax
+     91b: 48 83 c4 18                  	addq	$24, %rsp
+     91f: 41 5d                        	popq	%r13
+     921: 5d                           	popq	%rbp
+     922: c3                           	retq
+     923: 66 66 66 66 2e 0f 1f 84 00 00 00 00 00       	nopw	%cs:(%rax,%rax)
+
+0000000000000930 <_$ss5print_9separator10terminatoryypd_S2StFfA0_>:
+     930: 55                           	pushq	%rbp
+     931: 48 89 e5                     	movq	%rsp, %rbp
+     934: 48 8d 3d f5 00 00 00         	leaq	245(%rip), %rdi         ## 0xa30 <_$sSa12_endMutationyyF+0xa0>
+     93b: be 01 00 00 00               	movl	$1, %esi
+     940: ba 01 00 00 00               	movl	$1, %edx
+     945: e8 00 00 00 00               	callq	0x94a <_$ss5print_9separator10terminatoryypd_S2StFfA0_+0x1a>
+     94a: 5d                           	popq	%rbp
+     94b: c3                           	retq
+     94c: 0f 1f 40 00                  	nopl	(%rax)
+
+0000000000000950 <_$ss5print_9separator10terminatoryypd_S2StFfA1_>:
+     950: 55                           	pushq	%rbp
+     951: 48 89 e5                     	movq	%rsp, %rbp
+     954: 48 8d 3d d3 00 00 00         	leaq	211(%rip), %rdi         ## 0xa2e <_$sSa12_endMutationyyF+0x9e>
+     95b: be 01 00 00 00               	movl	$1, %esi
+     960: ba 01 00 00 00               	movl	$1, %edx
+     965: e8 00 00 00 00               	callq	0x96a <_$ss5print_9separator10terminatoryypd_S2StFfA1_+0x1a>
+     96a: 5d                           	popq	%rbp
+     96b: c3                           	retq
+     96c: 0f 1f 40 00                  	nopl	(%rax)
+
+0000000000000970 <_$s5hello10OldStudentCMa>:
+     970: 50                           	pushq	%rax
+     971: 48 8d 3d 10 00 00 00         	leaq	16(%rip), %rdi          ## 0x988 <_$s5hello10OldStudentCMa+0x18>
+     978: e8 00 00 00 00               	callq	0x97d <_$s5hello10OldStudentCMa+0xd>
+     97d: 31 c9                        	xorl	%ecx, %ecx
+     97f: 89 ca                        	movl	%ecx, %edx
+     981: 59                           	popq	%rcx
+     982: c3                           	retq
+     983: 66 66 66 66 2e 0f 1f 84 00 00 00 00 00       	nopw	%cs:(%rax,%rax)
+
+0000000000000990 <_$sSa12_endMutationyyF>:
+     990: 55                           	pushq	%rbp
+     991: 48 89 e5                     	movq	%rsp, %rbp
+     994: 5d                           	popq	%rbp
+     995: c3                           	retq

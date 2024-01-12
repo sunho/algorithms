@@ -1,0 +1,6 @@
+solvable
+solvable
+solvable
+unsolvable
+unsolvable
+unsolvable

@@ -1,3 +1,58 @@
+// min heap
+template<class T> using pqg = priority_queue<T, vector<T>, greater<T> >;
+
+// ilog2 gcc/clang
+int ilog2(ll x) { return 63 - __builtin_clzll(x); }
+int ilog2(int x) { return 31 - __builtin_clz(x); }
+
+// ilog2 general
+int ilog2(int x) {
+  int out = 0;
+  while (x >>= 1) ++out;
+  return out;
+}
+int ilog2(ll x) {
+  int out = 0;
+  while (x >>= 1) ++out;
+  return out;
+}
+
+// __int128 to string
+string to_string(__int128 val) {
+  bool neg = false;
+  if (val < 0) neg = true, val = -val;
+  auto high = ll(val / (__int128)1e18L);
+  auto low = ll(val - (__int128)1e18L * high);
+  string res;
+  if (neg) res += '-';
+  if (high > 0) {
+    res += to_string(high);
+    string temp = to_string(low);
+    res += string(18u-temp.size(),'0');
+    res += temp;
+  } else {
+    res += to_string(low);
+  }
+  return res;
+}
+
+// when number of distinct elements is large
+// this is actually faster than hash map or binary tree map
+int maxfreq(vector<int>& a) {
+  int res = 0;
+  int cur = 0;
+  sort(a.begin(), a.end());
+  for(int i=0; i < a.size(); i++) {
+    if (i == 0 || a[i] == a[i-1]) {
+      cur++;
+      ckmax(res, cur);
+    } else {
+      cur = 1;
+    }
+  }
+  return res;
+}
+
 // Debug
 #ifdef LOCAL
 freopen("input.txt", "r", stdin);
@@ -27,6 +82,9 @@ using namespace __gnu_pbds;
 template <typename T>
 using indexed_set =
     tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+
+template <typename T>
+using pqg = priority_queue<T, vector<T>, greater<T>>;
 
 // Hash table
 // For sane OJs
@@ -109,3 +167,4 @@ vector<int> rnd_array(int n, int mn, int mx) {
   assert(in == n);
   return A;
 }
+

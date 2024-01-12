@@ -1,7 +1,9 @@
 // sieves + lp
 // works when N <= 10^7
 // O(n log n) time
-void sieves(int PN, vector<ll>& lp, vector<ll>& pr) {
+vector<ll> lp;
+vector<ll> pr;
+void sieves(int PN) {
   lp.assign(PN+1,0);
   for (int i=2; i <= PN; ++i) {
     if (lp[i] == 0) {
@@ -13,6 +15,25 @@ void sieves(int PN, vector<ll>& lp, vector<ll>& pr) {
     }
   }
 }
+
+// factor one number count p^k
+// O(sqrt(n))
+vector<pair<ll,int>> factorize(ll n) {
+  vector<pair<ll,int>> facts;
+  while (n > 1) {
+    int k=0;
+    int d = lp[n];
+    while (n % d == 0) {
+      n /= d;
+      k++;
+    }
+    if (k != 0) {
+      facts.push_back({d,k});
+    }
+  }
+  return facts;
+}
+
 
 // factor one number count p
 // O(sqrt(n))
@@ -46,43 +67,5 @@ vector<pair<ll,int>> factorize(ll n) {
   if (n > 1)
     facts.push_back({n,1});
   return facts;
-}
-
-// [gcd(x,y)=1] -> sum_d|gcd(x,y) mobis(d)
-void generate_mobius(int PN, vector<int>& mobius, vector<ll>& pr) {
-  vector<bool> comp(PN+1);
-  mobius.assign(PN+1,0);
-  mobius[1] = 1;
-  for (int i=2; i <= PN; ++i) {
-    if (!comp[i]) {
-      pr.push_back(i);
-      mobius[i] = -1;
-    }
-    for (int j=0; j < pr.size() && i*pr[j] <= PN; ++j) {
-      comp[i*pr[j]] = true;
-      if (i % pr[j] == 0) {
-        break;
-      }
-      mobius[i*pr[j]] = mobius[i]*mobius[pr[j]];
-    }
-  }
-}
-
-vector<ll> gcd_convolution(vector<ll> p, vector<ll> a, vector<ll> b) {
-  int n = a.size() - 1;
-  for (int i=0; i < p.size() && p[i]<=n; ++i) {
-    for (int j=n/p[i]; j>=1; --j) {
-      a[j] += a[j * p[i]];	
-      b[j] += b[j * p[i]];
-    }
-  }
-  vector<ll> d(n+1);
-  for (int i=1; i<=n; ++i) d[i] = a[i] * b[i];
-  for (int i=0; i < p.size() && p[i]<=n; ++i) {
-    for (int j=1; j * p[i] <= n; ++j) {
-      d[j] -= d[j * p[i]];
-    }
-  }
-  return d;
 }
 
