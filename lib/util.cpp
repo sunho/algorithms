@@ -168,3 +168,7 @@ vector<int> rnd_array(int n, int mn, int mx) {
   return A;
 }
 
+ll ari(ll l, ll r) { return (l + r) * (r - l + 1) / 2; }
+
+template<class T> bool ckmin(T&a, const T&b) { bool B = a > b; a = min(a,b); return B; }
+template<class T> bool ckmax(T&a, const T&b) { bool B = a < b; a = max(a,b); return B; }

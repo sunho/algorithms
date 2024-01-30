@@ -1,0 +1,13 @@
+insertion_sort(A[1..N]) { # A[1..N]을 오름차순 정렬한다.
+    for i &lt;- 2 to N {
+       loc = i - 1;
+       newItem = A[i];
+
+       # 이 지점에서 A[1..i-1]은 이미 정렬되어 있는 상태
+       while (1 &lt;= loc and newItem &lt; A[loc]) {
+            A[loc + 1] &lt;- A[loc];
+           loc--;
+       }
+       if (loc + 1 != i) then A[loc + 1] = newItem;
+   }
+}
