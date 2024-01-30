@@ -17,26 +17,26 @@ template <typename Info> struct seg_tree {
     build(build, 1, 0, n - 1);
   }
   void pull(int v) { info[v] = info[v * 2] + info[v * 2 + 1]; }
-  void update(int v, int l, int r, int x, const Info &val) {
+  Info get(int v) { return query(v,v); }
+  void set(int v, int l, int r, int x, const Info &val) {
     if (l == r) {
       info[v] = val;
       return;
     }
     int m = (l + r) / 2;
     if (x <= m)
-      update(v * 2, l, m, x, val);
+      set(v * 2, l, m, x, val);
     else
-      update(v * 2 + 1, m + 1, r, x, val);
+      set(v * 2 + 1, m + 1, r, x, val);
     pull(v);
   }
-  void update(int x, const Info &val) { update(1, 0, n - 1, x, val); }
+  void set(int x, const Info &val) { set(1, 0, n - 1, x, val); }
   Info query(int v, int l, int r, int x, int y) {
     if (l > y || r < x)
       return Info();
     if (l >= x && r <= y)
       return info[v];
     int m = (l + r) / 2;
-    pull(v);
     return query(2 * v, l, m, x, y) + query(2 * v + 1, m + 1, r, x, y);
   }
   Info query(int l, int r) { return query(1, 0, n - 1, l, r); }
@@ -74,7 +74,8 @@ template <class Info, class Tag> struct lazy_seg_tree {
     lazy[v] = {};
   }
   void pull(int v) { info[v] = info[2 * v] + info[2 * v + 1]; }
-  void update(int v, int l, int r, int x, const Info &val) {
+  Info get(int v) { return query(v,v); }
+  void set(int v, int l, int r, int x, const Info &val) {
     if (l == r) {
       info[v] = val;
       return;
@@ -82,12 +83,12 @@ template <class Info, class Tag> struct lazy_seg_tree {
     int m = (l + r) / 2;
     push(v);
     if (x <= m)
-      update(2 * v, l, m, x, val);
+      set(2 * v, l, m, x, val);
     else
-      update(2 * v + 1, m + 1, r, x, val);
+      set(2 * v + 1, m + 1, r, x, val);
     pull(v);
   }
-  void update(int x, const Info &val) { update(1, 0, n - 1, x, val); }
+  void set(int x, const Info &val) { set(1, 0, n - 1, x, val); }
   void range_apply(int v, int l, int r, int x, int y, const Tag &tag) {
     if (l > y || r < x)
       return;
@@ -160,19 +161,20 @@ template <typename Info> struct seg_tree {
     build(build, 1, 0, n - 1);
   }
   void pull(int v) { info[v] = info[v * 2] + info[v * 2 + 1]; }
-  void update(int v, int l, int r, int x, const Info &val) {
+  Info get(int v) { return query(v,v); }
+  void set(int v, int l, int r, int x, const Info &val) {
     if (l == r) {
       info[v] = val;
       return;
     }
     int m = (l + r) / 2;
     if (x <= m)
-      update(v * 2, l, m, x, val);
+      set(v * 2, l, m, x, val);
     else
-      update(v * 2 + 1, m + 1, r, x, val);
+      set(v * 2 + 1, m + 1, r, x, val);
     pull(v);
   }
-  void update(int x, const Info &val) { update(1, 0, n - 1, x, val); }
+  void set(int x, const Info &val) { set(1, 0, n - 1, x, val); }
   Info query(int v, int l, int r, int x, int y) {
     if (l > y || r < x)
       return Info();
@@ -205,7 +207,7 @@ struct seg_node {
   unique_ptr<seg_node> left, right;
   Info v;
   seg_node() = default;
-  void update(ll s, ll e, int x, Info v){
+  void set(ll s, ll e, int x, Info v){
     if(s == e){
       this->v = this->v + v; 
       return;
@@ -213,10 +215,10 @@ struct seg_node {
     ll m = (s + e) >> 1;
     if(x <= m){
       if(!left) left = make_unique<seg_node>();
-      left->update(s, m, x, v);
+      left->set(s, m, x, v);
     }else{
       if(!right) right = make_unique<seg_node>();
-      right->update(m+1, e, x, v);
+      right->set(m+1, e, x, v);
     }
     Info t1 = left ? left->v : Info();
     Info t2 = right ? right->v : Info();

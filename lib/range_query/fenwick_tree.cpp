@@ -1,32 +1,38 @@
+template<typename T=ll>
 struct fenwick_tree {
   int n;
-  vector<ll> bits;
+  vector<T> bits;
   fenwick_tree(int n) : n(n), bits(n + 1) {}
-  void update(int v, int delta) {
+  void set(int v, T delta) {
+    add(v, -get(v,v));
+    add(v, delta);
+  }
+  void add(int v, T delta) {
     for (++v; v <= n; v += v & (-v))
       bits[v] += delta;
   }
-  ll query(int r) {
-    ll res = 0;
+  T get(int i) { return query(i,i); }
+  T query(int l, int r) { return prefix_query(r) - prefix_query(l - 1); }
+  T prefix_query(int r) {
+    T res = 0;
     for (++r; r > 0; r -= r & (-r))
       res += bits[r];
     return res;
   }
-  ll query(int l, int r) { return query(r) - query(l - 1); }
 };
 
-struct fenwick_tree {
+struct range_fenwick_tree {
   int n;
   vector<ll> bits;
   fenwick_tree(int n) : n(n), bits(n + 1) {}
-  void add(int idx, int val) {
-    for (++idx; idx <= n; idx += idx & -idx)
-      bits[idx] += val;
+  void add(int l, int r, int val) {
+    prefix_add(l, val);
+    prefix_add(r + 1, -val);
   }
 
-  void range_add(int l, int r, int val) {
-    add(l, val);
-    add(r + 1, -val);
+  void prefix_add(int idx, int val) {
+    for (++idx; idx <= n; idx += idx & -idx)
+      bits[idx] += val;
   }
 
   int point_query(int idx) {
