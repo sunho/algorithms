@@ -1,0 +1,7 @@
+-std=c++20
+-I/Users/sunho/dev/algorithms/lib
+-Werror
+-Wall
+-Wextra
+-Wshorten-64-to-32
+-Wno-unused

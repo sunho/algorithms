@@ -25,15 +25,18 @@ mint inv(mint a) { return power(a, MOD - 2); }
 
 const int FN = 3e5;
 vector<mint> facts(FN+1);
-mint fact(int n) {
+vector<mint> ifacts(FN+1);
+mint choose(int n, int k) {
   if (facts[0].val() == 0) {
     facts[0] = 1;
     for (int i=1;i<=FN;i++) {
       facts[i] = i * facts[i-1];
     }
+    ifacts[0] = 1;
+    for (int i=1;i<=FN;i++) {
+      ifacts[i] = inv(facts[i]);
+    }
   }
-  return facts[n];
+  return facts[n]*ifacts[n-k]*ifacts[k];
 }
-mint choose(int n, int k) {
-  return fact(n)/(fact(n-k)*fact(k));
-}
+

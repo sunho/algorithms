@@ -1,0 +1,11 @@
+N M
+S<sub>1</sub> V<sub>1</sub>
+.
+.
+.
+S<sub>N</sub> V<sub>N</sub>
+C<sub>1</sub>
+.
+.
+.
+C<sub>M</sub>

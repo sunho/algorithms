@@ -1,9 +1,44 @@
 // min heap
 template<class T> using pqg = priority_queue<T, vector<T>, greater<T> >;
 
+// ari
+ll ari(ll l, ll r) { return (l + r) * (r - l + 1) / 2; }
+
+// ckmin ckmax
+template<class T> bool ckmin(T&a, const T&b) { bool B = a > b; a = min(a,b); return B; }
+template<class T> bool ckmax(T&a, const T&b) { bool B = a < b; a = max(a,b); return B; }
+
+// int128_t output
+istream &operator>>(istream &is, __int128_t &v) {
+  string s;
+  is>>s;
+  v=0;
+  for(auto &it:s) if(isdigit(it)) v=v*10+it-'0';
+  if(s[0]=='-') v*=-1;
+  return is;
+}
+
+ostream &operator<<(ostream &os,const __int128_t &v) {
+  if(v==0) return (os<<"0");
+  __int128_t num=v;
+  if(v<0) os<<'-',num=-num;
+  string s;
+  for(;num>0;num/=10) s.push_back((char)(num%10)+'0');
+  reverse(begin(s),end(s));
+  return (os<<s);
+}
+
 // ilog2 gcc/clang
 int ilog2(ll x) { return 63 - __builtin_clzll(x); }
 int ilog2(int x) { return 31 - __builtin_clz(x); }
+
+// Order statistics tree
+#include <ext/pb_ds/assoc_container.hpp>
+using namespace __gnu_pbds;
+
+template <typename T>
+using indexed_set =
+    tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
 // ilog2 general
 int ilog2(int x) {
@@ -15,25 +50,6 @@ int ilog2(ll x) {
   int out = 0;
   while (x >>= 1) ++out;
   return out;
-}
-
-// __int128 to string
-string to_string(__int128 val) {
-  bool neg = false;
-  if (val < 0) neg = true, val = -val;
-  auto high = ll(val / (__int128)1e18L);
-  auto low = ll(val - (__int128)1e18L * high);
-  string res;
-  if (neg) res += '-';
-  if (high > 0) {
-    res += to_string(high);
-    string temp = to_string(low);
-    res += string(18u-temp.size(),'0');
-    res += temp;
-  } else {
-    res += to_string(low);
-  }
-  return res;
 }
 
 // when number of distinct elements is large
@@ -53,38 +69,44 @@ int maxfreq(vector<int>& a) {
   return res;
 }
 
-// Debug
-#ifdef LOCAL
-freopen("input.txt", "r", stdin);
-freopen("output.txt", "w", stdout);
-#endif
+// ternary search dobule
+double m1 = l + (r - l) / 3, m2 = r - (r - l) / 3;
+if (f(m1) < f(m2)) {
+  r = m2;
+} else {
+  l = m1;
+}
 
-#define dbg(x) "(" << #x << ": " << (x) << ") "
-template <typename Ostream, typename Cont>
-enable_if_t<is_same_v<Ostream, ostream>, Ostream &> operator<<(Ostream &os,
-                                                               const Cont &v) {
-  os << "[";
-  for (auto &x : v) {
-    os << x << ", ";
+int l = -1, r = n;
+while (r - l > 1) {
+  int mid = (r + l) >> 1;
+  if (f(mid) > f(mid + 1))
+    r = mid;
+  else
+    l = mid;
+}
+// lo + 1 is the answer
+
+// random
+ll rnd(ll mn, ll mx) {
+  static mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+  uniform_int_distribution<ll> gen(mn, mx);
+  return gen(rng);
+}
+
+vector<int> rnd_array(int n, int mn, int mx) {
+  int in = 0;
+  vector<int> A(n);
+  int m = mx - mn + 1;
+  for (int i = 0; i < m && in < n; ++i) {
+    int rm = m - i;
+    int rn = n - in;
+    if (rnd(0, rm - 1) < rn)
+      A[in++] = i;
   }
-  return os << "]";
+  assert(in == n);
+  return A;
 }
-template <typename... Ts>
-ostream &operator<<(ostream &os, const pair<Ts...> &p) {
-  return os << "{" << p.first << ", " << p.second << "}";
-}
-ostream &operator<<(ostream &os, mint p) { return os << p.val(); }
-
-// Order statistics tree
-#include <ext/pb_ds/assoc_container.hpp>
-using namespace __gnu_pbds;
-
-template <typename T>
-using indexed_set =
-    tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
-
-template <typename T>
-using pqg = priority_queue<T, vector<T>, greater<T>>;
 
 // Hash table
 // For sane OJs
@@ -120,55 +142,22 @@ struct custom_hash {
 template <typename K, typename V>
 using hash_map = unordered_map<K, V, custom_hash>;
 
-void print(__int128 x) {
-  if (x < 0) {
-    cout << '-';
-    x = -x;
+// __int128 to string
+string to_string(__int128 val) {
+  bool neg = false;
+  if (val < 0) neg = true, val = -val;
+  auto high = ll(val / (__int128)1e18L);
+  auto low = ll(val - (__int128)1e18L * high);
+  string res;
+  if (neg) res += '-';
+  if (high > 0) {
+    res += to_string(high);
+    string temp = to_string(low);
+    res += string(18u-temp.size(),'0');
+    res += temp;
+  } else {
+    res += to_string(low);
   }
-  if (x > 9)
-    print(x / 10);
-  cout << (int)(x % 10);
+  return res;
 }
 
-// ternary search dobule
-double m1 = l + (r - l) / 3, m2 = r - (r - l) / 3;
-if (f(m1) < f(m2)) {
-  r = m2;
-} else {
-  l = m1;
-}
-
-int l = -1, r = n;
-while (r - l > 1) {
-  int mid = (r + l) >> 1;
-  if (f(mid) > f(mid + 1))
-    r = mid;
-  else
-    l = mid;
-}
-// lo + 1 is the answer
-
-ll rnd(ll mn, ll mx) {
-  static mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
-  uniform_int_distribution<ll> gen(mn, mx);
-  return gen(rng);
-}
-
-vector<int> rnd_array(int n, int mn, int mx) {
-  int in = 0;
-  vector<int> A(n);
-  int m = mx - mn + 1;
-  for (int i = 0; i < m && in < n; ++i) {
-    int rm = m - i;
-    int rn = n - in;
-    if (rnd(0, rm - 1) < rn)
-      A[in++] = i;
-  }
-  assert(in == n);
-  return A;
-}
-
-ll ari(ll l, ll r) { return (l + r) * (r - l + 1) / 2; }
-
-template<class T> bool ckmin(T&a, const T&b) { bool B = a > b; a = min(a,b); return B; }
-template<class T> bool ckmax(T&a, const T&b) { bool B = a < b; a = max(a,b); return B; }
